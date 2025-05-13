@@ -4,5 +4,6 @@ from . import views
 appname = 'main'
 
 urlpatterns = [
-    path('registration/', views.register, name='example_view'),  # Пример маршрута
+    path('registration/', views.register, name='registration'),
+    path('login/', views.login, name='login'),
 ]
