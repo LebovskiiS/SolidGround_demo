@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Расширение профиля пользователя
+
 class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='info')
     age = models.IntegerField(null=True, blank=True)
@@ -16,7 +16,7 @@ class UserInfo(models.Model):
         return f"Profile for {self.user.username}"
 
 
-# Сигнальная сессия — когда пользователь нажал кнопку "мне плохо"
+
 class SignalSession(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='signal_sessions')
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -42,7 +42,7 @@ class ChatSession(models.Model):
         return f"ChatSession {self.id} for {self.user.username}"
 
 
-# Сообщения в рамках ChatSession
+
 class ChatMessage(models.Model):
     session = models.ForeignKey(ChatSession, on_delete=models.CASCADE, related_name='messages')
     sender = models.CharField(max_length=10, choices=[('user', 'User'), ('gpt', 'GPT')])
