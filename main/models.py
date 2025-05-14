@@ -4,13 +4,13 @@ from django.contrib.auth.models import User
 
 class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='info')
-    age = models.IntegerField(null=True, blank=True)
-    location = models.CharField(max_length=100, blank=True)
-    military_status = models.CharField(max_length=100, blank=True)
-    ptsd_level = models.CharField(max_length=100, blank=True)
-    preferred_music = models.CharField(max_length=200, blank=True)
-    emergency_contacts = models.TextField(blank=True)  # JSON или просто список
-    therapist_contact = models.CharField(max_length=100, blank=True)  # e-mail, тел. и т.п.
+    age = models.IntegerField(null= True, blank= True)
+    location = models.CharField(max_length= 100, blank= True)
+    military_status = models.CharField(max_length= 100, blank= True)
+    ptsd_level = models.IntegerField(blank= True, null= True)
+    preferred_music = models.CharField(max_length= 200, blank=True)
+    emergency_contacts = models.TextField(blank=True)
+    therapist_contact = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return f"Profile for {self.user.username}"
