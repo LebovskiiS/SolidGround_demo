@@ -7,5 +7,6 @@ appname = 'event'
 
 
 urlpatterns = [
-    path('alarm/<id: user_id>', views.alarm, name='alarm'),
+    path('triger/<int:user_id>/', views.trigger_alarm, name='alarm'),
+
 ]

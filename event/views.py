@@ -1,13 +1,23 @@
+from importlib import reload
+
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
 from event.models import Alarm, AlarmResult, AlarmScenario
-from main.models import UserInfo, Therapist, UserContact, MusicTrack
+from main.models import UserInfo, Therapist, EmergencyContact, MusicTrack
 from django.contrib.auth.models import User
 
-@api_view(['POST'])
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from django.contrib.auth.models import User
+from event.models import AlarmScenario, Alarm, AlarmResult
+from .utils import Notification
+
+
+@api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def trigger_alarm(request, user_id):
     try:
@@ -16,52 +26,68 @@ def trigger_alarm(request, user_id):
     except (User.DoesNotExist, UserInfo.DoesNotExist):
         return Response({'error': 'User or UserInfo not found'}, status=404)
 
-    # Получаем сценарий тревоги (например, последний или дефолтный)
-    scenario = AlarmScenario.objects.first()  # Для простоты выбираем первый сценарий
+    scenario = user_info.scenario
+    if not scenario:
+        return Response({'error': 'No AlarmScenario associated with this user'}, status=404)
 
-    # Создаём запись о тревоге
-    alarm = Alarm.objects.create(user=user, scenario=scenario)
 
-    # Инициализируем переменные результата
-    music_played = False
-    contacts_notified = False
-    voice_played = False
-    therapist_notified = False
-    music_url = None
+    response_data = {
+        "scenario": scenario.name,
+        "messages": []
+    }
 
-    # === Выполняем сценарий ===
+
     if scenario.play_music and user_info.preferred_music:
-        music_played = True
         music_url = user_info.preferred_music.file_url
-
-    if scenario.notify_contacts and user_info.contacts.exists():
-        contacts_notified = True
-        # Здесь может быть отправка SMS или email
-
-    if scenario.notify_therapist and user_info.therapist:
-        therapist_notified = True
-        # Здесь может быть логика уведомления терапевта
-
-    # Сохраняем результат тревоги
-    alarm_result = AlarmResult.objects.create(
-        alarm=alarm,
-        location=request.data.get('location', ''),
-        music_played=music_played,
-        message_sent_to_contacts=contacts_notified,
-        voice_message_played=voice_played,
-        therapist_notified=therapist_notified,
-        completed=True
-    )
+        response_data["messages"].append({"music_url":music_url})
+    else:
+        response_data["messages"].append("Музыка не воспроизводилась.")
 
 
-    return Response({
-        'alarm_id': alarm.id,
-        'scenario': scenario.name,
-        'result': {
-            'music_played': music_played,
-            'music_url': music_url,
-            'contacts_notified': contacts_notified,
-            'therapist_notified': therapist_notified,
-            'completed': True
-        }
-    }, status=201)
+
+
+
+    if scenario.notify_contact and user_info.emergency_contact:
+        emergency_id = user_info.emergency_contact
+        emergency_contact = EmergencyContact.objects.get(id=emergency_id)
+
+        name = emergency_contact.name,
+        relationship = emergency_contact.relationship
+        phone = emergency_contact.phone
+        email = emergency_contact.email
+
+            
+        notification = Notification(user_info.location, str(name),"Экстренная ситуация, требуется ваша помощь!", {":phone:": phone, ":email": email})
+        notification.send_notification()
+
+        response_data["messages"].append(f"Ваш/ваша{relationship} получил(а) уведомление.")
+    else:
+        response_data["messages"].append("Экстренные контакты не были уведомлены.")
+
+    if scenario.notify_therapist and user_info.therapist_contact:
+        therapist_contact = user_info.therapist_contact
+
+        therapist_name = therapist_contact.name or "не указано"
+        therapist_phone = therapist_contact.phone or "не указан"
+        therapist_email = therapist_contact.email or "не указан"
+
+
+        notification = Notification(
+            user_info.location,
+            therapist_name,
+            "Экстренная ситуация, пользователь сообщает о необходимости связи.",
+            {
+                ":phone:": therapist_phone,
+                ":email:": therapist_email
+            }
+        )
+        notification.send_notification()
+
+
+        response_data["messages"].append(f"Ваш психотерапевт ({therapist_name}) был уведомлён.")
+    else:
+        response_data["messages"].append("Психотерапевт не был уведомлён.")
+
+
+
+    return Response(response_data, status=200)

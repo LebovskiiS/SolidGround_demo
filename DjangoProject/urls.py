@@ -17,9 +17,10 @@ Including another URLconf
 # from django.contrib import admin
 from django.urls import path, include
 from django.contrib import admin
-
+from .settings import API_VERSION
 
 urlpatterns = [
        path('admin/', admin.site.urls),
-       path('api/', include('main.urls'))
+       path(f'api/{API_VERSION}/', include('main.urls')),
+       path(f'api/{API_VERSION}/event/', include('event.urls'))
 ]

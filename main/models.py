@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from event.models import AlarmScenario
+
+
 
 class MusicTrack(models.Model):
     name = models.CharField(max_length=100)
@@ -11,8 +14,9 @@ class MusicTrack(models.Model):
 
 class Therapist(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='therapist_profile')
-    specialization = models.CharField(max_length=255, blank=True)
-    contact_info = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=100, blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+    email = models.EmailField(blank=True)
 
     def __str__(self):
         return f"Therapist {self.user.username}"
@@ -21,23 +25,25 @@ class Therapist(models.Model):
 
 class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='info')
-    age = models.PositiveIntegerField(null=True, blank=True)  # Возраст не может быть отрицательным
+    age = models.PositiveIntegerField(null=True, blank=True)
     location = models.CharField(max_length=100, blank=True)
     military_status = models.BooleanField(default=False)
-    ptsd_level = models.PositiveIntegerField(blank=True, null=True)  # Уровень должен быть положительным
+    ptsd_level = models.PositiveIntegerField(blank=True, null=True)
     preferred_music = models.ForeignKey(
         MusicTrack, on_delete=models.CASCADE, null=True, blank=True, related_name='preferred_by_users'
     )
-    emergency_contacts = models.ManyToManyField(
-        User, related_name="emergency_contacts_for", blank=True
-    )  # Связь с другими пользователями — их нельзя удалять, если они в чьих-то контактах
+    emergency_contact = models.OneToOneField(
+        'EmergencyContact', on_delete=models.CASCADE, null=True, blank=True, related_name='user_info'
+    )
     therapist_contact = models.ForeignKey(
         Therapist, on_delete=models.CASCADE, null=True, blank=True, related_name="users"
+    )
+    scenario = models.ForeignKey(
+        AlarmScenario, on_delete=models.SET_NULL, null=True, blank=True, related_name='users', default=1
     )
 
     def __str__(self):
         return f"Profile for {self.user.username}"
-
 
 
 
@@ -65,11 +71,10 @@ class ChatMessage(models.Model):
 
 
 class EmergencyContact(models.Model):
-    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE, related_name='contacts')
     name = models.CharField(max_length=100, blank=True)
     relationship = models.CharField(max_length=100, blank=True)
     phone = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
 
     def __str__(self):
-        return f"Contact {self.name} ({self.user_info.user.username})"
+        return f"Emergency Contact: {self.name} ({self.relationship})"

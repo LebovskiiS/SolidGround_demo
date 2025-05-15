@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
                 ('play_music', models.BooleanField(default=True)),
-                ('notify_contacts', models.BooleanField(default=True)),
+                ('notify_contact', models.BooleanField(default=True)),
                 ('notify_therapist', models.BooleanField(default=False)),
             ],
         ),

@@ -57,7 +57,7 @@ class Migration(migrations.Migration):
                 ('military_status', models.CharField(blank=True, max_length=100)),
                 ('ptsd_level', models.CharField(blank=True, max_length=100)),
                 ('preferred_music', models.CharField(blank=True, max_length=200)),
-                ('emergency_contacts', models.TextField(blank=True)),
+                ('emergency_contact', models.TextField(blank=True)),
                 ('therapist_contact', models.CharField(blank=True, max_length=100)),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='info', to=settings.AUTH_USER_MODEL)),
             ],

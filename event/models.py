@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class AlarmScenario(models.Model):
     name = models.CharField(max_length=100)
     play_music = models.BooleanField(default=True)
-    notify_contacts = models.BooleanField(default=True)
+    notify_contact = models.BooleanField(default=True)
     notify_therapist = models.BooleanField(default=False)
 
     def __str__(self):

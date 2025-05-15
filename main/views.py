@@ -62,7 +62,7 @@ def edit_userinfo(request):
         user_info.military_status = data.get('military_status', user_info.military_status)
         user_info.ptsd_level = data.get('ptsd_level', user_info.ptsd_level)
         user_info.preferred_music = data.get('preferred_music', user_info.preferred_music)
-        user_info.emergency_contacts = data.get('emergency_contacts', user_info.emergency_contacts)
+        user_info.emergency_contact = data.get('emergency_contact', user_info.emergency_contact)
         user_info.therapist_contact = data.get('therapist_contact', user_info.therapist_contact)
         user_info.save()
 
