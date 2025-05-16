@@ -38,7 +38,7 @@ def trigger_alarm(request, user_id):
 
 
     if scenario.play_music and user_info.preferred_music:
-        music_url = user_info.preferred_music.file_url
+        music_url = user_info.preferred_music.url
         response_data["messages"].append({"music_url":music_url})
     else:
         response_data["messages"].append("Музыка не воспроизводилась.")

@@ -6,7 +6,7 @@ from event.models import AlarmScenario
 
 class MusicTrack(models.Model):
     name = models.CharField(max_length=100)
-    file_url = models.URLField()
+    url = models.URLField()
 
     def __str__(self):
         return f"{self.name} track"

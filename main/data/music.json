@@ -1,0 +1,10 @@
+[
+    {
+        "name": "New Song 1",
+        "url": "https://example.com/newsong1.mp3"
+    },
+    {
+        "name": "New Song 2",
+        "url": "https://example.com/newsong2.mp3"
+    }
+]
