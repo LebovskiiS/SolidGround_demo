@@ -71,23 +71,24 @@ def trigger(request, user_id):
         therapist_phone = therapist_contact.phone or "не указан"
         therapist_email = therapist_contact.email or "не указан"
 
-
         notification = Notification(
-            user_info.location,
-            therapist_name,
-            "Экстренная ситуация, пользователь сообщает о необходимости связи.",
-            {
+            location=user_info.location,
+            name=therapist_name,
+            message="Экстренная ситуация, пользователь сообщает о необходимости связи.",
+            contact={
                 ":phone:": therapist_phone,
                 ":email:": therapist_email
             }
         )
-        notification.send_notification()
 
+        notification.send_email(
+            recipient_email=therapist_email,
+            user_name=therapist_name,
+            message_text=None
+        )
 
         response_data["messages"].append(f"Ваш психотерапевт ({therapist_name}) был уведомлён.")
     else:
         response_data["messages"].append("Психотерапевт не был уведомлён.")
-
-
 
     return Response(response_data, status=200)

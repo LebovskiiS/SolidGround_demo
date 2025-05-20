@@ -164,3 +164,18 @@ Traceback (most recent call last):
     )
 RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/api/v1/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
 ERROR 2025-05-20 17:24:20,258 basehttp "POST /api/v1/login HTTP/1.1" 500 65622
+ERROR 2025-05-20 23:14:52,225 log Internal Server Error: /api/v1/edit/user/1
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/middleware/common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/middleware/common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/api/v1/edit/user/1/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-05-20 23:14:52,228 basehttp "POST /api/v1/edit/user/1 HTTP/1.1" 500 66315
