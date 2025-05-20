@@ -19,7 +19,7 @@ from .utils import Notification
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def trigger_alarm(request, user_id):
+def trigger(request, user_id):
     try:
         user = User.objects.get(id=user_id)
         user_info = UserInfo.objects.get(user=user)
