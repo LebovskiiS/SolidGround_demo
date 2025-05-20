@@ -8,6 +8,9 @@ from rest_framework.authtoken.models import Token
 from . import models
 from django.db import transaction
 
+
+
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 @authentication_classes([])
@@ -43,12 +46,11 @@ def login(request):
 
 
 
-@api_view(['UPDATE'])
+@api_view(['PATCH'])
 @permission_classes([IsAuthenticated])
 @transaction.atomic
-def edit_userinfo(request):
+def edit_userinfo(request, user_id):
     try:
-        user_id = request.user.id
         data = request.data
 
         try:
@@ -57,7 +59,7 @@ def edit_userinfo(request):
             return Response({"error": "UserInfo not found for this user."}, status=status.HTTP_404_NOT_FOUND)
 
 
-        user_info.age = data.get('age', user_info.age)  # Если age отсутствует, сохраняется текущее значение
+        user_info.age = data.get('age', user_info.age)
         user_info.location = data.get('location', user_info.location)
         user_info.military_status = data.get('military_status', user_info.military_status)
         user_info.ptsd_level = data.get('ptsd_level', user_info.ptsd_level)

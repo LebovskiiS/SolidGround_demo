@@ -4,3 +4,7 @@ class ErrorReadingFile(Exception):
 
 class InvalidJSONStructure(Exception):
     pass
+
+
+class RegistrationInTestsError(Exception):
+    pass
