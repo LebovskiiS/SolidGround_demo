@@ -52,12 +52,10 @@ def login(request):
 def edit_userinfo(request, user_id):
     try:
         data = request.data
-
         try:
             user_info = models.UserInfo.objects.get(user_id=user_id)
         except models.UserInfo.DoesNotExist:
             return Response({"error": "UserInfo not found for this user."}, status=status.HTTP_404_NOT_FOUND)
-
 
         user_info.age = data.get('age', user_info.age)
         user_info.location = data.get('location', user_info.location)
@@ -66,12 +64,22 @@ def edit_userinfo(request, user_id):
         user_info.preferred_music = data.get('preferred_music', user_info.preferred_music)
         user_info.emergency_contact = data.get('emergency_contact', user_info.emergency_contact)
         user_info.therapist_contact = data.get('therapist_contact', user_info.therapist_contact)
+
+        scenario_id = data.get('scenario')
+        if scenario_id:
+            try:
+                scenario = models.AlarmScenario.objects.get(id=scenario_id)
+                user_info.scenario = scenario
+            except models.AlarmScenario.DoesNotExist:
+                return Response({"error": "AlarmScenario not found with this id."}, status=status.HTTP_400_BAD_REQUEST)
+
         user_info.save()
 
-        return Response({"message": "User info updated successfully."}, status=status.HTTP_200_OK)
+        return Response({"message": "UserInfo updated successfully."}, status=status.HTTP_200_OK)
 
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 
 
