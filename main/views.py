@@ -5,9 +5,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authtoken.models import Token
-from . import models
+from .models import *
 from django.db import transaction
-
+from django.contrib.auth.models import User
 
 
 
@@ -53,24 +53,22 @@ def edit_userinfo(request, user_id):
     try:
         data = request.data
         try:
-            user_info = models.UserInfo.objects.get(user_id=user_id)
-        except models.UserInfo.DoesNotExist:
+            user_info = UserInfo.objects.get(user_id=user_id)
+        except UserInfo.DoesNotExist:
             return Response({"error": "UserInfo not found for this user."}, status=status.HTTP_404_NOT_FOUND)
 
         user_info.age = data.get('age', user_info.age)
         user_info.location = data.get('location', user_info.location)
         user_info.military_status = data.get('military_status', user_info.military_status)
         user_info.ptsd_level = data.get('ptsd_level', user_info.ptsd_level)
-        user_info.preferred_music = data.get('preferred_music', user_info.preferred_music)
-        user_info.emergency_contact = data.get('emergency_contact', user_info.emergency_contact)
         user_info.therapist_contact = data.get('therapist_contact', user_info.therapist_contact)
 
         scenario_id = data.get('scenario')
         if scenario_id:
             try:
-                scenario = models.AlarmScenario.objects.get(id=scenario_id)
+                scenario = AlarmScenario.objects.get(id=scenario_id)
                 user_info.scenario = scenario
-            except models.AlarmScenario.DoesNotExist:
+            except AlarmScenario.DoesNotExist:
                 return Response({"error": "AlarmScenario not found with this id."}, status=status.HTTP_400_BAD_REQUEST)
 
         user_info.save()
@@ -87,11 +85,65 @@ def edit_userinfo(request, user_id):
 @permission_classes([IsAuthenticated])
 def get_userinfo(request, user_id):
     try:
-        user_info = models.UserInfo.objects.get(user_id=user_id)
-    except models.UserInfo.DoesNotExist:
+        user_info = UserInfo.objects.get(user_id=user_id)
+    except UserInfo.DoesNotExist:
         return Response({"error": "UserInfo not found for this user."}, status=status.HTTP_404_NOT_FOUND)
     serializer = UserInfoSerializer(user_info)
     return Response(serializer.data)
+
+
+
+
+
+
+
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+def edit_emergency_contact(request, user_id):
+    try:
+        if request.user.id != user_id:
+            return Response(
+                {"error": "You are not authorized to edit another user's emergency contact."},
+                status=403
+            )
+
+        name = request.data.get("name")
+        phone = request.data.get("phone")
+        email = request.data.get("email")
+        relationship = request.data.get("relationship")
+
+        if not name or not phone or not relationship:
+            return Response(
+                {"error": "The 'name', 'phone', and 'relationship' fields are required."},
+                status=400
+            )
+
+
+        emergency_contact = EmergencyContact.objects.create(
+            user=request.user,
+            name=name,
+            phone=phone,
+            email=email,
+            relationship=relationship
+        )
+
+
+        return Response({
+            "message": "A new emergency contact has been created.",
+            "data": {
+                "id": emergency_contact.id,
+                "name": emergency_contact.name,
+                "phone": emergency_contact.phone,
+                "email": emergency_contact.email,
+                "relationship": emergency_contact.relationship,
+            }
+        }, status=201)
+
+    except Exception as e:
+        return Response(
+            {"error": f"An error occurred: {str(e)}"},
+            status=400
+        )
 
 
 
