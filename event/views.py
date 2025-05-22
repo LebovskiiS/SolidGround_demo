@@ -43,26 +43,43 @@ def trigger(request, user_id):
     else:
         response_data["messages"].append("Музыка не воспроизводилась.")
 
+    if scenario.notify_contact and user_info.user.emergency_contacts.exists():
+        emergency_contacts = user_info.user.emergency_contacts.all()
+
+        for emergency_contact in emergency_contacts:
+            name = emergency_contact.name
+            relationship = emergency_contact.relationship
+            phone = emergency_contact.phone
+            email = emergency_contact.email
 
 
+            notification = Notification(
+                location=user_info.location,
+                name=name,
+                message="Экстренная ситуация, требуется ваша помощь!",
+                contact={":phone:": phone, ":email": email},
+                user_name=user_info.user.username  # Имя пользователя
+            )
 
 
-    if scenario.notify_contact and user_info.emergency_contact:
-        emergency_id = user_info.emergency_contact
-        emergency_contact = EmergencyContact.objects.get(id=emergency_id)
+            email_result = notification.send_email(
+                recipient_email=email,
+                user_name=user_info.user.username,
+            )
 
-        name = emergency_contact.name,
-        relationship = emergency_contact.relationship
-        phone = emergency_contact.phone
-        email = emergency_contact.email
-
-            
-        notification = Notification(user_info.location, str(name),"Экстренная ситуация, требуется ваша помощь!", {":phone:": phone, ":email": email})
-        notification.send_notification()
-
-        response_data["messages"].append(f"Ваш/ваша{relationship} получил(а) уведомление.")
+            if email_result.get("status") == "success":
+                response_data["messages"].append(
+                    f"Ваш/ваша {relationship} ({name}) получил(а) уведомление по email."
+                )
+            else:
+                response_data["messages"].append(
+                    f"Ошибка отправки уведомления для {relationship} ({name}): {email_result.get('message')}"
+                )
     else:
         response_data["messages"].append("Экстренные контакты не были уведомлены.")
+
+
+
 
     if scenario.notify_therapist and user_info.therapist_contact:
         therapist_contact = user_info.therapist_contact

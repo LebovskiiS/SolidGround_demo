@@ -57,6 +57,7 @@ def edit_userinfo(request, user_id):
         except UserInfo.DoesNotExist:
             return Response({"error": "UserInfo not found for this user."}, status=status.HTTP_404_NOT_FOUND)
 
+        # Обновляем данные
         user_info.age = data.get('age', user_info.age)
         user_info.location = data.get('location', user_info.location)
         user_info.military_status = data.get('military_status', user_info.military_status)
@@ -73,7 +74,20 @@ def edit_userinfo(request, user_id):
 
         user_info.save()
 
-        return Response({"message": "UserInfo updated successfully."}, status=status.HTTP_200_OK)
+        # Возвращаем актуальные данные
+        user_info_data = {
+            "age": user_info.age,
+            "location": user_info.location,
+            "military_status": user_info.military_status,
+            "ptsd_level": user_info.ptsd_level,
+            "therapist_contact": user_info.therapist_contact.id if user_info.therapist_contact else None,
+            "scenario": user_info.scenario.id if user_info.scenario else None,
+        }
+
+        return Response({
+            "message": "UserInfo updated successfully.",
+            "updated_data": user_info_data,
+        }, status=status.HTTP_200_OK)
 
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
