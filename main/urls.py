@@ -13,4 +13,6 @@ urlpatterns = [
     path('<int:user_id>/', get_userinfo, name='user'),
 
     path('edit/contact/<int:user_id>/', edit_emergency_contact, name ='edit_emergency_contact'),
+    path('music/', get_music, name= 'get_music'),
+    path('music/edit/<int:user_id>/', set_music, name='set_music')
     ]

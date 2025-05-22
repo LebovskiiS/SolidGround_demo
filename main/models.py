@@ -28,8 +28,8 @@ class UserInfo(models.Model):
     location = models.CharField(max_length=100, blank=True)
     military_status = models.BooleanField(default=False)
     ptsd_level = models.PositiveIntegerField(blank=True, null=True)
-    preferred_music = models.ForeignKey(
-        'MusicTrack', on_delete=models.CASCADE, null=True, blank=True, related_name='preferred_by_users'
+    music = models.ForeignKey(
+        'MusicTrack', on_delete=models.CASCADE, null=True, blank=True, related_name='music'
     )
     therapist_contact = models.ForeignKey(
         'Therapist', on_delete=models.CASCADE, null=True, blank=True, related_name="users"

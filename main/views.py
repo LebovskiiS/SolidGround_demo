@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate
-from .serializers import RegisterSerializer, UserInfoSerializer
+from .serializers import *
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework import status
 from rest_framework.response import Response
@@ -8,7 +8,7 @@ from rest_framework.authtoken.models import Token
 from .models import *
 from django.db import transaction
 from django.contrib.auth.models import User
-
+from .exceptions import *
 
 
 @api_view(['POST'])
@@ -74,7 +74,7 @@ def edit_userinfo(request, user_id):
 
         user_info.save()
 
-        # Возвращаем актуальные данные
+
         user_info_data = {
             "age": user_info.age,
             "location": user_info.location,
@@ -161,4 +161,35 @@ def edit_emergency_contact(request, user_id):
 
 
 
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def set_music(request, user_id):
+    try:
+        if request.user.id == user_id:
+            request.user.preferred_music = request.data.get("music")
+            request.user.save()
+            return Response({"message": "Music track updated successfully"}, status=200)
+
+        return Response(
+            {"error": "You are not authorized to edit this user's music preferences."},
+            status=403
+        )
+
+    except Exception as e:
+        return Response(
+            {"error": f"An error occurred: {str(e)}"},
+            status=400
+        )
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_music(request):
+    try:
+        tracks = MusicTrack.objects.all()
+        response = MusicSerializer(tracks, many=True).data
+        return Response(response, status=200)
+    except Exception as e:
+        raise ErrorNoRightForThisUser()
 

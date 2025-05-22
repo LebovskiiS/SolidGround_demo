@@ -37,8 +37,8 @@ def trigger(request, user_id):
     }
 
 
-    if scenario.play_music and user_info.preferred_music:
-        music_url = user_info.preferred_music.url
+    if scenario.play_music and user_info.music:
+        music_url = user_info.music.url
         response_data["messages"].append({"music_url":music_url})
     else:
         response_data["messages"].append("Музыка не воспроизводилась.")
@@ -58,7 +58,7 @@ def trigger(request, user_id):
                 name=name,
                 message="Экстренная ситуация, требуется ваша помощь!",
                 contact={":phone:": phone, ":email": email},
-                user_name=user_info.user.username  # Имя пользователя
+                user_name=user_info.user.username
             )
 
 

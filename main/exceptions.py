@@ -8,3 +8,8 @@ class InvalidJSONStructure(Exception):
 
 class RegistrationInTestsError(Exception):
     pass
+
+
+
+class ErrorNoRightForThisUser(Exception):
+    pass
