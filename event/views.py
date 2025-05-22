@@ -1,19 +1,9 @@
-from importlib import reload
-
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework import status
-
-from event.models import Alarm, AlarmResult, AlarmScenario
-from main.models import UserInfo, Therapist, EmergencyContact, MusicTrack
-from django.contrib.auth.models import User
+from main.models import UserInfo
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
-from event.models import AlarmScenario, Alarm, AlarmResult
 from .utils import Notification
 
 

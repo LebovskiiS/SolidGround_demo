@@ -48,29 +48,6 @@ class UserInfo(models.Model):
 
 
 
-class ChatSession(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='chat_sessions')
-    started_at = models.DateTimeField(auto_now_add=True)
-    ended_at = models.DateTimeField(null=True, blank=True)
-    duration_limit_minutes = models.IntegerField(default=10)
-
-    def __str__(self):
-        return f"ChatSession {self.id} for {self.user.username}"
-
-
-
-class ChatMessage(models.Model):
-    session = models.ForeignKey(ChatSession, on_delete=models.CASCADE, related_name='messages')
-    sender = models.CharField(max_length=10, choices=[('user', 'User'), ('gpt', 'GPT')])
-    message = models.TextField()
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.sender.upper()} at {self.timestamp}"
-
-
-
-
 class EmergencyContact(models.Model):
     user = models.ForeignKey(
         User,
