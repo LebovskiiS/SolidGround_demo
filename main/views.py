@@ -167,8 +167,20 @@ def edit_emergency_contact(request, user_id):
 def set_music(request, user_id):
     try:
         if request.user.id == user_id:
-            request.user.preferred_music = request.data.get("music")
-            request.user.save()
+            user_info = request.user.info
+
+            music_id = request.data.get("music")
+            if not music_id:
+                return Response({"error": "Music ID is required"}, status=400)
+
+            try:
+                music_track = MusicTrack.objects.get(id=music_id)
+            except MusicTrack.DoesNotExist:
+                return Response({"error": "Music track not found"}, status=404)
+
+            user_info.music = music_track
+            user_info.save()
+
             return Response({"message": "Music track updated successfully"}, status=200)
 
         return Response(
