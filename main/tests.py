@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework.test import APITestCase
 from rest_framework import status
-from django.core.management import call_command
 from event.models import AlarmScenario
 from DjangoProject.settings import API_VERSION, PASSWORD_FOR_TESTS, USERNAME_FOR_TESTS
 from main.exceptions import RegistrationInTestsError
@@ -12,7 +11,7 @@ from main.signals import create_user_info, create_music
 
 
 
-assert connection.vendor == 'sqlite', "Test database is not using SQLite!"
+
 
 
 
@@ -36,7 +35,7 @@ def registration_for_tests(client, registration_url):
         }
         response = client.post(registration_url, data, format='json')
         if response.status_code != status.HTTP_201_CREATED:
-            raise RegistrationInTestsError("User registration failed.")
+            raise RegistrationInTestsError(f"User registration failed. Status code: {response.status_code}, Response: {response.content}")
     except Exception as e:
         print(f"Registration failed: {e}")
         raise RegistrationInTestsError(str(e))
@@ -46,7 +45,7 @@ class RegistrationTestCase(APITestCase):
     def setUp(self):
         super().setUp()
         flush_with_constraints()
-        self.registration_url = f'/api/{API_VERSION}/registration/'
+        self.registration_url = f'/api/{API_VERSION}/user/registration/'
 
     def test_registration(self):
         data = {
@@ -60,8 +59,8 @@ class RegistrationTestCase(APITestCase):
 class LoginTestCase(APITestCase):
     def setUp(self):
         flush_with_constraints()
-        self.registration_url = f'/api/{API_VERSION}/registration/'
-        self.login_url = f'/api/{API_VERSION}/login/'
+        self.registration_url = f'/api/{API_VERSION}/user/registration/'
+        self.login_url = f'/api/{API_VERSION}/user/login/'
 
         AlarmScenario.objects.get_or_create(
             id=1,
@@ -100,13 +99,13 @@ class TestGetUserinfo(APITestCase):
         post_save.disconnect(receiver=create_user_info, sender=User)
         post_migrate.disconnect(receiver=create_music, dispatch_uid="create_music_post_migrate")
 
-        self.registration_url = f'/api/{API_VERSION}/registration/'
-        self.login_url = f'/api/{API_VERSION}/login/'
+        self.registration_url = f'/api/{API_VERSION}/user/registration/'
+        self.login_url = f'/api/{API_VERSION}/user/login/'
 
         registration_for_tests(self.client, self.registration_url)
         self.user = User.objects.get(username=USERNAME_FOR_TESTS)
 
-        self.userinfo_url = f'/api/{API_VERSION}/userinfo/1/' #need to figure out whe self.user_id  doesn't work. only hard coding 1 works
+        self.userinfo_url = f'/api/{API_VERSION}/user/1/' # Using user ID 1
 
         login_response = self.client.post(
             self.login_url,

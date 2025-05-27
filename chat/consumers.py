@@ -16,7 +16,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.identifier = self.session_id or str(self.user_id)
 
             if not self.identifier:
-                raise ValueError("Identifier (session_id or user_id) отсутствует в URL.")
+                raise ValueError("Identifier (session_id or user_id) is missing in URL.")
 
             self.room_group_name = f"chat_{self.identifier}"
 
@@ -39,7 +39,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             # Accept WebSocket connection
             await self.accept()
         except Exception as e:
-            print(f"[ChatConsumer Error] Ошибка при подключении: {e}")
+            print(f"[ChatConsumer Error] Connection error: {e}")
             await self.close()
 
     async def disconnect(self, close_code):
@@ -64,7 +64,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 }
             )
         except Exception as e:
-            print(f"[ChatConsumer Error] Ошибка при отключении: {e}")
+            print(f"[ChatConsumer Error] Disconnection error: {e}")
 
     async def receive(self, text_data):
         """
@@ -76,7 +76,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             message = text_data_json.get('message')
 
             if not message:
-                raise ValueError("Поле 'message' отсутствует или пусто.")
+                raise ValueError("Field 'message' is missing or empty.")
 
             # Forward message to the admin group
             await self.channel_layer.group_send(
@@ -89,9 +89,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 }
             )
         except (ValueError, json.JSONDecodeError) as e:
-            print(f"[ChatConsumer Error] Некорректные данные: {e}")
+            print(f"[ChatConsumer Error] Invalid data: {e}")
         except Exception as e:
-            print(f"[ChatConsumer Error] Ошибка при получении сообщения: {e}")
+            print(f"[ChatConsumer Error] Error receiving message: {e}")
 
     async def chat_message(self, event):
         """
@@ -117,7 +117,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 pass
 
         except Exception as e:
-            print(f"[ChatConsumer Error] Ошибка при отправке сообщения клиенту: {e}")
+            print(f"[ChatConsumer Error] Error sending message to client: {e}")
 
 
 class AdminConsumer(AsyncWebsocketConsumer):
@@ -135,7 +135,7 @@ class AdminConsumer(AsyncWebsocketConsumer):
             await self.accept()
             print("[AdminConsumer] Admin connection accepted without verification")
         except Exception as e:
-            print(f"[AdminConsumer Error] Ошибка подключения администратора: {e}")
+            print(f"[AdminConsumer Error] Admin connection error: {e}")
             await self.close()
 
     async def disconnect(self, close_code):
@@ -148,7 +148,7 @@ class AdminConsumer(AsyncWebsocketConsumer):
                 self.channel_name
             )
         except Exception as e:
-            print(f"[AdminConsumer Error] Ошибка отключения администратора: {e}")
+            print(f"[AdminConsumer Error] Admin disconnection error: {e}")
 
     async def user_connected(self, event):
         """
@@ -163,7 +163,7 @@ class AdminConsumer(AsyncWebsocketConsumer):
                 'user_id': user_id
             }))
         except Exception as e:
-            print(f"[AdminConsumer Error] Ошибка обработки user_connected: {e}")
+            print(f"[AdminConsumer Error] Error processing user_connected: {e}")
 
     async def user_disconnected(self, event):
         """
@@ -178,7 +178,7 @@ class AdminConsumer(AsyncWebsocketConsumer):
                 'user_id': user_id
             }))
         except Exception as e:
-            print(f"[AdminConsumer Error] Ошибка обработки user_disconnected: {e}")
+            print(f"[AdminConsumer Error] Error processing user_disconnected: {e}")
 
     async def chat_message(self, event):
 
@@ -190,7 +190,7 @@ class AdminConsumer(AsyncWebsocketConsumer):
                 'message': event.get('message', '')
             }))
         except Exception as e:
-            print(f"[AdminConsumer Error] Ошибка обработки сообщения: {e}")
+            print(f"[AdminConsumer Error] Error processing message: {e}")
 
     async def receive(self, text_data):
         """
@@ -202,9 +202,9 @@ class AdminConsumer(AsyncWebsocketConsumer):
             user_id = text_data_json.get('user_id')
 
             if not message:
-                raise ValueError("Поле 'message' отсутствует или пусто.")
+                raise ValueError("Field 'message' is missing or empty.")
             if not user_id:
-                raise ValueError("Поле 'user_id' отсутствует или пусто.")
+                raise ValueError("Field 'user_id' is missing or empty.")
 
             # Forward message to the specific user's group
             await self.channel_layer.group_send(

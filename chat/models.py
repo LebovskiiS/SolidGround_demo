@@ -11,10 +11,10 @@ class ChatSession(models.Model):
     session_type = models.CharField(
         max_length=10,
         choices=[
-            ('gpt', 'GPT'),  # Чат с GPT
-            ('user', 'User')  # Чат с реальным человеком
+            ('gpt', 'GPT'),  # Chat with GPT
+            ('user', 'User')  # Chat with a real person
         ],
-        default='gpt',  # По умолчанию чат с GPT
+        default='gpt',  # Default chat with GPT
     )
     receiver = models.ForeignKey(
         User,
@@ -22,10 +22,10 @@ class ChatSession(models.Model):
         null=True,
         blank=True,
         related_name='received_chats',
-        help_text="Указывает реального пользователя (если чат не с GPT)."
+        help_text="Indicates a real user (if not chatting with GPT)."
     )
-    started_at = models.DateTimeField(auto_now_add=True)  # Время начала чата
-    ended_at = models.DateTimeField(null=True, blank=True)  # Время завершения чата, если завершен
+    started_at = models.DateTimeField(auto_now_add=True)  # Chat start time
+    ended_at = models.DateTimeField(null=True, blank=True)  # Chat end time, if completed
 
     def __str__(self):
         if self.session_type == 'gpt':
@@ -46,7 +46,7 @@ class ChatMessage(models.Model):
             ('gpt', 'GPT'),
             ('system', 'System')
         ],
-        help_text="Кто отправил сообщение."
+        help_text="Who sent the message."
     )
     message = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
