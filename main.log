@@ -876,3 +876,1497 @@ Traceback (most recent call last):
                                ^^^^^^^^^^^^^^^^^^^^^^^^^
 AttributeError: 'UserInfo' object has no attribute 'preferred_music'
 ERROR 2025-05-22 02:10:49,147 basehttp "GET /api/v1/event/trigger/2/ HTTP/1.1" 500 93650
+DEBUG 2025-05-27 02:10:49,614 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/login/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+DEBUG 2025-05-27 02:10:49,620 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/login/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>
+DEBUG 2025-05-27 02:10:49,623 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/login/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>
+DEBUG 2025-05-27 02:10:49,626 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/login/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>
+WARNING 2025-05-27 02:10:49,629 log Not Found: /user/login/
+DEBUG 2025-05-27 02:11:39,047 utils (0.000) BEGIN; args=None; alias=default
+DEBUG 2025-05-27 02:11:39,052 utils (0.001) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin' LIMIT 21; args=('admin',); alias=default
+DEBUG 2025-05-27 02:11:39,274 utils (0.004) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."user_id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 02:11:39,275 utils (0.000) SAVEPOINT "s6188363776_x1"; args=None; alias=default
+DEBUG 2025-05-27 02:11:39,277 utils (0.002) INSERT INTO "authtoken_token" ("key", "user_id", "created") VALUES ('889e10d16483c21f9b775f9bf98ecff96f7af71c', 1, '2025-05-27T02:11:39.275819+00:00'::timestamptz); args=('889e10d16483c21f9b775f9bf98ecff96f7af71c', 1, datetime.datetime(2025, 5, 27, 2, 11, 39, 275819, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-27 02:11:39,277 utils (0.000) RELEASE SAVEPOINT "s6188363776_x1"; args=None; alias=default
+DEBUG 2025-05-27 02:11:39,279 utils (0.001) COMMIT; args=None; alias=default
+DEBUG 2025-05-27 02:12:30,745 utils (0.000) BEGIN; args=None; alias=default
+DEBUG 2025-05-27 02:12:30,749 utils (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin' LIMIT 21; args=('admin',); alias=default
+DEBUG 2025-05-27 02:12:30,987 utils (0.004) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."user_id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 02:12:30,988 utils (0.000) COMMIT; args=None; alias=default
+DEBUG 2025-05-27 02:13:04,633 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>, <URLPattern 'trigger/<int:user_id>/' [name='alarm']>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'api/v1/event/1'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+DEBUG 2025-05-27 02:13:04,641 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>, <URLPattern 'trigger/<int:user_id>/' [name='alarm']>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'api/v1/event/1'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>
+DEBUG 2025-05-27 02:13:04,644 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>, <URLPattern 'trigger/<int:user_id>/' [name='alarm']>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'api/v1/event/1'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>
+WARNING 2025-05-27 02:13:04,650 log Not Found: /api/v1/event/1
+DEBUG 2025-05-27 02:13:09,311 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>, <URLPattern 'trigger/<int:user_id>/' [name='alarm']>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'api/v1/event/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+DEBUG 2025-05-27 02:13:09,317 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>, <URLPattern 'trigger/<int:user_id>/' [name='alarm']>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'api/v1/event/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>
+DEBUG 2025-05-27 02:13:09,324 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>, <URLPattern 'trigger/<int:user_id>/' [name='alarm']>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'api/v1/event/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>
+WARNING 2025-05-27 02:13:09,330 log Not Found: /api/v1/event/1/
+WARNING 2025-05-27 02:13:46,379 log Unauthorized: /api/v1/user/1/
+WARNING 2025-05-27 02:15:06,087 log Unauthorized: /api/v1/user/1/
+WARNING 2025-05-27 02:15:07,352 log Unauthorized: /api/v1/user/1/
+WARNING 2025-05-27 02:15:17,349 log Unauthorized: /api/v1/user/1/
+DEBUG 2025-05-27 02:17:18,912 utils (0.004) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "authtoken_token" INNER JOIN "auth_user" ON ("authtoken_token"."user_id" = "auth_user"."id") WHERE "authtoken_token"."key" = '889e10d16483c21f9b775f9bf98ecff96f7af71c' LIMIT 21; args=('889e10d16483c21f9b775f9bf98ecff96f7af71c',); alias=default
+DEBUG 2025-05-27 02:17:18,919 utils (0.003) SELECT "main_userinfo"."id", "main_userinfo"."user_id", "main_userinfo"."age", "main_userinfo"."location", "main_userinfo"."military_status", "main_userinfo"."ptsd_level", "main_userinfo"."music_id", "main_userinfo"."therapist_contact_id", "main_userinfo"."scenario_id" FROM "main_userinfo" WHERE "main_userinfo"."user_id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 02:17:18,926 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 02:21:35,908 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+DEBUG 2025-05-27 02:21:35,914 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>
+DEBUG 2025-05-27 02:21:35,918 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>
+DEBUG 2025-05-27 02:21:35,921 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>
+WARNING 2025-05-27 02:21:35,927 log Not Found: /user/support/1/
+DEBUG 2025-05-27 02:23:05,432 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+DEBUG 2025-05-27 02:23:05,438 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>
+DEBUG 2025-05-27 02:23:05,443 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>
+DEBUG 2025-05-27 02:23:05,446 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>
+WARNING 2025-05-27 02:23:05,452 log Not Found: /user/support/1/
+DEBUG 2025-05-27 02:23:26,415 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+DEBUG 2025-05-27 02:23:26,422 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>
+DEBUG 2025-05-27 02:23:26,425 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>
+DEBUG 2025-05-27 02:23:26,429 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>
+WARNING 2025-05-27 02:23:26,435 log Not Found: /user/support/1/
+DEBUG 2025-05-27 02:27:44,976 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+DEBUG 2025-05-27 02:27:44,982 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>
+DEBUG 2025-05-27 02:27:44,988 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>
+DEBUG 2025-05-27 02:27:44,990 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'user/support/1/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>
+WARNING 2025-05-27 02:27:44,995 log Not Found: /user/support/1/
+DEBUG 2025-05-27 03:44:03,895 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'registration/' [name='registration']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'login/' [name='login']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'edit/<int:user_id>/' [name='edit_userinfo']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern '<int:user_id>/' [name='user']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'edit/contact/<int:user_id>/' [name='edit_emergency_contact']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'music/' [name='get_music']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'music/edit/<int:user_id>/' [name='set_music']>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'api/v1/user/1'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+DEBUG 2025-05-27 03:44:03,902 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'registration/' [name='registration']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'login/' [name='login']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'edit/<int:user_id>/' [name='edit_userinfo']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern '<int:user_id>/' [name='user']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'edit/contact/<int:user_id>/' [name='edit_emergency_contact']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'music/' [name='get_music']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'music/edit/<int:user_id>/' [name='set_music']>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'api/v1/user/1'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>
+DEBUG 2025-05-27 03:44:03,905 base Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 235, in _get_response_async
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'registration/' [name='registration']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'login/' [name='login']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'edit/<int:user_id>/' [name='edit_userinfo']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern '<int:user_id>/' [name='user']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'edit/contact/<int:user_id>/' [name='edit_emergency_contact']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'music/' [name='get_music']>], [<URLResolver <module 'main.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/urls.py'> (None:None) 'api/v1/user/'>, <URLPattern 'music/edit/<int:user_id>/' [name='set_music']>], [<URLResolver <module 'event.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/event/urls.py'> (None:None) 'api/v1/event/'>], [<URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>]], 'path': 'api/v1/user/1'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 907, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/template/base.py", line 914, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'chat.urls' from '/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/chat/urls.py'> (None:None) 'api/v1/chat/'>
+DEBUG 2025-05-27 03:44:04,196 utils (0.007) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "authtoken_token" INNER JOIN "auth_user" ON ("authtoken_token"."user_id" = "auth_user"."id") WHERE "authtoken_token"."key" = '889e10d16483c21f9b775f9bf98ecff96f7af71c' LIMIT 21; args=('889e10d16483c21f9b775f9bf98ecff96f7af71c',); alias=default
+DEBUG 2025-05-27 03:44:04,199 utils (0.001) SELECT "main_userinfo"."id", "main_userinfo"."user_id", "main_userinfo"."age", "main_userinfo"."location", "main_userinfo"."military_status", "main_userinfo"."ptsd_level", "main_userinfo"."music_id", "main_userinfo"."therapist_contact_id", "main_userinfo"."scenario_id" FROM "main_userinfo" WHERE "main_userinfo"."user_id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 03:44:04,202 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 04:23:29,861 token_auth WebSocket connection headers: [(b'sec-websocket-version', b'13'), (b'sec-websocket-key', b'6lMoM2RReepVVXgRnh5jlg=='), (b'connection', b'Upgrade'), (b'upgrade', b'websocket'), (b'authorization', b'Token 889e10d16483c21f9b775f9bf98ecff96f7af71c'), (b'sec-websocket-extensions', b'permessage-deflate; client_max_window_bits'), (b'host', b'127.0.0.1:8000')]
+DEBUG 2025-05-27 04:23:29,863 token_auth Found authorization header: Token 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:23:29,863 token_auth Extracted token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:23:29,863 token_auth Authenticating with token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:23:29,986 utils (0.003) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."key" = '889e10d16483c21f9b775f9bf98ecff96f7af71c' LIMIT 21; args=('889e10d16483c21f9b775f9bf98ecff96f7af71c',); alias=default
+DEBUG 2025-05-27 04:23:29,988 utils (0.001) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 04:23:29,988 token_auth Successfully authenticated user: admin
+DEBUG 2025-05-27 04:23:29,988 admin_auth Admin WebSocket connection detected, bypassing authentication checks
+DEBUG 2025-05-27 04:23:29,988 auth_stack Bypassing authentication checks for admin WebSocket connection
+DEBUG 2025-05-27 04:25:18,059 token_auth WebSocket connection headers: [(b'sec-websocket-version', b'13'), (b'sec-websocket-key', b'439VVaw4xkR57/rtOCUacg=='), (b'connection', b'Upgrade'), (b'upgrade', b'websocket'), (b'authorization', b'Token 889e10d16483c21f9b775f9bf98ecff96f7af71c'), (b'sec-websocket-extensions', b'permessage-deflate; client_max_window_bits'), (b'host', b'127.0.0.1:8000')]
+DEBUG 2025-05-27 04:25:18,079 token_auth Found authorization header: Token 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:25:18,080 token_auth Extracted token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:25:18,080 token_auth Authenticating with token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:25:18,152 utils (0.003) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."key" = '889e10d16483c21f9b775f9bf98ecff96f7af71c' LIMIT 21; args=('889e10d16483c21f9b775f9bf98ecff96f7af71c',); alias=default
+DEBUG 2025-05-27 04:25:18,154 utils (0.001) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 04:25:18,155 token_auth Successfully authenticated user: admin
+DEBUG 2025-05-27 04:25:18,155 admin_auth Admin WebSocket connection detected, bypassing authentication checks
+DEBUG 2025-05-27 04:25:18,155 auth_stack Bypassing authentication checks for admin WebSocket connection
+DEBUG 2025-05-27 04:26:31,052 token_auth WebSocket connection headers: [(b'sec-websocket-version', b'13'), (b'sec-websocket-key', b'Y4njlqgtx3v63/zUx1ziOQ=='), (b'connection', b'Upgrade'), (b'upgrade', b'websocket'), (b'authorization', b'Token 889e10d16483c21f9b775f9bf98ecff96f7af71c'), (b'sec-websocket-extensions', b'permessage-deflate; client_max_window_bits'), (b'host', b'127.0.0.1:8000')]
+DEBUG 2025-05-27 04:26:31,052 token_auth Found authorization header: Token 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:26:31,052 token_auth Extracted token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:26:31,052 token_auth Authenticating with token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:26:31,102 utils (0.002) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."key" = '889e10d16483c21f9b775f9bf98ecff96f7af71c' LIMIT 21; args=('889e10d16483c21f9b775f9bf98ecff96f7af71c',); alias=default
+DEBUG 2025-05-27 04:26:31,103 utils (0.001) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 04:26:31,104 token_auth Successfully authenticated user: admin
+DEBUG 2025-05-27 04:26:31,104 admin_auth Admin WebSocket connection detected, bypassing authentication checks
+DEBUG 2025-05-27 04:26:31,104 auth_stack Bypassing authentication checks for admin WebSocket connection
+DEBUG 2025-05-27 04:28:42,631 token_auth WebSocket connection headers: [(b'sec-websocket-version', b'13'), (b'sec-websocket-key', b'bifsg1cfRBRwdVR6zqU4RQ=='), (b'connection', b'Upgrade'), (b'upgrade', b'websocket'), (b'authorization', b'Token 889e10d16483c21f9b775f9bf98ecff96f7af71c'), (b'sec-websocket-extensions', b'permessage-deflate; client_max_window_bits'), (b'host', b'127.0.0.1:8000')]
+DEBUG 2025-05-27 04:28:42,634 token_auth Found authorization header: Token 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:28:42,635 token_auth Extracted token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:28:42,636 token_auth Authenticating with token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:28:42,700 utils (0.002) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."key" = '889e10d16483c21f9b775f9bf98ecff96f7af71c' LIMIT 21; args=('889e10d16483c21f9b775f9bf98ecff96f7af71c',); alias=default
+DEBUG 2025-05-27 04:28:42,702 utils (0.001) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 04:28:42,703 token_auth Successfully authenticated user: admin
+DEBUG 2025-05-27 04:28:42,703 admin_auth Admin WebSocket connection detected, bypassing authentication checks
+DEBUG 2025-05-27 04:28:42,703 auth_stack Bypassing authentication checks for admin WebSocket connection
+DEBUG 2025-05-27 04:31:02,719 token_auth WebSocket connection headers: [(b'sec-websocket-version', b'13'), (b'sec-websocket-key', b'595Soa/6L54+MQ07FYP9MQ=='), (b'connection', b'Upgrade'), (b'upgrade', b'websocket'), (b'authorization', b'Token 889e10d16483c21f9b775f9bf98ecff96f7af71c'), (b'sec-websocket-extensions', b'permessage-deflate; client_max_window_bits'), (b'host', b'127.0.0.1:8000')]
+DEBUG 2025-05-27 04:31:02,719 token_auth Found authorization header: Token 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:31:02,720 token_auth Extracted token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:31:02,720 token_auth Authenticating with token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:31:02,778 utils (0.002) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."key" = '889e10d16483c21f9b775f9bf98ecff96f7af71c' LIMIT 21; args=('889e10d16483c21f9b775f9bf98ecff96f7af71c',); alias=default
+DEBUG 2025-05-27 04:31:02,779 utils (0.001) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 04:31:02,780 token_auth Successfully authenticated user: admin
+DEBUG 2025-05-27 04:31:02,780 admin_auth Admin WebSocket connection detected, bypassing authentication checks
+DEBUG 2025-05-27 04:31:02,780 auth_stack Bypassing authentication checks for admin WebSocket connection
+DEBUG 2025-05-27 04:35:11,644 token_auth WebSocket connection headers: [(b'sec-websocket-version', b'13'), (b'sec-websocket-key', b'r3gIQAS5WNOW1w42hzAVwg=='), (b'connection', b'Upgrade'), (b'upgrade', b'websocket'), (b'authorization', b'Token 889e10d16483c21f9b775f9bf98ecff96f7af71c'), (b'sec-websocket-extensions', b'permessage-deflate; client_max_window_bits'), (b'host', b'127.0.0.1:8000')]
+DEBUG 2025-05-27 04:35:11,645 token_auth Found authorization header: Token 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:35:11,645 token_auth Extracted token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:35:11,645 token_auth Authenticating with token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:35:11,688 utils (0.002) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."key" = '889e10d16483c21f9b775f9bf98ecff96f7af71c' LIMIT 21; args=('889e10d16483c21f9b775f9bf98ecff96f7af71c',); alias=default
+DEBUG 2025-05-27 04:35:11,690 utils (0.001) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 04:35:11,691 token_auth Successfully authenticated user: admin
+DEBUG 2025-05-27 04:35:11,691 admin_auth Admin WebSocket connection detected, bypassing authentication checks
+DEBUG 2025-05-27 04:35:11,691 auth_stack Bypassing authentication checks for admin WebSocket connection
+DEBUG 2025-05-27 04:35:23,012 token_auth WebSocket connection headers: [(b'sec-websocket-version', b'13'), (b'sec-websocket-key', b'G7NUrgSYKbg9zy+LqGq9yw=='), (b'connection', b'Upgrade'), (b'upgrade', b'websocket'), (b'authorization', b'Token 889e10d16483c21f9b775f9bf98ecff96f7af71c'), (b'sec-websocket-extensions', b'permessage-deflate; client_max_window_bits'), (b'host', b'127.0.0.1:8000')]
+DEBUG 2025-05-27 04:35:23,013 token_auth Found authorization header: Token 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:35:23,013 token_auth Extracted token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:35:23,014 token_auth Authenticating with token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:35:23,064 utils (0.001) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."key" = '889e10d16483c21f9b775f9bf98ecff96f7af71c' LIMIT 21; args=('889e10d16483c21f9b775f9bf98ecff96f7af71c',); alias=default
+DEBUG 2025-05-27 04:35:23,065 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 04:35:23,066 token_auth Successfully authenticated user: admin
+DEBUG 2025-05-27 04:35:23,066 admin_auth Admin WebSocket connection detected, bypassing authentication checks
+DEBUG 2025-05-27 04:35:23,066 auth_stack Bypassing authentication checks for admin WebSocket connection
+DEBUG 2025-05-27 04:38:49,233 token_auth WebSocket connection headers: [(b'sec-websocket-version', b'13'), (b'sec-websocket-key', b'DLQaril7bMzOMYB/ii1paQ=='), (b'connection', b'Upgrade'), (b'upgrade', b'websocket'), (b'authorization', b'Token 889e10d16483c21f9b775f9bf98ecff96f7af71c'), (b'sec-websocket-extensions', b'permessage-deflate; client_max_window_bits'), (b'host', b'127.0.0.1:8000')]
+DEBUG 2025-05-27 04:38:49,235 token_auth Found authorization header: Token 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:38:49,236 token_auth Extracted token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:38:49,236 token_auth Authenticating with token: 889e10d16483c21f9b775f9bf98ecff96f7af71c
+DEBUG 2025-05-27 04:38:49,295 utils (0.002) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."key" = '889e10d16483c21f9b775f9bf98ecff96f7af71c' LIMIT 21; args=('889e10d16483c21f9b775f9bf98ecff96f7af71c',); alias=default
+DEBUG 2025-05-27 04:38:49,297 utils (0.001) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-27 04:38:49,298 token_auth Successfully authenticated user: admin
+DEBUG 2025-05-27 04:38:49,298 admin_auth Admin WebSocket connection detected, bypassing authentication checks
+DEBUG 2025-05-27 04:38:49,298 auth_stack Bypassing authentication checks for admin WebSocket connection
+DEBUG 2025-05-27 04:38:55,617 token_auth WebSocket connection headers: [(b'sec-websocket-version', b'13'), (b'sec-websocket-key', b'8xIyhgHIAsP00bybNAGjUQ=='), (b'connection', b'Upgrade'), (b'upgrade', b'websocket'), (b'cookie', b''), (b'sec-websocket-extensions', b'permessage-deflate; client_max_window_bits'), (b'host', b'127.0.0.1:8000')]
+DEBUG 2025-05-27 04:38:55,618 token_auth No token found, setting user as AnonymousUser

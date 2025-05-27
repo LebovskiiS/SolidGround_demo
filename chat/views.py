@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from .models import *
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
-
+from django.http import JsonResponse
+from django.shortcuts import render
 
 
 
@@ -33,41 +34,46 @@ def send_get_message_gpt(request, user_id):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def send_message_to_user(request, session_id):
+def chat_view(request):
+    if request.user.is_authenticated:
+        websocket_url = 'ws://127.0.0.1:8000/ws/chat/global/'  # WebSocket маршрут для всех
+        # Check both authentication and username for admin
+        is_admin = request.user.is_authenticated and request.user.username == 'admin'
+        return Response({
+            'is_admin': is_admin,
+            'websocket_url': websocket_url
+        })
+    return Response({'error': 'User not authenticated'}, status=403)
+
+
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def support_chat_view(request, user_id):
+    # Check both authentication and username for admin
+    is_admin = request.user.is_authenticated and request.user.username == 'admin'
+
+    if request.user.id != user_id and not is_admin:
+        return Response({'error': 'You are not authorized to access this chat'}, status=403)
+
     try:
-        chat_session = ChatSession.objects.get(id=session_id)
+        user = User.objects.get(id=user_id)
 
-        if request.user != chat_session.user and request.user != chat_session.receiver:
-            return Response({'error': 'You are not authorized for this chat session'}, status=403)
+        websocket_url = f'ws://127.0.0.1:8000/ws/chat/{user_id}/'
+        return Response({
+            'user_id': user_id,
+            'is_admin': is_admin,
+            'websocket_url': websocket_url
+        })
 
-        text = request.data.get('text')
-        if not text:
-            return Response({'error': 'Message text is required'}, status=400)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=404)
 
-        sender_type = 'user' if request.user == chat_session.user else 'system'
-        message = ChatMessage.objects.create(
-            session=chat_session,
-            sender=sender_type,
-            message=text
-        )
 
-        channel_layer = get_channel_layer()
-        async_to_sync(channel_layer.group_send)(
-            f"chat_{chat_session.id}",
-            {
-                "type": "chat.message",
-                "message": {
-                    "id": message.id,
-                    "sender": message.sender,
-                    "text": message.message,
-                    "timestamp": message.timestamp.isoformat(),
-                }
-            }
-        )
 
-        return Response({'message': 'Message sent successfully'})
 
-    except ChatSession.DoesNotExist:
-        return Response({'error': 'Chat session does not exist'}, status=404)
-    except Exception as e:
-        return Response({'error': str(e)}, status=500)
+@api_view(['GET'])
+@permission_classes([])
+def my_dynamic_view(request):
+    MyModel = get_model_class("app_name", "ModelName")
+    data = MyModel.objects.all().values()  # Используем загруженную модель
+    return Response(data)
