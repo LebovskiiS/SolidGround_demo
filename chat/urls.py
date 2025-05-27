@@ -1,10 +1,10 @@
 from django.urls import path
-from . import views
+from .views import *
 
 
 appname = 'chat'
 
 
 urlpatterns = [
-    path('/<int:user_id>/', views. send_get_message_gpt, name= 'send_get_message')
+    path('<int:user_id>/', send_get_message_gpt, name= 'send_get_message')
 ]
