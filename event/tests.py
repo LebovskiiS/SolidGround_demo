@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 from event.models import AlarmScenario
 from event.signals import create_alarm_scenarios
 from main.models import UserInfo
-from main.signals import create_user_info, create_music
+from main.signals import create_user_info
 from DjangoProject.settings import API_VERSION, PASSWORD_FOR_TESTS, USERNAME_FOR_TESTS
 from .logger import logger
 
@@ -67,7 +67,6 @@ class TriggerAlarmTestCase(APITestCase):
         flush_with_constraints()
 
         post_save.disconnect(receiver=create_user_info, sender=User)
-        post_migrate.disconnect(receiver=create_music, dispatch_uid="create_music_post_migrate")
         post_migrate.disconnect(receiver=create_alarm_scenarios, dispatch_uid="create_alarm_scenarios_post_migrate")
         self.user_id = 1
         self.registration_url = f'/api/{API_VERSION}/user/registration/'

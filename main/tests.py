@@ -7,7 +7,7 @@ from main.exceptions import RegistrationInTestsError
 from django.db import connection
 from django.test import override_settings
 from django.db.models.signals import post_save, post_migrate
-from main.signals import create_user_info, create_music
+from main.signals import create_user_info
 
 
 
@@ -100,7 +100,6 @@ class TestGetUserinfo(APITestCase):
 
         flush_with_constraints()
         post_save.disconnect(receiver=create_user_info, sender=User)
-        post_migrate.disconnect(receiver=create_music, dispatch_uid="create_music_post_migrate")
 
         self.registration_url = f'/api/{API_VERSION}/user/registration/'
         self.login_url = f'/api/{API_VERSION}/user/login/'
