@@ -31,7 +31,8 @@ def registration_for_tests(client, registration_url):
         flush_with_constraints()
         data = {
             'username': USERNAME_FOR_TESTS,
-            'password': PASSWORD_FOR_TESTS
+            'password': PASSWORD_FOR_TESTS,
+            'email': 'test@example.com'
         }
         response = client.post(registration_url, data, format='json')
         if response.status_code != status.HTTP_201_CREATED:
@@ -50,7 +51,8 @@ class RegistrationTestCase(APITestCase):
     def test_registration(self):
         data = {
             'username': USERNAME_FOR_TESTS,
-            'password': PASSWORD_FOR_TESTS
+            'password': PASSWORD_FOR_TESTS,
+            'email': 'test@example.com'
         }
         response = self.client.post(self.registration_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -74,7 +76,8 @@ class LoginTestCase(APITestCase):
 
         data = {
             'username': USERNAME_FOR_TESTS,
-            'password': PASSWORD_FOR_TESTS
+            'password': PASSWORD_FOR_TESTS,
+            'email': 'test@example.com'
         }
         self.client.post(self.registration_url, data, format='json')
 

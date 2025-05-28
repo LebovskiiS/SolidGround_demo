@@ -1,12 +1,20 @@
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DjangoProject.settings')
+
+import django
+django.setup()
+
 from rest_framework.test import APITestCase
 from rest_framework import status
 from django.core.management import call_command
-from event.models import AlarmScenario
-from DjangoProject.settings import API_VERSION, PASSWORD_FOR_TESTS, USERNAME_FOR_TESTS
 from django.db.models.signals import post_save, post_migrate
 from django.db import connection
-from .signals import create_alarm_scenarios
-from main.signals import *
+from django.contrib.auth.models import User
+from event.models import AlarmScenario
+from event.signals import create_alarm_scenarios
+from main.models import UserInfo
+from main.signals import create_user_info, create_music
+from DjangoProject.settings import API_VERSION, PASSWORD_FOR_TESTS, USERNAME_FOR_TESTS
 from .logger import logger
 
 
@@ -30,7 +38,8 @@ def registration_for_tests(client, registration_url):
     call_command('flush', '--noinput')
     data = {
         'username': USERNAME_FOR_TESTS,
-        'password': PASSWORD_FOR_TESTS
+        'password': PASSWORD_FOR_TESTS,
+        'email': 'test@example.com'
     }
     response = client.post(registration_url, data, format='json')
     if response.status_code != status.HTTP_201_CREATED:
@@ -98,11 +107,19 @@ class TriggerAlarmTestCase(APITestCase):
         logger.info(
             f"Testing URL: {self.trigger_url}"
         )
+
+        # Assign a scenario to the user
+        test_user = User.objects.first()
+        user_info = UserInfo.objects.get(user=test_user)
+        scenario = AlarmScenario.objects.get(id=2)  # Pattern 1 with play_music=True
+        user_info.scenario = scenario
+        user_info.save()
+
         headers = {
             'Authorization': f'token {self.token}'
         }
 
-        response = self.client.get(self.trigger_url, format='json', HTTP_AUTHORIZATION=headers['Authorization']
-)
+        response = self.client.get(self.trigger_url, format='json', HTTP_AUTHORIZATION=headers['Authorization'])
 
-        # self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['scenario'], scenario.name)

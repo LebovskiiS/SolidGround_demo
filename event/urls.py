@@ -3,7 +3,7 @@ from . import views
 
 
 
-appname = 'event'
+app_name = 'event'
 
 
 urlpatterns = [

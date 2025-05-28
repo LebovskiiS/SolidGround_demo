@@ -4,7 +4,7 @@ from .views import *
 
 
 
-appname = 'main'
+app_name = 'main'
 
 urlpatterns = [
     path('registration/', registration, name='registration'),

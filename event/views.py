@@ -47,7 +47,7 @@ def trigger(request, user_id):
                 location=user_info.location,
                 name=name,
                 message="Экстренная ситуация, требуется ваша помощь!",
-                contact={":phone:": phone, ":email": email},
+                contact={":phone:": phone, ":email:": email},
                 user_name=user_info.user.username
             )
 
@@ -85,7 +85,8 @@ def trigger(request, user_id):
             contact={
                 ":phone:": therapist_phone,
                 ":email:": therapist_email
-            }
+            },
+            user_name=user_info.user.username
         )
 
         notification.send_email(

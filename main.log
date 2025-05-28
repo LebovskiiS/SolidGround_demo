@@ -2763,3 +2763,879 @@ DEBUG 2025-05-27 22:57:06,571 utils (0.000) SET CONSTRAINTS ALL DEFERRED; args=N
 DEBUG 2025-05-27 22:57:06,571 utils (0.000) ROLLBACK TO SAVEPOINT "s8415928064_x18"; args=None; alias=default
 DEBUG 2025-05-27 22:57:06,571 utils (0.000) RELEASE SAVEPOINT "s8415928064_x18"; args=None; alias=default
 DEBUG 2025-05-27 22:57:06,571 utils (0.000) ROLLBACK; args=None; alias=default
+DEBUG 2025-05-28 13:25:42,103 schema CREATE TABLE "django_migrations" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" datetime NOT NULL); (params None)
+DEBUG 2025-05-28 13:25:42,104 schema CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:25:42,106 schema CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model"); (params ())
+DEBUG 2025-05-28 13:25:42,107 schema CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "codename" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:25:42,108 schema CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(80) NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:25:42,108 schema CREATE TABLE "auth_group_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "group_id" integer NOT NULL REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED, "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+DEBUG 2025-05-28 13:25:42,111 schema CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NOT NULL, "is_superuser" bool NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(75) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL); (params None)
+DEBUG 2025-05-28 13:25:42,111 schema CREATE TABLE "auth_user_groups" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED, "group_id" integer NOT NULL REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+DEBUG 2025-05-28 13:25:42,111 schema CREATE TABLE "auth_user_user_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED, "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+DEBUG 2025-05-28 13:25:42,111 schema CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename"); (params None)
+DEBUG 2025-05-28 13:25:42,111 schema CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:25:42,111 schema CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:25:42,111 schema CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); (params None)
+DEBUG 2025-05-28 13:25:42,111 schema CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:25:42,112 schema CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id"); (params None)
+DEBUG 2025-05-28 13:25:42,112 schema CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id"); (params None)
+DEBUG 2025-05-28 13:25:42,112 schema CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id"); (params None)
+DEBUG 2025-05-28 13:25:42,112 schema CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:25:42,112 schema CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id"); (params None)
+DEBUG 2025-05-28 13:25:42,112 schema CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:25:42,115 schema CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "action_time" datetime NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+DEBUG 2025-05-28 13:25:42,115 schema CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:25:42,115 schema CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params None)
+DEBUG 2025-05-28 13:25:42,118 schema CREATE TABLE "new__django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED, "action_time" datetime NOT NULL); (params None)
+DEBUG 2025-05-28 13:25:42,118 schema INSERT INTO "new__django_admin_log" ("id", "object_id", "object_repr", "action_flag", "change_message", "content_type_id", "user_id", "action_time") SELECT "id", "object_id", "object_repr", "action_flag", "change_message", "content_type_id", "user_id", "action_time" FROM "django_admin_log"; (params ())
+DEBUG 2025-05-28 13:25:42,119 schema DROP TABLE "django_admin_log"; (params ())
+DEBUG 2025-05-28 13:25:42,119 schema ALTER TABLE "new__django_admin_log" RENAME TO "django_admin_log"; (params ())
+DEBUG 2025-05-28 13:25:42,119 schema CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params ())
+DEBUG 2025-05-28 13:25:42,119 schema CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params ())
+DEBUG 2025-05-28 13:25:42,126 schema CREATE TABLE "new__django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL, "name" varchar(100) NULL); (params None)
+DEBUG 2025-05-28 13:25:42,126 schema INSERT INTO "new__django_content_type" ("id", "app_label", "model", "name") SELECT "id", "app_label", "model", "name" FROM "django_content_type"; (params ())
+DEBUG 2025-05-28 13:25:42,126 schema DROP TABLE "django_content_type"; (params ())
+DEBUG 2025-05-28 13:25:42,126 schema ALTER TABLE "new__django_content_type" RENAME TO "django_content_type"; (params ())
+DEBUG 2025-05-28 13:25:42,126 schema CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model"); (params ())
+DEBUG 2025-05-28 13:25:42,135 schema ALTER TABLE "django_content_type" DROP COLUMN "name"; (params ())
+DEBUG 2025-05-28 13:25:42,138 schema CREATE TABLE "new__auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "codename" varchar(100) NOT NULL, "name" varchar(255) NOT NULL); (params None)
+DEBUG 2025-05-28 13:25:42,138 schema INSERT INTO "new__auth_permission" ("id", "content_type_id", "codename", "name") SELECT "id", "content_type_id", "codename", "name" FROM "auth_permission"; (params ())
+DEBUG 2025-05-28 13:25:42,138 schema DROP TABLE "auth_permission"; (params ())
+DEBUG 2025-05-28 13:25:42,139 schema ALTER TABLE "new__auth_permission" RENAME TO "auth_permission"; (params ())
+DEBUG 2025-05-28 13:25:42,139 schema CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename"); (params ())
+DEBUG 2025-05-28 13:25:42,139 schema CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params ())
+DEBUG 2025-05-28 13:25:42,142 schema CREATE TABLE "new__auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NOT NULL, "is_superuser" bool NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "email" varchar(254) NOT NULL); (params None)
+DEBUG 2025-05-28 13:25:42,142 schema INSERT INTO "new__auth_user" ("id", "password", "last_login", "is_superuser", "username", "first_name", "last_name", "is_staff", "is_active", "date_joined", "email") SELECT "id", "password", "last_login", "is_superuser", "username", "first_name", "last_name", "is_staff", "is_active", "date_joined", "email" FROM "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,142 schema DROP TABLE "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,142 schema ALTER TABLE "new__auth_user" RENAME TO "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,148 schema CREATE TABLE "new__auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "is_superuser" bool NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "last_login" datetime NULL); (params None)
+DEBUG 2025-05-28 13:25:42,149 schema INSERT INTO "new__auth_user" ("id", "password", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "last_login") SELECT "id", "password", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "last_login" FROM "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,149 schema DROP TABLE "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,149 schema ALTER TABLE "new__auth_user" RENAME TO "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,159 schema CREATE TABLE "new__auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "username" varchar(150) NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:25:42,159 schema INSERT INTO "new__auth_user" ("id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username") SELECT "id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username" FROM "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,159 schema DROP TABLE "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,159 schema ALTER TABLE "new__auth_user" RENAME TO "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,163 schema CREATE TABLE "new__auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "last_name" varchar(150) NOT NULL); (params None)
+DEBUG 2025-05-28 13:25:42,163 schema INSERT INTO "new__auth_user" ("id", "password", "last_login", "is_superuser", "username", "first_name", "email", "is_staff", "is_active", "date_joined", "last_name") SELECT "id", "password", "last_login", "is_superuser", "username", "first_name", "email", "is_staff", "is_active", "date_joined", "last_name" FROM "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,163 schema DROP TABLE "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,163 schema ALTER TABLE "new__auth_user" RENAME TO "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,166 schema CREATE TABLE "new__auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(150) NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:25:42,166 schema INSERT INTO "new__auth_group" ("id", "name") SELECT "id", "name" FROM "auth_group"; (params ())
+DEBUG 2025-05-28 13:25:42,166 schema DROP TABLE "auth_group"; (params ())
+DEBUG 2025-05-28 13:25:42,166 schema ALTER TABLE "new__auth_group" RENAME TO "auth_group"; (params ())
+DEBUG 2025-05-28 13:25:42,173 schema CREATE TABLE "new__auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "last_name" varchar(150) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "first_name" varchar(150) NOT NULL); (params None)
+DEBUG 2025-05-28 13:25:42,173 schema INSERT INTO "new__auth_user" ("id", "password", "last_login", "is_superuser", "username", "last_name", "email", "is_staff", "is_active", "date_joined", "first_name") SELECT "id", "password", "last_login", "is_superuser", "username", "last_name", "email", "is_staff", "is_active", "date_joined", "first_name" FROM "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,173 schema DROP TABLE "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,174 schema ALTER TABLE "new__auth_user" RENAME TO "auth_user"; (params ())
+DEBUG 2025-05-28 13:25:42,177 schema CREATE TABLE "authtoken_token" ("key" varchar(40) NOT NULL PRIMARY KEY, "created" datetime NOT NULL, "user_id" integer NOT NULL UNIQUE REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+DEBUG 2025-05-28 13:25:42,191 schema CREATE TABLE "chat_chatsession" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "session_type" varchar(10) NOT NULL, "started_at" datetime NOT NULL, "ended_at" datetime NULL, "receiver_id" integer NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+DEBUG 2025-05-28 13:25:42,194 schema CREATE TABLE "chat_chatmessage" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "sender" varchar(10) NOT NULL, "message" text NOT NULL, "timestamp" datetime NOT NULL, "session_id" bigint NOT NULL REFERENCES "chat_chatsession" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+DEBUG 2025-05-28 13:25:42,194 schema CREATE INDEX "chat_chatsession_receiver_id_820d6d62" ON "chat_chatsession" ("receiver_id"); (params None)
+DEBUG 2025-05-28 13:25:42,194 schema CREATE INDEX "chat_chatsession_user_id_5e1fb0de" ON "chat_chatsession" ("user_id"); (params None)
+DEBUG 2025-05-28 13:25:42,194 schema CREATE INDEX "chat_chatmessage_session_id_4dacb902" ON "chat_chatmessage" ("session_id"); (params None)
+DEBUG 2025-05-28 13:25:42,198 schema CREATE TABLE "event_alarmscenario" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL, "play_music" bool NOT NULL, "notify_contact" bool NOT NULL, "notify_therapist" bool NOT NULL); (params None)
+DEBUG 2025-05-28 13:25:42,202 schema CREATE TABLE "event_alarm" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "timestamp" datetime NOT NULL, "user_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED, "scenario_id" bigint NOT NULL REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+DEBUG 2025-05-28 13:25:42,209 schema CREATE TABLE "event_alarmresult" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "location" varchar(255) NOT NULL, "timestamp" datetime NOT NULL, "music_played" bool NOT NULL, "message_sent_to_contacts" bool NOT NULL, "voice_message_played" bool NOT NULL, "therapist_notified" bool NOT NULL, "completed" bool NOT NULL, "alarm_id" bigint NOT NULL UNIQUE REFERENCES "event_alarm" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+DEBUG 2025-05-28 13:25:42,209 schema CREATE INDEX "event_alarm_user_id_60193bcf" ON "event_alarm" ("user_id"); (params None)
+DEBUG 2025-05-28 13:25:42,209 schema CREATE INDEX "event_alarm_scenario_id_c3d92fc0" ON "event_alarm" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:25:42,210 schema CREATE TABLE "main_musictrack" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL, "url" varchar(200) NOT NULL); (params None)
+DEBUG 2025-05-28 13:25:42,213 schema CREATE TABLE "main_emergencycontact" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL, "relationship" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+DEBUG 2025-05-28 13:25:42,217 schema CREATE TABLE "main_therapist" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL UNIQUE REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+DEBUG 2025-05-28 13:25:42,221 schema CREATE TABLE "main_userinfo" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "age" integer unsigned NULL CHECK ("age" >= 0), "location" varchar(100) NOT NULL, "military_status" bool NOT NULL, "ptsd_level" integer unsigned NULL CHECK ("ptsd_level" >= 0), "music_id" bigint NULL REFERENCES "main_musictrack" ("id") DEFERRABLE INITIALLY DEFERRED, "scenario_id" bigint NULL REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED, "therapist_contact_id" bigint NULL REFERENCES "main_therapist" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" integer NOT NULL UNIQUE REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED); (params None)
+DEBUG 2025-05-28 13:25:42,222 schema CREATE INDEX "main_emergencycontact_user_id_429f4e39" ON "main_emergencycontact" ("user_id"); (params None)
+DEBUG 2025-05-28 13:25:42,222 schema CREATE INDEX "main_userinfo_music_id_3d82943f" ON "main_userinfo" ("music_id"); (params None)
+DEBUG 2025-05-28 13:25:42,222 schema CREATE INDEX "main_userinfo_scenario_id_f253b8ca" ON "main_userinfo" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:25:42,222 schema CREATE INDEX "main_userinfo_therapist_contact_id_016de31c" ON "main_userinfo" ("therapist_contact_id"); (params None)
+DEBUG 2025-05-28 13:25:42,222 schema CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" datetime NOT NULL); (params None)
+DEBUG 2025-05-28 13:25:42,223 schema CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); (params None)
+DEBUG 2025-05-28 13:30:28,136 schema CREATE TABLE "django_migrations" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,141 schema CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,142 schema ALTER TABLE "django_content_type" ADD CONSTRAINT "django_content_type_app_label_model_76bd3d3b_uniq" UNIQUE ("app_label", "model"); (params None)
+DEBUG 2025-05-28 13:30:28,145 schema CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL, "codename" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,148 schema CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(80) NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:30:28,149 schema CREATE TABLE "auth_group_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "group_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,151 schema CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NOT NULL, "is_superuser" boolean NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(75) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,152 schema CREATE TABLE "auth_user_groups" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "group_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,153 schema CREATE TABLE "auth_user_user_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,154 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_codename_01ab375a_uniq" UNIQUE ("content_type_id", "codename"); (params None)
+DEBUG 2025-05-28 13:30:28,154 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_2f476e4b_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,156 schema CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:30:28,157 schema CREATE INDEX "auth_group_name_a6ea08ec_like" ON "auth_group" ("name" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:30:28,157 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" UNIQUE ("group_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:30:28,157 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,158 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,158 schema CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); (params None)
+DEBUG 2025-05-28 13:30:28,158 schema CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:30:28,159 schema CREATE INDEX "auth_user_username_6821ab7c_like" ON "auth_user" ("username" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:30:28,159 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_group_id_94350c0c_uniq" UNIQUE ("user_id", "group_id"); (params None)
+DEBUG 2025-05-28 13:30:28,159 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_6a12ed8b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,160 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_group_id_97559544_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,160 schema CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id"); (params None)
+DEBUG 2025-05-28 13:30:28,160 schema CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id"); (params None)
+DEBUG 2025-05-28 13:30:28,161 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" UNIQUE ("user_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:30:28,161 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,162 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,162 schema CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id"); (params None)
+DEBUG 2025-05-28 13:30:28,162 schema CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:30:28,166 schema CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "action_time" timestamp with time zone NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,167 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_content_type_id_c4bce8eb_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,167 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,168 schema CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:30:28,168 schema CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params None)
+DEBUG 2025-05-28 13:30:28,175 schema ALTER TABLE "django_content_type" ALTER COLUMN "name" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:30:28,179 schema ALTER TABLE "django_content_type" DROP COLUMN "name" CASCADE; (params None)
+DEBUG 2025-05-28 13:30:28,181 schema ALTER TABLE "auth_permission" ALTER COLUMN "name" TYPE varchar(255); (params None)
+DEBUG 2025-05-28 13:30:28,187 schema ALTER TABLE "auth_user" ALTER COLUMN "email" TYPE varchar(254); (params None)
+DEBUG 2025-05-28 13:30:28,192 schema ALTER TABLE "auth_user" ALTER COLUMN "last_login" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:30:28,196 schema ALTER TABLE "auth_user" ALTER COLUMN "username" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:30:28,201 schema ALTER TABLE "auth_user" ALTER COLUMN "last_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:30:28,203 schema ALTER TABLE "auth_group" ALTER COLUMN "name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:30:28,207 schema ALTER TABLE "auth_user" ALTER COLUMN "first_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:30:28,210 schema CREATE TABLE "authtoken_token" ("key" varchar(40) NOT NULL PRIMARY KEY, "created" timestamp with time zone NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:30:28,210 schema ALTER TABLE "authtoken_token" ADD CONSTRAINT "authtoken_token_user_id_35299eff_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,211 schema CREATE INDEX "authtoken_token_key_10f0b77e_like" ON "authtoken_token" ("key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:30:28,224 schema CREATE TABLE "chat_chatsession" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "session_type" varchar(10) NOT NULL, "started_at" timestamp with time zone NOT NULL, "ended_at" timestamp with time zone NULL, "receiver_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,227 schema CREATE TABLE "chat_chatmessage" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "sender" varchar(10) NOT NULL, "message" text NOT NULL, "timestamp" timestamp with time zone NOT NULL, "session_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,228 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_receiver_id_820d6d62_fk_auth_user_id" FOREIGN KEY ("receiver_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,229 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_user_id_5e1fb0de_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,229 schema CREATE INDEX "chat_chatsession_receiver_id_820d6d62" ON "chat_chatsession" ("receiver_id"); (params None)
+DEBUG 2025-05-28 13:30:28,230 schema CREATE INDEX "chat_chatsession_user_id_5e1fb0de" ON "chat_chatsession" ("user_id"); (params None)
+DEBUG 2025-05-28 13:30:28,230 schema ALTER TABLE "chat_chatmessage" ADD CONSTRAINT "chat_chatmessage_session_id_4dacb902_fk_chat_chatsession_id" FOREIGN KEY ("session_id") REFERENCES "chat_chatsession" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,230 schema CREATE INDEX "chat_chatmessage_session_id_4dacb902" ON "chat_chatmessage" ("session_id"); (params None)
+DEBUG 2025-05-28 13:30:28,235 schema CREATE TABLE "event_alarmscenario" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "play_music" boolean NOT NULL, "notify_contact" boolean NOT NULL, "notify_therapist" boolean NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,238 schema CREATE TABLE "event_alarm" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "timestamp" timestamp with time zone NOT NULL, "user_id" integer NOT NULL, "scenario_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,242 schema CREATE TABLE "event_alarmresult" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "location" varchar(255) NOT NULL, "timestamp" timestamp with time zone NOT NULL, "music_played" boolean NOT NULL, "message_sent_to_contacts" boolean NOT NULL, "voice_message_played" boolean NOT NULL, "therapist_notified" boolean NOT NULL, "completed" boolean NOT NULL, "alarm_id" bigint NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:30:28,242 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_user_id_60193bcf_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,243 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_scenario_id_c3d92fc0_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,243 schema CREATE INDEX "event_alarm_user_id_60193bcf" ON "event_alarm" ("user_id"); (params None)
+DEBUG 2025-05-28 13:30:28,244 schema CREATE INDEX "event_alarm_scenario_id_c3d92fc0" ON "event_alarm" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:30:28,244 schema ALTER TABLE "event_alarmresult" ADD CONSTRAINT "event_alarmresult_alarm_id_39474733_fk_event_alarm_id" FOREIGN KEY ("alarm_id") REFERENCES "event_alarm" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,245 schema CREATE TABLE "main_musictrack" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "url" varchar(200) NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,249 schema CREATE TABLE "main_emergencycontact" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "relationship" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,255 schema CREATE TABLE "main_therapist" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:30:28,260 schema CREATE TABLE "main_userinfo" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "age" integer NULL CHECK ("age" >= 0), "location" varchar(100) NOT NULL, "military_status" boolean NOT NULL, "ptsd_level" integer NULL CHECK ("ptsd_level" >= 0), "music_id" bigint NULL, "scenario_id" bigint NULL, "therapist_contact_id" bigint NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:30:28,261 schema ALTER TABLE "main_emergencycontact" ADD CONSTRAINT "main_emergencycontact_user_id_429f4e39_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,261 schema CREATE INDEX "main_emergencycontact_user_id_429f4e39" ON "main_emergencycontact" ("user_id"); (params None)
+DEBUG 2025-05-28 13:30:28,261 schema ALTER TABLE "main_therapist" ADD CONSTRAINT "main_therapist_user_id_54aa19c1_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,262 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_music_id_3d82943f_fk_main_musictrack_id" FOREIGN KEY ("music_id") REFERENCES "main_musictrack" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,262 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_scenario_id_f253b8ca_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,262 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_therapist_contact_id_016de31c_fk_main_ther" FOREIGN KEY ("therapist_contact_id") REFERENCES "main_therapist" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,263 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_user_id_cb352f99_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:28,263 schema CREATE INDEX "main_userinfo_music_id_3d82943f" ON "main_userinfo" ("music_id"); (params None)
+DEBUG 2025-05-28 13:30:28,263 schema CREATE INDEX "main_userinfo_scenario_id_f253b8ca" ON "main_userinfo" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:30:28,263 schema CREATE INDEX "main_userinfo_therapist_contact_id_016de31c" ON "main_userinfo" ("therapist_contact_id"); (params None)
+DEBUG 2025-05-28 13:30:28,265 schema CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:28,265 schema CREATE INDEX "django_session_session_key_c0390e0f_like" ON "django_session" ("session_key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:30:28,266 schema CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); (params None)
+DEBUG 2025-05-28 13:30:30,126 utils (0.000) BEGIN; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,127 utils (0.000) SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,127 utils (0.000) SET CONSTRAINTS ALL DEFERRED;; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,127 utils (0.000) SET CONSTRAINTS ALL DEFERRED;; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,128 utils (0.000) SAVEPOINT "s8415928064_x19"; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,129 utils (0.001) SELECT 1 AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 1; args=(1, 'admin_test'); alias=default
+DEBUG 2025-05-28 13:30:30,321 utils (0.001) INSERT INTO "auth_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('pbkdf2_sha256$1000000$z3WDQXOJv4qIytxAtGsC5E$gykuQaLs9pg5bp+3vp71wTvQRg8VMaKzM2oTL3vg+H8=', NULL, false, 'admin_test', '', '', 'test@example.com', false, true, '2025-05-28T13:30:30.129381+00:00'::timestamptz) RETURNING "auth_user"."id"; args=('pbkdf2_sha256$1000000$z3WDQXOJv4qIytxAtGsC5E$gykuQaLs9pg5bp+3vp71wTvQRg8VMaKzM2oTL3vg+H8=', None, False, 'admin_test', '', '', 'test@example.com', False, True, datetime.datetime(2025, 5, 28, 13, 30, 30, 129381, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-28 13:30:30,322 utils (0.000) RELEASE SAVEPOINT "s8415928064_x19"; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,322 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 21; args=('admin_test',); alias=default
+DEBUG 2025-05-28 13:30:30,323 utils (0.000) SAVEPOINT "s8415928064_x20"; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,323 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 21; args=('admin_test',); alias=default
+DEBUG 2025-05-28 13:30:30,515 utils (0.002) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."user_id" = 4 LIMIT 21; args=(4,); alias=default
+DEBUG 2025-05-28 13:30:30,515 utils (0.000) SAVEPOINT "s8415928064_x21"; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,516 utils (0.000) INSERT INTO "authtoken_token" ("key", "user_id", "created") VALUES ('30c7c32d3d71020b0759eaf5794f89ac1aeeaf24', 4, '2025-05-28T13:30:30.515795+00:00'::timestamptz); args=('30c7c32d3d71020b0759eaf5794f89ac1aeeaf24', 4, datetime.datetime(2025, 5, 28, 13, 30, 30, 515795, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-28 13:30:30,516 utils (0.000) RELEASE SAVEPOINT "s8415928064_x21"; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,516 utils (0.000) RELEASE SAVEPOINT "s8415928064_x20"; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,517 utils (0.001) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "authtoken_token" INNER JOIN "auth_user" ON ("authtoken_token"."user_id" = "auth_user"."id") WHERE "authtoken_token"."key" = '30c7c32d3d71020b0759eaf5794f89ac1aeeaf24' LIMIT 21; args=('30c7c32d3d71020b0759eaf5794f89ac1aeeaf24',); alias=default
+DEBUG 2025-05-28 13:30:30,518 utils (0.001) SELECT "main_userinfo"."id", "main_userinfo"."user_id", "main_userinfo"."age", "main_userinfo"."location", "main_userinfo"."military_status", "main_userinfo"."ptsd_level", "main_userinfo"."music_id", "main_userinfo"."therapist_contact_id", "main_userinfo"."scenario_id" FROM "main_userinfo" WHERE "main_userinfo"."user_id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-28 13:30:30,519 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-28 13:30:30,520 utils (0.000) SET CONSTRAINTS ALL IMMEDIATE; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,520 utils (0.000) SET CONSTRAINTS ALL DEFERRED; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,520 utils (0.000) ROLLBACK TO SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,520 utils (0.000) RELEASE SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:30:30,520 utils (0.000) ROLLBACK; args=None; alias=default
+DEBUG 2025-05-28 13:30:49,208 schema CREATE TABLE "django_migrations" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,210 schema CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,211 schema ALTER TABLE "django_content_type" ADD CONSTRAINT "django_content_type_app_label_model_76bd3d3b_uniq" UNIQUE ("app_label", "model"); (params None)
+DEBUG 2025-05-28 13:30:49,214 schema CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL, "codename" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,216 schema CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(80) NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:30:49,217 schema CREATE TABLE "auth_group_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "group_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,219 schema CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NOT NULL, "is_superuser" boolean NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(75) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,220 schema CREATE TABLE "auth_user_groups" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "group_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,221 schema CREATE TABLE "auth_user_user_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,222 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_codename_01ab375a_uniq" UNIQUE ("content_type_id", "codename"); (params None)
+DEBUG 2025-05-28 13:30:49,223 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_2f476e4b_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,223 schema CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:30:49,224 schema CREATE INDEX "auth_group_name_a6ea08ec_like" ON "auth_group" ("name" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:30:49,224 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" UNIQUE ("group_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:30:49,225 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,225 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,226 schema CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); (params None)
+DEBUG 2025-05-28 13:30:49,226 schema CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:30:49,226 schema CREATE INDEX "auth_user_username_6821ab7c_like" ON "auth_user" ("username" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:30:49,227 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_group_id_94350c0c_uniq" UNIQUE ("user_id", "group_id"); (params None)
+DEBUG 2025-05-28 13:30:49,227 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_6a12ed8b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,227 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_group_id_97559544_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,228 schema CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id"); (params None)
+DEBUG 2025-05-28 13:30:49,228 schema CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id"); (params None)
+DEBUG 2025-05-28 13:30:49,228 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" UNIQUE ("user_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:30:49,229 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,229 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,229 schema CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id"); (params None)
+DEBUG 2025-05-28 13:30:49,229 schema CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:30:49,233 schema CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "action_time" timestamp with time zone NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,234 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_content_type_id_c4bce8eb_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,234 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,235 schema CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:30:49,235 schema CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params None)
+DEBUG 2025-05-28 13:30:49,241 schema ALTER TABLE "django_content_type" ALTER COLUMN "name" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:30:49,243 schema ALTER TABLE "django_content_type" DROP COLUMN "name" CASCADE; (params None)
+DEBUG 2025-05-28 13:30:49,245 schema ALTER TABLE "auth_permission" ALTER COLUMN "name" TYPE varchar(255); (params None)
+DEBUG 2025-05-28 13:30:49,250 schema ALTER TABLE "auth_user" ALTER COLUMN "email" TYPE varchar(254); (params None)
+DEBUG 2025-05-28 13:30:49,254 schema ALTER TABLE "auth_user" ALTER COLUMN "last_login" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:30:49,258 schema ALTER TABLE "auth_user" ALTER COLUMN "username" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:30:49,261 schema ALTER TABLE "auth_user" ALTER COLUMN "last_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:30:49,263 schema ALTER TABLE "auth_group" ALTER COLUMN "name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:30:49,268 schema ALTER TABLE "auth_user" ALTER COLUMN "first_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:30:49,270 schema CREATE TABLE "authtoken_token" ("key" varchar(40) NOT NULL PRIMARY KEY, "created" timestamp with time zone NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:30:49,271 schema ALTER TABLE "authtoken_token" ADD CONSTRAINT "authtoken_token_user_id_35299eff_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,272 schema CREATE INDEX "authtoken_token_key_10f0b77e_like" ON "authtoken_token" ("key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:30:49,284 schema CREATE TABLE "chat_chatsession" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "session_type" varchar(10) NOT NULL, "started_at" timestamp with time zone NOT NULL, "ended_at" timestamp with time zone NULL, "receiver_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,288 schema CREATE TABLE "chat_chatmessage" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "sender" varchar(10) NOT NULL, "message" text NOT NULL, "timestamp" timestamp with time zone NOT NULL, "session_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,289 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_receiver_id_820d6d62_fk_auth_user_id" FOREIGN KEY ("receiver_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,289 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_user_id_5e1fb0de_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,289 schema CREATE INDEX "chat_chatsession_receiver_id_820d6d62" ON "chat_chatsession" ("receiver_id"); (params None)
+DEBUG 2025-05-28 13:30:49,290 schema CREATE INDEX "chat_chatsession_user_id_5e1fb0de" ON "chat_chatsession" ("user_id"); (params None)
+DEBUG 2025-05-28 13:30:49,290 schema ALTER TABLE "chat_chatmessage" ADD CONSTRAINT "chat_chatmessage_session_id_4dacb902_fk_chat_chatsession_id" FOREIGN KEY ("session_id") REFERENCES "chat_chatsession" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,290 schema CREATE INDEX "chat_chatmessage_session_id_4dacb902" ON "chat_chatmessage" ("session_id"); (params None)
+DEBUG 2025-05-28 13:30:49,295 schema CREATE TABLE "event_alarmscenario" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "play_music" boolean NOT NULL, "notify_contact" boolean NOT NULL, "notify_therapist" boolean NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,298 schema CREATE TABLE "event_alarm" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "timestamp" timestamp with time zone NOT NULL, "user_id" integer NOT NULL, "scenario_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,302 schema CREATE TABLE "event_alarmresult" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "location" varchar(255) NOT NULL, "timestamp" timestamp with time zone NOT NULL, "music_played" boolean NOT NULL, "message_sent_to_contacts" boolean NOT NULL, "voice_message_played" boolean NOT NULL, "therapist_notified" boolean NOT NULL, "completed" boolean NOT NULL, "alarm_id" bigint NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:30:49,302 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_user_id_60193bcf_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,303 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_scenario_id_c3d92fc0_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,303 schema CREATE INDEX "event_alarm_user_id_60193bcf" ON "event_alarm" ("user_id"); (params None)
+DEBUG 2025-05-28 13:30:49,304 schema CREATE INDEX "event_alarm_scenario_id_c3d92fc0" ON "event_alarm" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:30:49,304 schema ALTER TABLE "event_alarmresult" ADD CONSTRAINT "event_alarmresult_alarm_id_39474733_fk_event_alarm_id" FOREIGN KEY ("alarm_id") REFERENCES "event_alarm" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,305 schema CREATE TABLE "main_musictrack" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "url" varchar(200) NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,309 schema CREATE TABLE "main_emergencycontact" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "relationship" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,315 schema CREATE TABLE "main_therapist" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:30:49,320 schema CREATE TABLE "main_userinfo" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "age" integer NULL CHECK ("age" >= 0), "location" varchar(100) NOT NULL, "military_status" boolean NOT NULL, "ptsd_level" integer NULL CHECK ("ptsd_level" >= 0), "music_id" bigint NULL, "scenario_id" bigint NULL, "therapist_contact_id" bigint NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:30:49,321 schema ALTER TABLE "main_emergencycontact" ADD CONSTRAINT "main_emergencycontact_user_id_429f4e39_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,322 schema CREATE INDEX "main_emergencycontact_user_id_429f4e39" ON "main_emergencycontact" ("user_id"); (params None)
+DEBUG 2025-05-28 13:30:49,322 schema ALTER TABLE "main_therapist" ADD CONSTRAINT "main_therapist_user_id_54aa19c1_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,322 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_music_id_3d82943f_fk_main_musictrack_id" FOREIGN KEY ("music_id") REFERENCES "main_musictrack" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,323 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_scenario_id_f253b8ca_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,323 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_therapist_contact_id_016de31c_fk_main_ther" FOREIGN KEY ("therapist_contact_id") REFERENCES "main_therapist" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,323 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_user_id_cb352f99_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:30:49,324 schema CREATE INDEX "main_userinfo_music_id_3d82943f" ON "main_userinfo" ("music_id"); (params None)
+DEBUG 2025-05-28 13:30:49,324 schema CREATE INDEX "main_userinfo_scenario_id_f253b8ca" ON "main_userinfo" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:30:49,324 schema CREATE INDEX "main_userinfo_therapist_contact_id_016de31c" ON "main_userinfo" ("therapist_contact_id"); (params None)
+DEBUG 2025-05-28 13:30:49,325 schema CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:30:49,326 schema CREATE INDEX "django_session_session_key_c0390e0f_like" ON "django_session" ("session_key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:30:49,326 schema CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); (params None)
+DEBUG 2025-05-28 13:30:51,133 utils (0.000) BEGIN; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,133 utils (0.000) SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,133 utils (0.000) SET CONSTRAINTS ALL DEFERRED;; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,134 utils (0.000) SET CONSTRAINTS ALL DEFERRED;; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,134 utils (0.000) SAVEPOINT "s8415928064_x19"; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,135 utils (0.001) SELECT 1 AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 1; args=(1, 'admin_test'); alias=default
+DEBUG 2025-05-28 13:30:51,325 utils (0.001) INSERT INTO "auth_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('pbkdf2_sha256$1000000$z78hALHyhAJpvZwDYxYgLW$s0R8uzfcoOvKlJpO1/RtWVwKr1QjPrLsBZgl8W9QiqU=', NULL, false, 'admin_test', '', '', 'test@example.com', false, true, '2025-05-28T13:30:51.136120+00:00'::timestamptz) RETURNING "auth_user"."id"; args=('pbkdf2_sha256$1000000$z78hALHyhAJpvZwDYxYgLW$s0R8uzfcoOvKlJpO1/RtWVwKr1QjPrLsBZgl8W9QiqU=', None, False, 'admin_test', '', '', 'test@example.com', False, True, datetime.datetime(2025, 5, 28, 13, 30, 51, 136120, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-28 13:30:51,325 utils (0.000) RELEASE SAVEPOINT "s8415928064_x19"; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,326 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 21; args=('admin_test',); alias=default
+DEBUG 2025-05-28 13:30:51,326 utils (0.000) SAVEPOINT "s8415928064_x20"; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,327 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 21; args=('admin_test',); alias=default
+DEBUG 2025-05-28 13:30:51,520 utils (0.001) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."user_id" = 4 LIMIT 21; args=(4,); alias=default
+DEBUG 2025-05-28 13:30:51,520 utils (0.000) SAVEPOINT "s8415928064_x21"; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,521 utils (0.000) INSERT INTO "authtoken_token" ("key", "user_id", "created") VALUES ('f3a1afc8f4ac202d50062ec0482d8be66870a9e1', 4, '2025-05-28T13:30:51.520870+00:00'::timestamptz); args=('f3a1afc8f4ac202d50062ec0482d8be66870a9e1', 4, datetime.datetime(2025, 5, 28, 13, 30, 51, 520870, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-28 13:30:51,521 utils (0.000) RELEASE SAVEPOINT "s8415928064_x21"; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,521 utils (0.000) RELEASE SAVEPOINT "s8415928064_x20"; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,522 utils (0.001) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "authtoken_token" INNER JOIN "auth_user" ON ("authtoken_token"."user_id" = "auth_user"."id") WHERE "authtoken_token"."key" = 'f3a1afc8f4ac202d50062ec0482d8be66870a9e1' LIMIT 21; args=('f3a1afc8f4ac202d50062ec0482d8be66870a9e1',); alias=default
+DEBUG 2025-05-28 13:30:51,523 utils (0.001) SELECT "main_userinfo"."id", "main_userinfo"."user_id", "main_userinfo"."age", "main_userinfo"."location", "main_userinfo"."military_status", "main_userinfo"."ptsd_level", "main_userinfo"."music_id", "main_userinfo"."therapist_contact_id", "main_userinfo"."scenario_id" FROM "main_userinfo" WHERE "main_userinfo"."user_id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-28 13:30:51,524 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-28 13:30:51,525 utils (0.000) SET CONSTRAINTS ALL IMMEDIATE; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,525 utils (0.000) SET CONSTRAINTS ALL DEFERRED; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,525 utils (0.000) ROLLBACK TO SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,525 utils (0.000) RELEASE SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:30:51,525 utils (0.000) ROLLBACK; args=None; alias=default
+DEBUG 2025-05-28 13:32:10,609 schema CREATE TABLE "django_migrations" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,612 schema CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,613 schema ALTER TABLE "django_content_type" ADD CONSTRAINT "django_content_type_app_label_model_76bd3d3b_uniq" UNIQUE ("app_label", "model"); (params None)
+DEBUG 2025-05-28 13:32:10,616 schema CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL, "codename" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,618 schema CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(80) NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:32:10,618 schema CREATE TABLE "auth_group_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "group_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,621 schema CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NOT NULL, "is_superuser" boolean NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(75) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,621 schema CREATE TABLE "auth_user_groups" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "group_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,622 schema CREATE TABLE "auth_user_user_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,623 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_codename_01ab375a_uniq" UNIQUE ("content_type_id", "codename"); (params None)
+DEBUG 2025-05-28 13:32:10,623 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_2f476e4b_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,624 schema CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:32:10,624 schema CREATE INDEX "auth_group_name_a6ea08ec_like" ON "auth_group" ("name" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:32:10,624 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" UNIQUE ("group_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:32:10,625 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,625 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,625 schema CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); (params None)
+DEBUG 2025-05-28 13:32:10,626 schema CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:32:10,626 schema CREATE INDEX "auth_user_username_6821ab7c_like" ON "auth_user" ("username" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:32:10,626 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_group_id_94350c0c_uniq" UNIQUE ("user_id", "group_id"); (params None)
+DEBUG 2025-05-28 13:32:10,626 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_6a12ed8b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,627 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_group_id_97559544_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,627 schema CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id"); (params None)
+DEBUG 2025-05-28 13:32:10,627 schema CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id"); (params None)
+DEBUG 2025-05-28 13:32:10,627 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" UNIQUE ("user_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:32:10,628 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,628 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,628 schema CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id"); (params None)
+DEBUG 2025-05-28 13:32:10,629 schema CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:32:10,632 schema CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "action_time" timestamp with time zone NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,633 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_content_type_id_c4bce8eb_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,633 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,633 schema CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:32:10,634 schema CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params None)
+DEBUG 2025-05-28 13:32:10,640 schema ALTER TABLE "django_content_type" ALTER COLUMN "name" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:32:10,642 schema ALTER TABLE "django_content_type" DROP COLUMN "name" CASCADE; (params None)
+DEBUG 2025-05-28 13:32:10,645 schema ALTER TABLE "auth_permission" ALTER COLUMN "name" TYPE varchar(255); (params None)
+DEBUG 2025-05-28 13:32:10,649 schema ALTER TABLE "auth_user" ALTER COLUMN "email" TYPE varchar(254); (params None)
+DEBUG 2025-05-28 13:32:10,653 schema ALTER TABLE "auth_user" ALTER COLUMN "last_login" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:32:10,657 schema ALTER TABLE "auth_user" ALTER COLUMN "username" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:32:10,660 schema ALTER TABLE "auth_user" ALTER COLUMN "last_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:32:10,662 schema ALTER TABLE "auth_group" ALTER COLUMN "name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:32:10,667 schema ALTER TABLE "auth_user" ALTER COLUMN "first_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:32:10,669 schema CREATE TABLE "authtoken_token" ("key" varchar(40) NOT NULL PRIMARY KEY, "created" timestamp with time zone NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:32:10,670 schema ALTER TABLE "authtoken_token" ADD CONSTRAINT "authtoken_token_user_id_35299eff_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,671 schema CREATE INDEX "authtoken_token_key_10f0b77e_like" ON "authtoken_token" ("key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:32:10,683 schema CREATE TABLE "chat_chatsession" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "session_type" varchar(10) NOT NULL, "started_at" timestamp with time zone NOT NULL, "ended_at" timestamp with time zone NULL, "receiver_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,686 schema CREATE TABLE "chat_chatmessage" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "sender" varchar(10) NOT NULL, "message" text NOT NULL, "timestamp" timestamp with time zone NOT NULL, "session_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,687 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_receiver_id_820d6d62_fk_auth_user_id" FOREIGN KEY ("receiver_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,687 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_user_id_5e1fb0de_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,687 schema CREATE INDEX "chat_chatsession_receiver_id_820d6d62" ON "chat_chatsession" ("receiver_id"); (params None)
+DEBUG 2025-05-28 13:32:10,688 schema CREATE INDEX "chat_chatsession_user_id_5e1fb0de" ON "chat_chatsession" ("user_id"); (params None)
+DEBUG 2025-05-28 13:32:10,688 schema ALTER TABLE "chat_chatmessage" ADD CONSTRAINT "chat_chatmessage_session_id_4dacb902_fk_chat_chatsession_id" FOREIGN KEY ("session_id") REFERENCES "chat_chatsession" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,688 schema CREATE INDEX "chat_chatmessage_session_id_4dacb902" ON "chat_chatmessage" ("session_id"); (params None)
+DEBUG 2025-05-28 13:32:10,692 schema CREATE TABLE "event_alarmscenario" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "play_music" boolean NOT NULL, "notify_contact" boolean NOT NULL, "notify_therapist" boolean NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,695 schema CREATE TABLE "event_alarm" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "timestamp" timestamp with time zone NOT NULL, "user_id" integer NOT NULL, "scenario_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,699 schema CREATE TABLE "event_alarmresult" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "location" varchar(255) NOT NULL, "timestamp" timestamp with time zone NOT NULL, "music_played" boolean NOT NULL, "message_sent_to_contacts" boolean NOT NULL, "voice_message_played" boolean NOT NULL, "therapist_notified" boolean NOT NULL, "completed" boolean NOT NULL, "alarm_id" bigint NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:32:10,700 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_user_id_60193bcf_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,700 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_scenario_id_c3d92fc0_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,700 schema CREATE INDEX "event_alarm_user_id_60193bcf" ON "event_alarm" ("user_id"); (params None)
+DEBUG 2025-05-28 13:32:10,701 schema CREATE INDEX "event_alarm_scenario_id_c3d92fc0" ON "event_alarm" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:32:10,701 schema ALTER TABLE "event_alarmresult" ADD CONSTRAINT "event_alarmresult_alarm_id_39474733_fk_event_alarm_id" FOREIGN KEY ("alarm_id") REFERENCES "event_alarm" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,702 schema CREATE TABLE "main_musictrack" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "url" varchar(200) NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,706 schema CREATE TABLE "main_emergencycontact" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "relationship" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,712 schema CREATE TABLE "main_therapist" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:32:10,717 schema CREATE TABLE "main_userinfo" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "age" integer NULL CHECK ("age" >= 0), "location" varchar(100) NOT NULL, "military_status" boolean NOT NULL, "ptsd_level" integer NULL CHECK ("ptsd_level" >= 0), "music_id" bigint NULL, "scenario_id" bigint NULL, "therapist_contact_id" bigint NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:32:10,718 schema ALTER TABLE "main_emergencycontact" ADD CONSTRAINT "main_emergencycontact_user_id_429f4e39_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,718 schema CREATE INDEX "main_emergencycontact_user_id_429f4e39" ON "main_emergencycontact" ("user_id"); (params None)
+DEBUG 2025-05-28 13:32:10,719 schema ALTER TABLE "main_therapist" ADD CONSTRAINT "main_therapist_user_id_54aa19c1_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,719 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_music_id_3d82943f_fk_main_musictrack_id" FOREIGN KEY ("music_id") REFERENCES "main_musictrack" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,719 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_scenario_id_f253b8ca_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,720 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_therapist_contact_id_016de31c_fk_main_ther" FOREIGN KEY ("therapist_contact_id") REFERENCES "main_therapist" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,720 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_user_id_cb352f99_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:32:10,720 schema CREATE INDEX "main_userinfo_music_id_3d82943f" ON "main_userinfo" ("music_id"); (params None)
+DEBUG 2025-05-28 13:32:10,720 schema CREATE INDEX "main_userinfo_scenario_id_f253b8ca" ON "main_userinfo" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:32:10,721 schema CREATE INDEX "main_userinfo_therapist_contact_id_016de31c" ON "main_userinfo" ("therapist_contact_id"); (params None)
+DEBUG 2025-05-28 13:32:10,722 schema CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:32:10,722 schema CREATE INDEX "django_session_session_key_c0390e0f_like" ON "django_session" ("session_key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:32:10,723 schema CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); (params None)
+DEBUG 2025-05-28 13:32:12,598 utils (0.000) BEGIN; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,598 utils (0.000) SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,598 utils (0.000) SET CONSTRAINTS ALL DEFERRED;; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,598 utils (0.000) SET CONSTRAINTS ALL DEFERRED;; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,599 utils (0.000) SAVEPOINT "s8415928064_x19"; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,600 utils (0.001) SELECT 1 AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 1; args=(1, 'admin_test'); alias=default
+DEBUG 2025-05-28 13:32:12,795 utils (0.001) INSERT INTO "auth_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('pbkdf2_sha256$1000000$04jabw1ECQp2Adnzq9mwzS$/Hvkv87fHD0ZjSN3RYyT+VV6MkjHPCJ4Y4GwBgQwH94=', NULL, false, 'admin_test', '', '', 'test@example.com', false, true, '2025-05-28T13:32:12.600868+00:00'::timestamptz) RETURNING "auth_user"."id"; args=('pbkdf2_sha256$1000000$04jabw1ECQp2Adnzq9mwzS$/Hvkv87fHD0ZjSN3RYyT+VV6MkjHPCJ4Y4GwBgQwH94=', None, False, 'admin_test', '', '', 'test@example.com', False, True, datetime.datetime(2025, 5, 28, 13, 32, 12, 600868, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-28 13:32:12,796 utils (0.000) RELEASE SAVEPOINT "s8415928064_x19"; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,796 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 21; args=('admin_test',); alias=default
+DEBUG 2025-05-28 13:32:12,797 utils (0.000) SAVEPOINT "s8415928064_x20"; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,797 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 21; args=('admin_test',); alias=default
+DEBUG 2025-05-28 13:32:12,990 utils (0.002) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."user_id" = 4 LIMIT 21; args=(4,); alias=default
+DEBUG 2025-05-28 13:32:12,990 utils (0.000) SAVEPOINT "s8415928064_x21"; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,991 utils (0.000) INSERT INTO "authtoken_token" ("key", "user_id", "created") VALUES ('c7219d31b356ebd1b9df131ae43de846d0ba3ee3', 4, '2025-05-28T13:32:12.990865+00:00'::timestamptz); args=('c7219d31b356ebd1b9df131ae43de846d0ba3ee3', 4, datetime.datetime(2025, 5, 28, 13, 32, 12, 990865, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-28 13:32:12,991 utils (0.000) RELEASE SAVEPOINT "s8415928064_x21"; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,991 utils (0.000) RELEASE SAVEPOINT "s8415928064_x20"; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,992 utils (0.001) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "authtoken_token" INNER JOIN "auth_user" ON ("authtoken_token"."user_id" = "auth_user"."id") WHERE "authtoken_token"."key" = 'c7219d31b356ebd1b9df131ae43de846d0ba3ee3' LIMIT 21; args=('c7219d31b356ebd1b9df131ae43de846d0ba3ee3',); alias=default
+DEBUG 2025-05-28 13:32:12,993 utils (0.001) SELECT "main_userinfo"."id", "main_userinfo"."user_id", "main_userinfo"."age", "main_userinfo"."location", "main_userinfo"."military_status", "main_userinfo"."ptsd_level", "main_userinfo"."music_id", "main_userinfo"."therapist_contact_id", "main_userinfo"."scenario_id" FROM "main_userinfo" WHERE "main_userinfo"."user_id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-28 13:32:12,994 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-28 13:32:12,995 utils (0.000) SET CONSTRAINTS ALL IMMEDIATE; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,995 utils (0.000) SET CONSTRAINTS ALL DEFERRED; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,995 utils (0.000) ROLLBACK TO SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,995 utils (0.000) RELEASE SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:32:12,995 utils (0.000) ROLLBACK; args=None; alias=default
+DEBUG 2025-05-28 13:33:31,338 schema CREATE TABLE "django_migrations" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,340 schema CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,341 schema ALTER TABLE "django_content_type" ADD CONSTRAINT "django_content_type_app_label_model_76bd3d3b_uniq" UNIQUE ("app_label", "model"); (params None)
+DEBUG 2025-05-28 13:33:31,344 schema CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL, "codename" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,346 schema CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(80) NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:33:31,347 schema CREATE TABLE "auth_group_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "group_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,350 schema CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NOT NULL, "is_superuser" boolean NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(75) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,351 schema CREATE TABLE "auth_user_groups" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "group_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,351 schema CREATE TABLE "auth_user_user_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,352 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_codename_01ab375a_uniq" UNIQUE ("content_type_id", "codename"); (params None)
+DEBUG 2025-05-28 13:33:31,352 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_2f476e4b_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,353 schema CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:33:31,353 schema CREATE INDEX "auth_group_name_a6ea08ec_like" ON "auth_group" ("name" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:33:31,353 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" UNIQUE ("group_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:33:31,354 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,354 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,354 schema CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); (params None)
+DEBUG 2025-05-28 13:33:31,355 schema CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:33:31,355 schema CREATE INDEX "auth_user_username_6821ab7c_like" ON "auth_user" ("username" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:33:31,355 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_group_id_94350c0c_uniq" UNIQUE ("user_id", "group_id"); (params None)
+DEBUG 2025-05-28 13:33:31,355 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_6a12ed8b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,356 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_group_id_97559544_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,356 schema CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id"); (params None)
+DEBUG 2025-05-28 13:33:31,356 schema CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id"); (params None)
+DEBUG 2025-05-28 13:33:31,356 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" UNIQUE ("user_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:33:31,357 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,357 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,357 schema CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id"); (params None)
+DEBUG 2025-05-28 13:33:31,357 schema CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:33:31,361 schema CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "action_time" timestamp with time zone NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,362 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_content_type_id_c4bce8eb_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,362 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,362 schema CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:33:31,362 schema CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params None)
+DEBUG 2025-05-28 13:33:31,370 schema ALTER TABLE "django_content_type" ALTER COLUMN "name" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:33:31,373 schema ALTER TABLE "django_content_type" DROP COLUMN "name" CASCADE; (params None)
+DEBUG 2025-05-28 13:33:31,375 schema ALTER TABLE "auth_permission" ALTER COLUMN "name" TYPE varchar(255); (params None)
+DEBUG 2025-05-28 13:33:31,379 schema ALTER TABLE "auth_user" ALTER COLUMN "email" TYPE varchar(254); (params None)
+DEBUG 2025-05-28 13:33:31,384 schema ALTER TABLE "auth_user" ALTER COLUMN "last_login" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:33:31,388 schema ALTER TABLE "auth_user" ALTER COLUMN "username" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:33:31,391 schema ALTER TABLE "auth_user" ALTER COLUMN "last_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:33:31,394 schema ALTER TABLE "auth_group" ALTER COLUMN "name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:33:31,400 schema ALTER TABLE "auth_user" ALTER COLUMN "first_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:33:31,402 schema CREATE TABLE "authtoken_token" ("key" varchar(40) NOT NULL PRIMARY KEY, "created" timestamp with time zone NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:33:31,403 schema ALTER TABLE "authtoken_token" ADD CONSTRAINT "authtoken_token_user_id_35299eff_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,403 schema CREATE INDEX "authtoken_token_key_10f0b77e_like" ON "authtoken_token" ("key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:33:31,416 schema CREATE TABLE "chat_chatsession" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "session_type" varchar(10) NOT NULL, "started_at" timestamp with time zone NOT NULL, "ended_at" timestamp with time zone NULL, "receiver_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,420 schema CREATE TABLE "chat_chatmessage" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "sender" varchar(10) NOT NULL, "message" text NOT NULL, "timestamp" timestamp with time zone NOT NULL, "session_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,421 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_receiver_id_820d6d62_fk_auth_user_id" FOREIGN KEY ("receiver_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,421 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_user_id_5e1fb0de_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,421 schema CREATE INDEX "chat_chatsession_receiver_id_820d6d62" ON "chat_chatsession" ("receiver_id"); (params None)
+DEBUG 2025-05-28 13:33:31,422 schema CREATE INDEX "chat_chatsession_user_id_5e1fb0de" ON "chat_chatsession" ("user_id"); (params None)
+DEBUG 2025-05-28 13:33:31,422 schema ALTER TABLE "chat_chatmessage" ADD CONSTRAINT "chat_chatmessage_session_id_4dacb902_fk_chat_chatsession_id" FOREIGN KEY ("session_id") REFERENCES "chat_chatsession" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,422 schema CREATE INDEX "chat_chatmessage_session_id_4dacb902" ON "chat_chatmessage" ("session_id"); (params None)
+DEBUG 2025-05-28 13:33:31,427 schema CREATE TABLE "event_alarmscenario" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "play_music" boolean NOT NULL, "notify_contact" boolean NOT NULL, "notify_therapist" boolean NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,430 schema CREATE TABLE "event_alarm" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "timestamp" timestamp with time zone NOT NULL, "user_id" integer NOT NULL, "scenario_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,434 schema CREATE TABLE "event_alarmresult" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "location" varchar(255) NOT NULL, "timestamp" timestamp with time zone NOT NULL, "music_played" boolean NOT NULL, "message_sent_to_contacts" boolean NOT NULL, "voice_message_played" boolean NOT NULL, "therapist_notified" boolean NOT NULL, "completed" boolean NOT NULL, "alarm_id" bigint NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:33:31,435 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_user_id_60193bcf_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,435 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_scenario_id_c3d92fc0_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,436 schema CREATE INDEX "event_alarm_user_id_60193bcf" ON "event_alarm" ("user_id"); (params None)
+DEBUG 2025-05-28 13:33:31,436 schema CREATE INDEX "event_alarm_scenario_id_c3d92fc0" ON "event_alarm" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:33:31,436 schema ALTER TABLE "event_alarmresult" ADD CONSTRAINT "event_alarmresult_alarm_id_39474733_fk_event_alarm_id" FOREIGN KEY ("alarm_id") REFERENCES "event_alarm" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,437 schema CREATE TABLE "main_musictrack" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "url" varchar(200) NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,441 schema CREATE TABLE "main_emergencycontact" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "relationship" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,448 schema CREATE TABLE "main_therapist" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:33:31,452 schema CREATE TABLE "main_userinfo" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "age" integer NULL CHECK ("age" >= 0), "location" varchar(100) NOT NULL, "military_status" boolean NOT NULL, "ptsd_level" integer NULL CHECK ("ptsd_level" >= 0), "music_id" bigint NULL, "scenario_id" bigint NULL, "therapist_contact_id" bigint NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:33:31,453 schema ALTER TABLE "main_emergencycontact" ADD CONSTRAINT "main_emergencycontact_user_id_429f4e39_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,454 schema CREATE INDEX "main_emergencycontact_user_id_429f4e39" ON "main_emergencycontact" ("user_id"); (params None)
+DEBUG 2025-05-28 13:33:31,454 schema ALTER TABLE "main_therapist" ADD CONSTRAINT "main_therapist_user_id_54aa19c1_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,454 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_music_id_3d82943f_fk_main_musictrack_id" FOREIGN KEY ("music_id") REFERENCES "main_musictrack" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,455 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_scenario_id_f253b8ca_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,455 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_therapist_contact_id_016de31c_fk_main_ther" FOREIGN KEY ("therapist_contact_id") REFERENCES "main_therapist" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,455 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_user_id_cb352f99_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:33:31,455 schema CREATE INDEX "main_userinfo_music_id_3d82943f" ON "main_userinfo" ("music_id"); (params None)
+DEBUG 2025-05-28 13:33:31,456 schema CREATE INDEX "main_userinfo_scenario_id_f253b8ca" ON "main_userinfo" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:33:31,456 schema CREATE INDEX "main_userinfo_therapist_contact_id_016de31c" ON "main_userinfo" ("therapist_contact_id"); (params None)
+DEBUG 2025-05-28 13:33:31,457 schema CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:33:31,458 schema CREATE INDEX "django_session_session_key_c0390e0f_like" ON "django_session" ("session_key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:33:31,458 schema CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); (params None)
+DEBUG 2025-05-28 13:33:33,302 utils (0.000) BEGIN; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,302 utils (0.000) SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,302 utils (0.000) SET CONSTRAINTS ALL DEFERRED;; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,303 utils (0.000) SET CONSTRAINTS ALL DEFERRED;; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,303 utils (0.000) SAVEPOINT "s8415928064_x19"; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,304 utils (0.001) SELECT 1 AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 1; args=(1, 'admin_test'); alias=default
+DEBUG 2025-05-28 13:33:33,501 utils (0.001) INSERT INTO "auth_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('pbkdf2_sha256$1000000$BatLs7WPTvDq5YrS2DojOQ$DvuhSAAtm4oPftNBwCHkVp0LuZBCg3WAoQdcqYVEBSU=', NULL, false, 'admin_test', '', '', 'test@example.com', false, true, '2025-05-28T13:33:33.304671+00:00'::timestamptz) RETURNING "auth_user"."id"; args=('pbkdf2_sha256$1000000$BatLs7WPTvDq5YrS2DojOQ$DvuhSAAtm4oPftNBwCHkVp0LuZBCg3WAoQdcqYVEBSU=', None, False, 'admin_test', '', '', 'test@example.com', False, True, datetime.datetime(2025, 5, 28, 13, 33, 33, 304671, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-28 13:33:33,501 utils (0.000) RELEASE SAVEPOINT "s8415928064_x19"; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,502 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 21; args=('admin_test',); alias=default
+DEBUG 2025-05-28 13:33:33,502 utils (0.000) SAVEPOINT "s8415928064_x20"; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,503 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 21; args=('admin_test',); alias=default
+DEBUG 2025-05-28 13:33:33,698 utils (0.002) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."user_id" = 4 LIMIT 21; args=(4,); alias=default
+DEBUG 2025-05-28 13:33:33,698 utils (0.000) SAVEPOINT "s8415928064_x21"; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,699 utils (0.000) INSERT INTO "authtoken_token" ("key", "user_id", "created") VALUES ('e4df6ba729e886f6087652946d82bebd8e959d70', 4, '2025-05-28T13:33:33.698904+00:00'::timestamptz); args=('e4df6ba729e886f6087652946d82bebd8e959d70', 4, datetime.datetime(2025, 5, 28, 13, 33, 33, 698904, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-28 13:33:33,699 utils (0.000) RELEASE SAVEPOINT "s8415928064_x21"; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,699 utils (0.000) RELEASE SAVEPOINT "s8415928064_x20"; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,701 utils (0.001) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "authtoken_token" INNER JOIN "auth_user" ON ("authtoken_token"."user_id" = "auth_user"."id") WHERE "authtoken_token"."key" = 'e4df6ba729e886f6087652946d82bebd8e959d70' LIMIT 21; args=('e4df6ba729e886f6087652946d82bebd8e959d70',); alias=default
+DEBUG 2025-05-28 13:33:33,702 utils (0.001) SELECT "main_userinfo"."id", "main_userinfo"."user_id", "main_userinfo"."age", "main_userinfo"."location", "main_userinfo"."military_status", "main_userinfo"."ptsd_level", "main_userinfo"."music_id", "main_userinfo"."therapist_contact_id", "main_userinfo"."scenario_id" FROM "main_userinfo" WHERE "main_userinfo"."user_id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-28 13:33:33,702 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-28 13:33:33,703 utils (0.000) SET CONSTRAINTS ALL IMMEDIATE; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,703 utils (0.000) SET CONSTRAINTS ALL DEFERRED; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,703 utils (0.000) ROLLBACK TO SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,703 utils (0.000) RELEASE SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:33:33,703 utils (0.000) ROLLBACK; args=None; alias=default
+DEBUG 2025-05-28 13:34:25,876 schema CREATE TABLE "django_migrations" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,879 schema CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,881 schema ALTER TABLE "django_content_type" ADD CONSTRAINT "django_content_type_app_label_model_76bd3d3b_uniq" UNIQUE ("app_label", "model"); (params None)
+DEBUG 2025-05-28 13:34:25,884 schema CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL, "codename" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,885 schema CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(80) NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:34:25,886 schema CREATE TABLE "auth_group_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "group_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,889 schema CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NOT NULL, "is_superuser" boolean NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(75) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,890 schema CREATE TABLE "auth_user_groups" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "group_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,891 schema CREATE TABLE "auth_user_user_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,891 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_codename_01ab375a_uniq" UNIQUE ("content_type_id", "codename"); (params None)
+DEBUG 2025-05-28 13:34:25,892 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_2f476e4b_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,892 schema CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:34:25,893 schema CREATE INDEX "auth_group_name_a6ea08ec_like" ON "auth_group" ("name" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:34:25,893 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" UNIQUE ("group_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:34:25,893 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,894 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,894 schema CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); (params None)
+DEBUG 2025-05-28 13:34:25,894 schema CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:34:25,895 schema CREATE INDEX "auth_user_username_6821ab7c_like" ON "auth_user" ("username" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:34:25,895 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_group_id_94350c0c_uniq" UNIQUE ("user_id", "group_id"); (params None)
+DEBUG 2025-05-28 13:34:25,895 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_6a12ed8b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,895 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_group_id_97559544_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,896 schema CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id"); (params None)
+DEBUG 2025-05-28 13:34:25,896 schema CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id"); (params None)
+DEBUG 2025-05-28 13:34:25,896 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" UNIQUE ("user_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:34:25,897 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,897 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,897 schema CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id"); (params None)
+DEBUG 2025-05-28 13:34:25,898 schema CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:34:25,901 schema CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "action_time" timestamp with time zone NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,902 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_content_type_id_c4bce8eb_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,903 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,903 schema CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:34:25,903 schema CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params None)
+DEBUG 2025-05-28 13:34:25,911 schema ALTER TABLE "django_content_type" ALTER COLUMN "name" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:34:25,914 schema ALTER TABLE "django_content_type" DROP COLUMN "name" CASCADE; (params None)
+DEBUG 2025-05-28 13:34:25,917 schema ALTER TABLE "auth_permission" ALTER COLUMN "name" TYPE varchar(255); (params None)
+DEBUG 2025-05-28 13:34:25,920 schema ALTER TABLE "auth_user" ALTER COLUMN "email" TYPE varchar(254); (params None)
+DEBUG 2025-05-28 13:34:25,925 schema ALTER TABLE "auth_user" ALTER COLUMN "last_login" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:34:25,930 schema ALTER TABLE "auth_user" ALTER COLUMN "username" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:34:25,934 schema ALTER TABLE "auth_user" ALTER COLUMN "last_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:34:25,936 schema ALTER TABLE "auth_group" ALTER COLUMN "name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:34:25,941 schema ALTER TABLE "auth_user" ALTER COLUMN "first_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:34:25,944 schema CREATE TABLE "authtoken_token" ("key" varchar(40) NOT NULL PRIMARY KEY, "created" timestamp with time zone NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:34:25,945 schema ALTER TABLE "authtoken_token" ADD CONSTRAINT "authtoken_token_user_id_35299eff_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,945 schema CREATE INDEX "authtoken_token_key_10f0b77e_like" ON "authtoken_token" ("key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:34:25,961 schema CREATE TABLE "chat_chatsession" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "session_type" varchar(10) NOT NULL, "started_at" timestamp with time zone NOT NULL, "ended_at" timestamp with time zone NULL, "receiver_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,964 schema CREATE TABLE "chat_chatmessage" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "sender" varchar(10) NOT NULL, "message" text NOT NULL, "timestamp" timestamp with time zone NOT NULL, "session_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,965 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_receiver_id_820d6d62_fk_auth_user_id" FOREIGN KEY ("receiver_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,965 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_user_id_5e1fb0de_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,966 schema CREATE INDEX "chat_chatsession_receiver_id_820d6d62" ON "chat_chatsession" ("receiver_id"); (params None)
+DEBUG 2025-05-28 13:34:25,966 schema CREATE INDEX "chat_chatsession_user_id_5e1fb0de" ON "chat_chatsession" ("user_id"); (params None)
+DEBUG 2025-05-28 13:34:25,966 schema ALTER TABLE "chat_chatmessage" ADD CONSTRAINT "chat_chatmessage_session_id_4dacb902_fk_chat_chatsession_id" FOREIGN KEY ("session_id") REFERENCES "chat_chatsession" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,967 schema CREATE INDEX "chat_chatmessage_session_id_4dacb902" ON "chat_chatmessage" ("session_id"); (params None)
+DEBUG 2025-05-28 13:34:25,971 schema CREATE TABLE "event_alarmscenario" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "play_music" boolean NOT NULL, "notify_contact" boolean NOT NULL, "notify_therapist" boolean NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,974 schema CREATE TABLE "event_alarm" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "timestamp" timestamp with time zone NOT NULL, "user_id" integer NOT NULL, "scenario_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,978 schema CREATE TABLE "event_alarmresult" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "location" varchar(255) NOT NULL, "timestamp" timestamp with time zone NOT NULL, "music_played" boolean NOT NULL, "message_sent_to_contacts" boolean NOT NULL, "voice_message_played" boolean NOT NULL, "therapist_notified" boolean NOT NULL, "completed" boolean NOT NULL, "alarm_id" bigint NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:34:25,979 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_user_id_60193bcf_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,979 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_scenario_id_c3d92fc0_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,979 schema CREATE INDEX "event_alarm_user_id_60193bcf" ON "event_alarm" ("user_id"); (params None)
+DEBUG 2025-05-28 13:34:25,980 schema CREATE INDEX "event_alarm_scenario_id_c3d92fc0" ON "event_alarm" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:34:25,980 schema ALTER TABLE "event_alarmresult" ADD CONSTRAINT "event_alarmresult_alarm_id_39474733_fk_event_alarm_id" FOREIGN KEY ("alarm_id") REFERENCES "event_alarm" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,981 schema CREATE TABLE "main_musictrack" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "url" varchar(200) NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,985 schema CREATE TABLE "main_emergencycontact" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "relationship" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,989 schema CREATE TABLE "main_therapist" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:34:25,994 schema CREATE TABLE "main_userinfo" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "age" integer NULL CHECK ("age" >= 0), "location" varchar(100) NOT NULL, "military_status" boolean NOT NULL, "ptsd_level" integer NULL CHECK ("ptsd_level" >= 0), "music_id" bigint NULL, "scenario_id" bigint NULL, "therapist_contact_id" bigint NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:34:25,994 schema ALTER TABLE "main_emergencycontact" ADD CONSTRAINT "main_emergencycontact_user_id_429f4e39_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,995 schema CREATE INDEX "main_emergencycontact_user_id_429f4e39" ON "main_emergencycontact" ("user_id"); (params None)
+DEBUG 2025-05-28 13:34:25,995 schema ALTER TABLE "main_therapist" ADD CONSTRAINT "main_therapist_user_id_54aa19c1_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,996 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_music_id_3d82943f_fk_main_musictrack_id" FOREIGN KEY ("music_id") REFERENCES "main_musictrack" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,996 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_scenario_id_f253b8ca_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,996 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_therapist_contact_id_016de31c_fk_main_ther" FOREIGN KEY ("therapist_contact_id") REFERENCES "main_therapist" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,997 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_user_id_cb352f99_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:34:25,997 schema CREATE INDEX "main_userinfo_music_id_3d82943f" ON "main_userinfo" ("music_id"); (params None)
+DEBUG 2025-05-28 13:34:25,997 schema CREATE INDEX "main_userinfo_scenario_id_f253b8ca" ON "main_userinfo" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:34:25,997 schema CREATE INDEX "main_userinfo_therapist_contact_id_016de31c" ON "main_userinfo" ("therapist_contact_id"); (params None)
+DEBUG 2025-05-28 13:34:25,998 schema CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:34:25,999 schema CREATE INDEX "django_session_session_key_c0390e0f_like" ON "django_session" ("session_key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:34:25,999 schema CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); (params None)
+DEBUG 2025-05-28 13:34:27,835 utils (0.000) BEGIN; args=None; alias=default
+DEBUG 2025-05-28 13:34:27,835 utils (0.000) SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:34:27,835 utils (0.000) SET CONSTRAINTS ALL DEFERRED;; args=None; alias=default
+DEBUG 2025-05-28 13:34:27,836 utils (0.000) SET CONSTRAINTS ALL DEFERRED;; args=None; alias=default
+DEBUG 2025-05-28 13:34:27,836 utils (0.000) SAVEPOINT "s8415928064_x19"; args=None; alias=default
+DEBUG 2025-05-28 13:34:27,837 utils (0.001) SELECT 1 AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 1; args=(1, 'admin_test'); alias=default
+DEBUG 2025-05-28 13:34:28,030 utils (0.001) INSERT INTO "auth_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('pbkdf2_sha256$1000000$UrixK74pkeUOaZG8ub5h3r$4sWJvHm+dZ28o7DTXwvF1IlwaD2H681DB/ojdtwRKGU=', NULL, false, 'admin_test', '', '', 'test@example.com', false, true, '2025-05-28T13:34:27.837622+00:00'::timestamptz) RETURNING "auth_user"."id"; args=('pbkdf2_sha256$1000000$UrixK74pkeUOaZG8ub5h3r$4sWJvHm+dZ28o7DTXwvF1IlwaD2H681DB/ojdtwRKGU=', None, False, 'admin_test', '', '', 'test@example.com', False, True, datetime.datetime(2025, 5, 28, 13, 34, 27, 837622, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-28 13:34:28,030 utils (0.000) RELEASE SAVEPOINT "s8415928064_x19"; args=None; alias=default
+DEBUG 2025-05-28 13:34:28,031 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 21; args=('admin_test',); alias=default
+DEBUG 2025-05-28 13:34:28,031 utils (0.000) SAVEPOINT "s8415928064_x20"; args=None; alias=default
+DEBUG 2025-05-28 13:34:28,032 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 21; args=('admin_test',); alias=default
+DEBUG 2025-05-28 13:34:28,225 utils (0.002) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."user_id" = 4 LIMIT 21; args=(4,); alias=default
+DEBUG 2025-05-28 13:34:28,225 utils (0.000) SAVEPOINT "s8415928064_x21"; args=None; alias=default
+DEBUG 2025-05-28 13:34:28,225 utils (0.000) INSERT INTO "authtoken_token" ("key", "user_id", "created") VALUES ('a9d3284874d1897b61512bea385e69987d385ab6', 4, '2025-05-28T13:34:28.225483+00:00'::timestamptz); args=('a9d3284874d1897b61512bea385e69987d385ab6', 4, datetime.datetime(2025, 5, 28, 13, 34, 28, 225483, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-28 13:34:28,225 utils (0.000) RELEASE SAVEPOINT "s8415928064_x21"; args=None; alias=default
+DEBUG 2025-05-28 13:34:28,226 utils (0.000) RELEASE SAVEPOINT "s8415928064_x20"; args=None; alias=default
+DEBUG 2025-05-28 13:34:28,228 utils (0.001) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "authtoken_token" INNER JOIN "auth_user" ON ("authtoken_token"."user_id" = "auth_user"."id") WHERE "authtoken_token"."key" = 'a9d3284874d1897b61512bea385e69987d385ab6' LIMIT 21; args=('a9d3284874d1897b61512bea385e69987d385ab6',); alias=default
+DEBUG 2025-05-28 13:34:28,228 utils (0.001) SELECT "main_userinfo"."id", "main_userinfo"."user_id", "main_userinfo"."age", "main_userinfo"."location", "main_userinfo"."military_status", "main_userinfo"."ptsd_level", "main_userinfo"."music_id", "main_userinfo"."therapist_contact_id", "main_userinfo"."scenario_id" FROM "main_userinfo" WHERE "main_userinfo"."user_id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-28 13:34:28,229 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-28 13:34:28,230 utils (0.000) SET CONSTRAINTS ALL IMMEDIATE; args=None; alias=default
+DEBUG 2025-05-28 13:34:28,230 utils (0.000) SET CONSTRAINTS ALL DEFERRED; args=None; alias=default
+DEBUG 2025-05-28 13:34:28,230 utils (0.000) ROLLBACK TO SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:34:28,230 utils (0.000) RELEASE SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:34:28,230 utils (0.000) ROLLBACK; args=None; alias=default
+ERROR 2025-05-28 13:43:13,407 log Internal Server Error: /api/v1/user/registration/
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "auth_user" does not exist
+LINE 1: SELECT 1 AS "a" FROM "auth_user" WHERE "auth_user"."username...
+                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/main/views.py", line 20, in registration
+    if serializer.is_valid():
+       ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/serializers.py", line 444, in run_validation
+    value = self.to_internal_value(data)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/serializers.py", line 501, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/fields.py", line 757, in run_validation
+    return super().run_validation(data)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/fields.py", line 539, in run_validation
+    self.run_validators(value)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/fields.py", line 551, in run_validators
+    validator(value, self)
+    ~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/validators.py", line 86, in __call__
+    if qs_exists(queryset):
+       ~~~~~~~~~^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/rest_framework/validators.py", line 23, in qs_exists
+    return queryset.exists()
+           ~~~~~~~~~~~~~~~^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1294, in exists
+    return self.query.has_results(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 674, in has_results
+    return compiler.has_results()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1591, in has_results
+    return bool(self.execute_sql(SINGLE))
+                ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/sergeizeliabovskii/Documents/python_ptojects/DjangoProject/.venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "auth_user" does not exist
+LINE 1: SELECT 1 AS "a" FROM "auth_user" WHERE "auth_user"."username...
+                             ^
+
+DEBUG 2025-05-28 13:43:34,755 schema CREATE TABLE "django_migrations" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:34,770 schema CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:34,771 schema ALTER TABLE "django_content_type" ADD CONSTRAINT "django_content_type_app_label_model_76bd3d3b_uniq" UNIQUE ("app_label", "model"); (params None)
+DEBUG 2025-05-28 13:43:34,777 schema CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL, "codename" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:34,779 schema CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(80) NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:43:34,780 schema CREATE TABLE "auth_group_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "group_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:34,785 schema CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NOT NULL, "is_superuser" boolean NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(75) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:34,787 schema CREATE TABLE "auth_user_groups" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "group_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:34,788 schema CREATE TABLE "auth_user_user_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:34,789 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_codename_01ab375a_uniq" UNIQUE ("content_type_id", "codename"); (params None)
+DEBUG 2025-05-28 13:43:34,789 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_2f476e4b_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,792 schema CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:43:34,793 schema CREATE INDEX "auth_group_name_a6ea08ec_like" ON "auth_group" ("name" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:43:34,794 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" UNIQUE ("group_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:43:34,795 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,795 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,795 schema CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); (params None)
+DEBUG 2025-05-28 13:43:34,796 schema CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:43:34,796 schema CREATE INDEX "auth_user_username_6821ab7c_like" ON "auth_user" ("username" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:43:34,797 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_group_id_94350c0c_uniq" UNIQUE ("user_id", "group_id"); (params None)
+DEBUG 2025-05-28 13:43:34,797 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_6a12ed8b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,797 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_group_id_97559544_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,798 schema CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id"); (params None)
+DEBUG 2025-05-28 13:43:34,798 schema CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id"); (params None)
+DEBUG 2025-05-28 13:43:34,798 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" UNIQUE ("user_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:43:34,798 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,799 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,799 schema CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id"); (params None)
+DEBUG 2025-05-28 13:43:34,799 schema CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:43:34,803 schema CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "action_time" timestamp with time zone NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:34,805 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_content_type_id_c4bce8eb_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,806 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,806 schema CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:43:34,807 schema CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params None)
+DEBUG 2025-05-28 13:43:34,815 schema ALTER TABLE "django_content_type" ALTER COLUMN "name" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:43:34,818 schema ALTER TABLE "django_content_type" DROP COLUMN "name" CASCADE; (params None)
+DEBUG 2025-05-28 13:43:34,822 schema ALTER TABLE "auth_permission" ALTER COLUMN "name" TYPE varchar(255); (params None)
+DEBUG 2025-05-28 13:43:34,825 schema ALTER TABLE "auth_user" ALTER COLUMN "email" TYPE varchar(254); (params None)
+DEBUG 2025-05-28 13:43:34,830 schema ALTER TABLE "auth_user" ALTER COLUMN "last_login" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:43:34,835 schema ALTER TABLE "auth_user" ALTER COLUMN "username" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:43:34,838 schema ALTER TABLE "auth_user" ALTER COLUMN "last_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:43:34,840 schema ALTER TABLE "auth_group" ALTER COLUMN "name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:43:34,844 schema ALTER TABLE "auth_user" ALTER COLUMN "first_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:43:34,846 schema CREATE TABLE "authtoken_token" ("key" varchar(40) NOT NULL PRIMARY KEY, "created" timestamp with time zone NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:43:34,936 schema ALTER TABLE "authtoken_token" ADD CONSTRAINT "authtoken_token_user_id_35299eff_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,939 schema CREATE INDEX "authtoken_token_key_10f0b77e_like" ON "authtoken_token" ("key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:43:34,959 schema CREATE TABLE "chat_chatsession" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "session_type" varchar(10) NOT NULL, "started_at" timestamp with time zone NOT NULL, "ended_at" timestamp with time zone NULL, "receiver_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:34,967 schema CREATE TABLE "chat_chatmessage" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "sender" varchar(10) NOT NULL, "message" text NOT NULL, "timestamp" timestamp with time zone NOT NULL, "session_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:34,971 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_receiver_id_820d6d62_fk_auth_user_id" FOREIGN KEY ("receiver_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,972 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_user_id_5e1fb0de_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,973 schema CREATE INDEX "chat_chatsession_receiver_id_820d6d62" ON "chat_chatsession" ("receiver_id"); (params None)
+DEBUG 2025-05-28 13:43:34,973 schema CREATE INDEX "chat_chatsession_user_id_5e1fb0de" ON "chat_chatsession" ("user_id"); (params None)
+DEBUG 2025-05-28 13:43:34,974 schema ALTER TABLE "chat_chatmessage" ADD CONSTRAINT "chat_chatmessage_session_id_4dacb902_fk_chat_chatsession_id" FOREIGN KEY ("session_id") REFERENCES "chat_chatsession" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:34,977 schema CREATE INDEX "chat_chatmessage_session_id_4dacb902" ON "chat_chatmessage" ("session_id"); (params None)
+DEBUG 2025-05-28 13:43:34,986 schema CREATE TABLE "event_alarmscenario" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "play_music" boolean NOT NULL, "notify_contact" boolean NOT NULL, "notify_therapist" boolean NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:34,992 schema CREATE TABLE "event_alarm" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "timestamp" timestamp with time zone NOT NULL, "user_id" integer NOT NULL, "scenario_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:34,998 schema CREATE TABLE "event_alarmresult" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "location" varchar(255) NOT NULL, "timestamp" timestamp with time zone NOT NULL, "music_played" boolean NOT NULL, "message_sent_to_contacts" boolean NOT NULL, "voice_message_played" boolean NOT NULL, "therapist_notified" boolean NOT NULL, "completed" boolean NOT NULL, "alarm_id" bigint NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:43:35,002 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_user_id_60193bcf_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:35,004 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_scenario_id_c3d92fc0_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:35,005 schema CREATE INDEX "event_alarm_user_id_60193bcf" ON "event_alarm" ("user_id"); (params None)
+DEBUG 2025-05-28 13:43:35,006 schema CREATE INDEX "event_alarm_scenario_id_c3d92fc0" ON "event_alarm" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:43:35,006 schema ALTER TABLE "event_alarmresult" ADD CONSTRAINT "event_alarmresult_alarm_id_39474733_fk_event_alarm_id" FOREIGN KEY ("alarm_id") REFERENCES "event_alarm" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:35,009 schema CREATE TABLE "main_musictrack" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "url" varchar(200) NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:35,015 schema CREATE TABLE "main_emergencycontact" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "relationship" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:35,025 schema CREATE TABLE "main_therapist" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:43:35,034 schema CREATE TABLE "main_userinfo" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "age" integer NULL CHECK ("age" >= 0), "location" varchar(100) NOT NULL, "military_status" boolean NOT NULL, "ptsd_level" integer NULL CHECK ("ptsd_level" >= 0), "music_id" bigint NULL, "scenario_id" bigint NULL, "therapist_contact_id" bigint NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:43:35,039 schema ALTER TABLE "main_emergencycontact" ADD CONSTRAINT "main_emergencycontact_user_id_429f4e39_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:35,039 schema CREATE INDEX "main_emergencycontact_user_id_429f4e39" ON "main_emergencycontact" ("user_id"); (params None)
+DEBUG 2025-05-28 13:43:35,040 schema ALTER TABLE "main_therapist" ADD CONSTRAINT "main_therapist_user_id_54aa19c1_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:35,041 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_music_id_3d82943f_fk_main_musictrack_id" FOREIGN KEY ("music_id") REFERENCES "main_musictrack" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:35,042 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_scenario_id_f253b8ca_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:35,043 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_therapist_contact_id_016de31c_fk_main_ther" FOREIGN KEY ("therapist_contact_id") REFERENCES "main_therapist" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:35,044 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_user_id_cb352f99_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:43:35,044 schema CREATE INDEX "main_userinfo_music_id_3d82943f" ON "main_userinfo" ("music_id"); (params None)
+DEBUG 2025-05-28 13:43:35,045 schema CREATE INDEX "main_userinfo_scenario_id_f253b8ca" ON "main_userinfo" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:43:35,046 schema CREATE INDEX "main_userinfo_therapist_contact_id_016de31c" ON "main_userinfo" ("therapist_contact_id"); (params None)
+DEBUG 2025-05-28 13:43:35,049 schema CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:43:35,052 schema CREATE INDEX "django_session_session_key_c0390e0f_like" ON "django_session" ("session_key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:43:35,053 schema CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); (params None)
+DEBUG 2025-05-28 13:46:37,954 schema CREATE TABLE "django_migrations" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:37,957 schema CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:37,958 schema ALTER TABLE "django_content_type" ADD CONSTRAINT "django_content_type_app_label_model_76bd3d3b_uniq" UNIQUE ("app_label", "model"); (params None)
+DEBUG 2025-05-28 13:46:37,960 schema CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL, "codename" varchar(100) NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:37,962 schema CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(80) NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:46:37,963 schema CREATE TABLE "auth_group_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "group_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:37,965 schema CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NOT NULL, "is_superuser" boolean NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(75) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:37,966 schema CREATE TABLE "auth_user_groups" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "group_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:37,967 schema CREATE TABLE "auth_user_user_permissions" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "user_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:37,968 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_codename_01ab375a_uniq" UNIQUE ("content_type_id", "codename"); (params None)
+DEBUG 2025-05-28 13:46:37,968 schema ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_2f476e4b_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:37,969 schema CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:46:37,970 schema CREATE INDEX "auth_group_name_a6ea08ec_like" ON "auth_group" ("name" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:46:37,971 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" UNIQUE ("group_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:46:37,971 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:37,971 schema ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:37,972 schema CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); (params None)
+DEBUG 2025-05-28 13:46:37,972 schema CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:46:37,972 schema CREATE INDEX "auth_user_username_6821ab7c_like" ON "auth_user" ("username" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:46:37,973 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_group_id_94350c0c_uniq" UNIQUE ("user_id", "group_id"); (params None)
+DEBUG 2025-05-28 13:46:37,973 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_6a12ed8b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:37,973 schema ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_group_id_97559544_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:37,974 schema CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id"); (params None)
+DEBUG 2025-05-28 13:46:37,974 schema CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id"); (params None)
+DEBUG 2025-05-28 13:46:37,974 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" UNIQUE ("user_id", "permission_id"); (params None)
+DEBUG 2025-05-28 13:46:37,974 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:37,975 schema ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:37,975 schema CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id"); (params None)
+DEBUG 2025-05-28 13:46:37,975 schema CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id"); (params None)
+DEBUG 2025-05-28 13:46:37,978 schema CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "action_time" timestamp with time zone NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:37,980 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_content_type_id_c4bce8eb_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:37,980 schema ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:37,981 schema CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params None)
+DEBUG 2025-05-28 13:46:37,981 schema CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params None)
+DEBUG 2025-05-28 13:46:37,988 schema ALTER TABLE "django_content_type" ALTER COLUMN "name" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:46:37,990 schema ALTER TABLE "django_content_type" DROP COLUMN "name" CASCADE; (params None)
+DEBUG 2025-05-28 13:46:37,993 schema ALTER TABLE "auth_permission" ALTER COLUMN "name" TYPE varchar(255); (params None)
+DEBUG 2025-05-28 13:46:37,995 schema ALTER TABLE "auth_user" ALTER COLUMN "email" TYPE varchar(254); (params None)
+DEBUG 2025-05-28 13:46:38,000 schema ALTER TABLE "auth_user" ALTER COLUMN "last_login" DROP NOT NULL; (params None)
+DEBUG 2025-05-28 13:46:38,005 schema ALTER TABLE "auth_user" ALTER COLUMN "username" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:46:38,008 schema ALTER TABLE "auth_user" ALTER COLUMN "last_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:46:38,010 schema ALTER TABLE "auth_group" ALTER COLUMN "name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:46:38,015 schema ALTER TABLE "auth_user" ALTER COLUMN "first_name" TYPE varchar(150); (params None)
+DEBUG 2025-05-28 13:46:38,017 schema CREATE TABLE "authtoken_token" ("key" varchar(40) NOT NULL PRIMARY KEY, "created" timestamp with time zone NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:46:38,018 schema ALTER TABLE "authtoken_token" ADD CONSTRAINT "authtoken_token_user_id_35299eff_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,019 schema CREATE INDEX "authtoken_token_key_10f0b77e_like" ON "authtoken_token" ("key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:46:38,034 schema CREATE TABLE "chat_chatsession" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "session_type" varchar(10) NOT NULL, "started_at" timestamp with time zone NOT NULL, "ended_at" timestamp with time zone NULL, "receiver_id" integer NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:38,037 schema CREATE TABLE "chat_chatmessage" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "sender" varchar(10) NOT NULL, "message" text NOT NULL, "timestamp" timestamp with time zone NOT NULL, "session_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:38,038 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_receiver_id_820d6d62_fk_auth_user_id" FOREIGN KEY ("receiver_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,038 schema ALTER TABLE "chat_chatsession" ADD CONSTRAINT "chat_chatsession_user_id_5e1fb0de_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,039 schema CREATE INDEX "chat_chatsession_receiver_id_820d6d62" ON "chat_chatsession" ("receiver_id"); (params None)
+DEBUG 2025-05-28 13:46:38,039 schema CREATE INDEX "chat_chatsession_user_id_5e1fb0de" ON "chat_chatsession" ("user_id"); (params None)
+DEBUG 2025-05-28 13:46:38,039 schema ALTER TABLE "chat_chatmessage" ADD CONSTRAINT "chat_chatmessage_session_id_4dacb902_fk_chat_chatsession_id" FOREIGN KEY ("session_id") REFERENCES "chat_chatsession" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,040 schema CREATE INDEX "chat_chatmessage_session_id_4dacb902" ON "chat_chatmessage" ("session_id"); (params None)
+DEBUG 2025-05-28 13:46:38,044 schema CREATE TABLE "event_alarmscenario" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "play_music" boolean NOT NULL, "notify_contact" boolean NOT NULL, "notify_therapist" boolean NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:38,047 schema CREATE TABLE "event_alarm" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "timestamp" timestamp with time zone NOT NULL, "user_id" integer NOT NULL, "scenario_id" bigint NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:38,051 schema CREATE TABLE "event_alarmresult" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "location" varchar(255) NOT NULL, "timestamp" timestamp with time zone NOT NULL, "music_played" boolean NOT NULL, "message_sent_to_contacts" boolean NOT NULL, "voice_message_played" boolean NOT NULL, "therapist_notified" boolean NOT NULL, "completed" boolean NOT NULL, "alarm_id" bigint NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:46:38,052 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_user_id_60193bcf_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,052 schema ALTER TABLE "event_alarm" ADD CONSTRAINT "event_alarm_scenario_id_c3d92fc0_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,052 schema CREATE INDEX "event_alarm_user_id_60193bcf" ON "event_alarm" ("user_id"); (params None)
+DEBUG 2025-05-28 13:46:38,053 schema CREATE INDEX "event_alarm_scenario_id_c3d92fc0" ON "event_alarm" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:46:38,053 schema ALTER TABLE "event_alarmresult" ADD CONSTRAINT "event_alarmresult_alarm_id_39474733_fk_event_alarm_id" FOREIGN KEY ("alarm_id") REFERENCES "event_alarm" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,054 schema CREATE TABLE "main_musictrack" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "url" varchar(200) NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:38,058 schema CREATE TABLE "main_emergencycontact" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "relationship" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:38,061 schema CREATE TABLE "main_therapist" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "name" varchar(100) NOT NULL, "phone" varchar(20) NOT NULL, "email" varchar(254) NOT NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:46:38,067 schema CREATE TABLE "main_userinfo" ("id" bigint NOT NULL PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY, "age" integer NULL CHECK ("age" >= 0), "location" varchar(100) NOT NULL, "military_status" boolean NOT NULL, "ptsd_level" integer NULL CHECK ("ptsd_level" >= 0), "music_id" bigint NULL, "scenario_id" bigint NULL, "therapist_contact_id" bigint NULL, "user_id" integer NOT NULL UNIQUE); (params None)
+DEBUG 2025-05-28 13:46:38,068 schema ALTER TABLE "main_emergencycontact" ADD CONSTRAINT "main_emergencycontact_user_id_429f4e39_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,068 schema CREATE INDEX "main_emergencycontact_user_id_429f4e39" ON "main_emergencycontact" ("user_id"); (params None)
+DEBUG 2025-05-28 13:46:38,068 schema ALTER TABLE "main_therapist" ADD CONSTRAINT "main_therapist_user_id_54aa19c1_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,069 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_music_id_3d82943f_fk_main_musictrack_id" FOREIGN KEY ("music_id") REFERENCES "main_musictrack" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,069 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_scenario_id_f253b8ca_fk_event_alarmscenario_id" FOREIGN KEY ("scenario_id") REFERENCES "event_alarmscenario" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,070 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_therapist_contact_id_016de31c_fk_main_ther" FOREIGN KEY ("therapist_contact_id") REFERENCES "main_therapist" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,070 schema ALTER TABLE "main_userinfo" ADD CONSTRAINT "main_userinfo_user_id_cb352f99_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params None)
+DEBUG 2025-05-28 13:46:38,070 schema CREATE INDEX "main_userinfo_music_id_3d82943f" ON "main_userinfo" ("music_id"); (params None)
+DEBUG 2025-05-28 13:46:38,070 schema CREATE INDEX "main_userinfo_scenario_id_f253b8ca" ON "main_userinfo" ("scenario_id"); (params None)
+DEBUG 2025-05-28 13:46:38,071 schema CREATE INDEX "main_userinfo_therapist_contact_id_016de31c" ON "main_userinfo" ("therapist_contact_id"); (params None)
+DEBUG 2025-05-28 13:46:38,072 schema CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" timestamp with time zone NOT NULL); (params None)
+DEBUG 2025-05-28 13:46:38,073 schema CREATE INDEX "django_session_session_key_c0390e0f_like" ON "django_session" ("session_key" varchar_pattern_ops); (params None)
+DEBUG 2025-05-28 13:46:38,073 schema CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); (params None)
+DEBUG 2025-05-28 13:46:39,862 utils (0.000) BEGIN; args=None; alias=default
+DEBUG 2025-05-28 13:46:39,863 utils (0.000) SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:46:39,863 utils (0.000) SET CONSTRAINTS ALL DEFERRED;; args=None; alias=default
+DEBUG 2025-05-28 13:46:39,863 utils (0.000) SET CONSTRAINTS ALL DEFERRED;; args=None; alias=default
+DEBUG 2025-05-28 13:46:39,863 utils (0.000) SAVEPOINT "s8415928064_x19"; args=None; alias=default
+DEBUG 2025-05-28 13:46:39,864 utils (0.001) SELECT 1 AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 1; args=(1, 'admin_test'); alias=default
+DEBUG 2025-05-28 13:46:40,054 utils (0.001) INSERT INTO "auth_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('pbkdf2_sha256$1000000$IZP9wUBc0Lhqsm2IzJh3R2$He7TT9btPGsJubVuWgG785y3V5dhZk1Alyel/g3KMpg=', NULL, false, 'admin_test', '', '', 'test@example.com', false, true, '2025-05-28T13:46:39.865077+00:00'::timestamptz) RETURNING "auth_user"."id"; args=('pbkdf2_sha256$1000000$IZP9wUBc0Lhqsm2IzJh3R2$He7TT9btPGsJubVuWgG785y3V5dhZk1Alyel/g3KMpg=', None, False, 'admin_test', '', '', 'test@example.com', False, True, datetime.datetime(2025, 5, 28, 13, 46, 39, 865077, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-28 13:46:40,054 utils (0.000) RELEASE SAVEPOINT "s8415928064_x19"; args=None; alias=default
+DEBUG 2025-05-28 13:46:40,055 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 21; args=('admin_test',); alias=default
+DEBUG 2025-05-28 13:46:40,055 utils (0.000) SAVEPOINT "s8415928064_x20"; args=None; alias=default
+DEBUG 2025-05-28 13:46:40,056 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'admin_test' LIMIT 21; args=('admin_test',); alias=default
+DEBUG 2025-05-28 13:46:40,246 utils (0.001) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created" FROM "authtoken_token" WHERE "authtoken_token"."user_id" = 4 LIMIT 21; args=(4,); alias=default
+DEBUG 2025-05-28 13:46:40,247 utils (0.000) SAVEPOINT "s8415928064_x21"; args=None; alias=default
+DEBUG 2025-05-28 13:46:40,247 utils (0.000) INSERT INTO "authtoken_token" ("key", "user_id", "created") VALUES ('2d678379ee681446b5bb510763bf8a28786d5051', 4, '2025-05-28T13:46:40.247261+00:00'::timestamptz); args=('2d678379ee681446b5bb510763bf8a28786d5051', 4, datetime.datetime(2025, 5, 28, 13, 46, 40, 247261, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG 2025-05-28 13:46:40,247 utils (0.000) RELEASE SAVEPOINT "s8415928064_x21"; args=None; alias=default
+DEBUG 2025-05-28 13:46:40,247 utils (0.000) RELEASE SAVEPOINT "s8415928064_x20"; args=None; alias=default
+DEBUG 2025-05-28 13:46:40,249 utils (0.001) SELECT "authtoken_token"."key", "authtoken_token"."user_id", "authtoken_token"."created", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "authtoken_token" INNER JOIN "auth_user" ON ("authtoken_token"."user_id" = "auth_user"."id") WHERE "authtoken_token"."key" = '2d678379ee681446b5bb510763bf8a28786d5051' LIMIT 21; args=('2d678379ee681446b5bb510763bf8a28786d5051',); alias=default
+DEBUG 2025-05-28 13:46:40,250 utils (0.001) SELECT "main_userinfo"."id", "main_userinfo"."user_id", "main_userinfo"."age", "main_userinfo"."location", "main_userinfo"."military_status", "main_userinfo"."ptsd_level", "main_userinfo"."music_id", "main_userinfo"."therapist_contact_id", "main_userinfo"."scenario_id" FROM "main_userinfo" WHERE "main_userinfo"."user_id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-28 13:46:40,250 utils (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2025-05-28 13:46:40,251 utils (0.000) SET CONSTRAINTS ALL IMMEDIATE; args=None; alias=default
+DEBUG 2025-05-28 13:46:40,251 utils (0.000) SET CONSTRAINTS ALL DEFERRED; args=None; alias=default
+DEBUG 2025-05-28 13:46:40,251 utils (0.000) ROLLBACK TO SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:46:40,251 utils (0.000) RELEASE SAVEPOINT "s8415928064_x18"; args=None; alias=default
+DEBUG 2025-05-28 13:46:40,251 utils (0.000) ROLLBACK; args=None; alias=default
