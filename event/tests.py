@@ -66,7 +66,6 @@ class TriggerAlarmTestCase(APITestCase):
 
         flush_with_constraints()
 
-        # Turning off all the signals to set them up manually later
         post_save.disconnect(receiver=create_user_info, sender=User)
         post_migrate.disconnect(receiver=create_music, dispatch_uid="create_music_post_migrate")
         post_migrate.disconnect(receiver=create_alarm_scenarios, dispatch_uid="create_alarm_scenarios_post_migrate")
@@ -108,7 +107,7 @@ class TriggerAlarmTestCase(APITestCase):
             f"Testing URL: {self.trigger_url}"
         )
 
-        # Assign a scenario to the user
+
         test_user = User.objects.first()
         user_info = UserInfo.objects.get(user=test_user)
         scenario = AlarmScenario.objects.get(id=2)  # Pattern 1 with play_music=True

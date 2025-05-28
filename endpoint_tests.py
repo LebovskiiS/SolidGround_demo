@@ -8,7 +8,6 @@ from django.urls import reverse
 
 class EndpointTests(TestCase):
     def setUp(self):
-        # Create a test user
         self.username = 'testuser'
         self.password = 'testpassword'
         self.email = 'test@example.com'
@@ -18,10 +17,9 @@ class EndpointTests(TestCase):
             email=self.email
         )
 
-        # Create a UserInfo object for the user
         self.user_info = UserInfo.objects.get(user=self.user)
 
-        # Create a scenario
+
         self.scenario = AlarmScenario.objects.create(
             name='Test Scenario',
             play_music=True,
@@ -29,21 +27,17 @@ class EndpointTests(TestCase):
             notify_therapist=False
         )
 
-        # Assign the scenario to the user
         self.user_info.scenario = self.scenario
         self.user_info.save()
 
-        # Set up the API client
         self.client = APIClient()
 
-        # URLs
+
         self.registration_url = reverse('main:registration')
         self.login_url = reverse('main:login')
         self.trigger_url = reverse('event:alarm', args=[self.user.id])
 
     def test_registration(self):
-        """Test user registration"""
-        # Delete the existing user to avoid conflicts
         User.objects.all().delete()
 
         data = {
@@ -57,7 +51,6 @@ class EndpointTests(TestCase):
         self.assertEqual(UserInfo.objects.count(), 1)
 
     def test_login(self):
-        """Test user login"""
         data = {
             'username': self.username,
             'password': self.password
@@ -67,8 +60,6 @@ class EndpointTests(TestCase):
         self.assertIn('token', response.data)
 
     def test_trigger(self):
-        """Test trigger endpoint"""
-        # Login to get the token
         login_data = {
             'username': self.username,
             'password': self.password

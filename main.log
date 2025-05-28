@@ -3639,3 +3639,14 @@ DEBUG 2025-05-28 13:46:40,251 utils (0.000) SET CONSTRAINTS ALL DEFERRED; args=N
 DEBUG 2025-05-28 13:46:40,251 utils (0.000) ROLLBACK TO SAVEPOINT "s8415928064_x18"; args=None; alias=default
 DEBUG 2025-05-28 13:46:40,251 utils (0.000) RELEASE SAVEPOINT "s8415928064_x18"; args=None; alias=default
 DEBUG 2025-05-28 13:46:40,251 utils (0.000) ROLLBACK; args=None; alias=default
+WARNING 2025-05-28 15:02:12,887 log Method Not Allowed: /api/v1/user/registration/
+WARNING 2025-05-28 15:03:29,911 log Not Found: /api/v1/event/trigger/1
+WARNING 2025-05-28 15:03:32,433 log Not Found: /api/v1/event/trigger/1
+WARNING 2025-05-28 15:03:35,287 log Not Found: /api/v1/event/trigger/2
+WARNING 2025-05-28 15:03:40,131 log Not Found: /api/v1/event/trigger/2/
+WARNING 2025-05-28 15:03:48,243 log Not Found: /api/v1/event/trigger/1/
+WARNING 2025-05-28 15:03:55,270 log Not Found: /api/v1/event/trigger/3/
+WARNING 2025-05-28 15:04:00,617 log Not Found: /api/v1/event/trigger/2/
+WARNING 2025-05-28 15:04:16,379 log Not Found: /api/v1/usert/2/
+WARNING 2025-05-28 15:05:20,652 log Method Not Allowed: /api/v1/user/edit/2/
+WARNING 2025-05-28 15:05:43,988 log Not Found: /api/v1/event/alarm/2/
