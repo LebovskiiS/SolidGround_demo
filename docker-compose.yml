@@ -7,7 +7,9 @@ services:
       dockerfile: Dockerfile
     container_name: django_app
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+
     ports:
       - "8000:8000"
     environment:
@@ -16,9 +18,11 @@ services:
     volumes:
       - .:/app
     command: >
-      sh -c "python manage.py makemigrations &&
+      sh -c "./wait-for-it.sh db:5432 --timeout=30 --strict &&
+             python manage.py makemigrations &&
              python manage.py migrate &&
              daphne -b 0.0.0.0 -p 8000 DjangoProject.asgi:application"
+  
 
   db:
     image: postgres:15
@@ -30,6 +34,11 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     ports:
       - "5433:5432"
 
