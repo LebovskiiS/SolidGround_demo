@@ -28,10 +28,3 @@ class UserInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.UserInfo
         fields = '__all__'
-
-
-
-class MusicSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.MusicTrack
-        fields = '__all__'

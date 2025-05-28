@@ -27,10 +27,11 @@ def trigger(request, user_id):
     }
 
 
-    if scenario.play_music and user_info.music:
-        music_url = user_info.music.url
-        response_data["messages"].append({"music_url":music_url})
+    # Music functionality moved to frontend
+    if scenario.play_music:
+        response_data["play_music"] = True
     else:
+        response_data["play_music"] = False
         response_data["messages"].append("Музыка не воспроизводилась.")
 
     if scenario.notify_contact and user_info.user.emergency_contacts.exists():

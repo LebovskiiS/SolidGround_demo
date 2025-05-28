@@ -1,285 +1,751 @@
 # API Documentation
 
-## Base URL
-All API endpoints are prefixed with `/api/v1/`.
+## Введение
+Данная документация описывает API для мобильного приложения поддержки пользователей с ПТСР. API предоставляет функциональность для регистрации и аутентификации пользователей, управления профилем, экстренной помощи и чата с поддержкой.
 
-## Authentication
-Most endpoints require authentication using a token. Include the token in the request header:
+## Базовый URL
+Все API-эндпоинты имеют префикс `/api/v1/`.
+
+## Аутентификация
+Большинство эндпоинтов требуют аутентификации с использованием токена. Включите токен в заголовок запроса:
 ```
-Authorization: Token <your_token>
+Authorization: Token <ваш_токен>
 ```
 
-## User API
+Токен можно получить через эндпоинт `/api/v1/user/login/`.
 
-### User Registration
+## Коды ошибок
+API использует стандартные HTTP-коды состояния:
+- `200 OK`: Запрос выполнен успешно
+- `201 Created`: Ресурс успешно создан
+- `400 Bad Request`: Неверный запрос (проверьте данные запроса)
+- `401 Unauthorized`: Требуется аутентификация
+- `403 Forbidden`: Доступ запрещен (нет прав)
+- `404 Not Found`: Ресурс не найден
+- `500 Internal Server Error`: Внутренняя ошибка сервера
+
+## API пользователя
+
+### Регистрация пользователя
+Создает нового пользователя в системе.
+
 - **URL**: `/api/v1/user/registration/`
-- **Method**: POST
-- **Authentication**: Not required
-- **Request Body**:
+- **Метод**: POST
+- **Аутентификация**: Не требуется
+- **Тело запроса**:
   ```json
   {
-    "username": "string",
-    "email": "string",
-    "password": "string"
+    "username": "имя_пользователя",
+    "email": "email@example.com",
+    "password": "пароль"
   }
   ```
-- **Response**:
-  - Success (201 Created):
+  | Поле | Тип | Обязательное | Описание |
+  |------|-----|--------------|----------|
+  | username | string | Да | Уникальное имя пользователя |
+  | email | string | Да | Электронная почта пользователя |
+  | password | string | Да | Пароль пользователя |
+
+- **Ответ**:
+  - Успех (201 Created):
     ```json
     {
       "message": "User Created"
     }
     ```
-  - Error (400 Bad Request):
+  - Ошибка (400 Bad Request):
     ```json
     {
-      "username": ["error message"],
-      "email": ["error message"],
-      "password": ["error message"]
+      "username": ["Пользователь с таким именем уже существует."],
+      "email": ["Введите правильный адрес электронной почты."],
+      "password": ["Это поле обязательно."]
     }
     ```
 
-### User Login
+- **Пример запроса**:
+  ```bash
+  curl -X POST \
+    http://127.0.0.1:8000/api/v1/user/registration/ \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "username": "testuser",
+      "email": "test@example.com",
+      "password": "securepassword123"
+    }'
+  ```
+
+### Вход пользователя
+Аутентифицирует пользователя и возвращает токен для дальнейших запросов.
+
 - **URL**: `/api/v1/user/login/`
-- **Method**: POST
-- **Authentication**: Not required
-- **Request Body**:
+- **Метод**: POST
+- **Аутентификация**: Не требуется
+- **Тело запроса**:
   ```json
   {
-    "username": "string",
-    "password": "string"
+    "username": "имя_пользователя",
+    "password": "пароль"
   }
   ```
-- **Response**:
-  - Success (200 OK):
+  | Поле | Тип | Обязательное | Описание |
+  |------|-----|--------------|----------|
+  | username | string | Да | Имя пользователя |
+  | password | string | Да | Пароль пользователя |
+
+- **Ответ**:
+  - Успех (200 OK):
     ```json
     {
-      "token": "string"
+      "token": "a1b2c3d4e5f6g7h8i9j0"
     }
     ```
-  - Error (401 Unauthorized):
+  - Ошибка (401 Unauthorized):
     ```json
     {
       "error": "Invalid credentials."
     }
     ```
-
-### Get User Information
-- **URL**: `/api/v1/user/{user_id}/`
-- **Method**: GET
-- **Authentication**: Required
-- **Response**:
-  - Success (200 OK):
+  - Ошибка (400 Bad Request):
     ```json
     {
-      "id": "integer",
-      "user": "integer",
-      "username": "string",
-      "age": "integer",
-      "location": "string",
-      "military_status": "boolean",
-      "ptsd_level": "integer",
-      "music": "integer",
-      "therapist_contact": "integer",
-      "scenario": "integer"
+      "error": "Username and password are required."
     }
     ```
-  - Error (404 Not Found):
+
+- **Пример запроса**:
+  ```bash
+  curl -X POST \
+    http://127.0.0.1:8000/api/v1/user/login/ \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "username": "testuser",
+      "password": "securepassword123"
+    }'
+  ```
+
+### Получение информации о пользователе
+Возвращает подробную информацию о профиле пользователя.
+
+- **URL**: `/api/v1/user/{user_id}/`
+- **Метод**: GET
+- **Аутентификация**: Требуется
+- **Параметры URL**:
+  | Параметр | Тип | Описание |
+  |----------|-----|----------|
+  | user_id | integer | ID пользователя |
+
+- **Ответ**:
+  - Успех (200 OK):
+    ```json
+    {
+      "id": 1,
+      "user": 1,
+      "username": "testuser",
+      "age": 30,
+      "location": "Москва",
+      "military_status": true,
+      "ptsd_level": 3,
+      "music": 2,
+      "therapist_contact": 1,
+      "scenario": 1
+    }
+    ```
+    | Поле | Тип | Описание |
+    |------|-----|----------|
+    | id | integer | ID профиля пользователя |
+    | user | integer | ID пользователя |
+    | username | string | Имя пользователя |
+    | age | integer | Возраст пользователя |
+    | location | string | Местоположение пользователя |
+    | military_status | boolean | Военный статус (true - военный, false - гражданский) |
+    | ptsd_level | integer | Уровень ПТСР (от 1 до 5) |
+    | music | integer | ID выбранного музыкального трека |
+    | therapist_contact | integer | ID контакта терапевта |
+    | scenario | integer | ID выбранного сценария тревоги |
+
+  - Ошибка (404 Not Found):
     ```json
     {
       "error": "UserInfo not found for this user."
     }
     ```
 
-### Edit User Information
+- **Пример запроса**:
+  ```bash
+  curl -X GET \
+    http://127.0.0.1:8000/api/v1/user/1/ \
+    -H 'Authorization: Token a1b2c3d4e5f6g7h8i9j0'
+  ```
+
+### Редактирование информации о пользователе
+Обновляет информацию в профиле пользователя.
+
 - **URL**: `/api/v1/user/edit/{user_id}/`
-- **Method**: PATCH
-- **Authentication**: Required
-- **Request Body**:
+- **Метод**: PATCH
+- **Аутентификация**: Требуется
+- **Параметры URL**:
+  | Параметр | Тип | Описание |
+  |----------|-----|----------|
+  | user_id | integer | ID пользователя |
+
+- **Тело запроса**:
   ```json
   {
-    "age": "integer",
-    "location": "string",
-    "military_status": "boolean",
-    "ptsd_level": "integer",
-    "therapist_contact": "integer",
-    "scenario": "integer"
+    "age": 35,
+    "location": "Санкт-Петербург",
+    "military_status": true,
+    "ptsd_level": 2,
+    "therapist_contact": 2,
+    "scenario": 3
   }
   ```
-- **Response**:
-  - Success (200 OK):
+  | Поле | Тип | Обязательное | Описание |
+  |------|-----|--------------|----------|
+  | age | integer | Нет | Возраст пользователя |
+  | location | string | Нет | Местоположение пользователя |
+  | military_status | boolean | Нет | Военный статус |
+  | ptsd_level | integer | Нет | Уровень ПТСР (от 1 до 5) |
+  | therapist_contact | integer | Нет | ID контакта терапевта |
+  | scenario | integer | Нет | ID сценария тревоги |
+
+- **Ответ**:
+  - Успех (200 OK):
     ```json
     {
       "message": "UserInfo updated successfully.",
       "updated_data": {
-        "age": "integer",
-        "location": "string",
-        "military_status": "boolean",
-        "ptsd_level": "integer",
-        "therapist_contact": "integer",
-        "scenario": "integer"
+        "age": 35,
+        "location": "Санкт-Петербург",
+        "military_status": true,
+        "ptsd_level": 2,
+        "therapist_contact": 2,
+        "scenario": 3
       }
     }
     ```
-  - Error (404 Not Found):
+  - Ошибка (404 Not Found):
     ```json
     {
       "error": "UserInfo not found for this user."
     }
     ```
+  - Ошибка (400 Bad Request):
+    ```json
+    {
+      "error": "AlarmScenario not found with this id."
+    }
+    ```
 
-### Edit Emergency Contact
+- **Пример запроса**:
+  ```bash
+  curl -X PATCH \
+    http://127.0.0.1:8000/api/v1/user/edit/1/ \
+    -H 'Authorization: Token a1b2c3d4e5f6g7h8i9j0' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "age": 35,
+      "location": "Санкт-Петербург",
+      "ptsd_level": 2
+    }'
+  ```
+
+### Редактирование экстренного контакта
+Создает или обновляет экстренный контакт для пользователя.
+
 - **URL**: `/api/v1/user/edit/contact/{user_id}/`
-- **Method**: PATCH
-- **Authentication**: Required
-- **Request Body**:
+- **Метод**: PATCH
+- **Аутентификация**: Требуется
+- **Параметры URL**:
+  | Параметр | Тип | Описание |
+  |----------|-----|----------|
+  | user_id | integer | ID пользователя |
+
+- **Тело запроса**:
   ```json
   {
-    "name": "string",
-    "phone": "string",
-    "email": "string",
-    "relationship": "string"
+    "name": "Иван Иванов",
+    "phone": "+79001234567",
+    "email": "ivan@example.com",
+    "relationship": "Брат"
   }
   ```
-- **Response**:
-  - Success (201 Created):
+  | Поле | Тип | Обязательное | Описание |
+  |------|-----|--------------|----------|
+  | name | string | Да | Имя контактного лица |
+  | phone | string | Да | Телефон контактного лица |
+  | email | string | Нет | Email контактного лица |
+  | relationship | string | Да | Кем приходится пользователю |
+
+- **Ответ**:
+  - Успех (201 Created):
     ```json
     {
       "message": "A new emergency contact has been created.",
       "data": {
-        "id": "integer",
-        "name": "string",
-        "phone": "string",
-        "email": "string",
-        "relationship": "string"
+        "id": 1,
+        "name": "Иван Иванов",
+        "phone": "+79001234567",
+        "email": "ivan@example.com",
+        "relationship": "Брат"
       }
     }
     ```
-  - Error (400 Bad Request):
+  - Ошибка (400 Bad Request):
     ```json
     {
       "error": "The 'name', 'phone', and 'relationship' fields are required."
     }
     ```
+  - Ошибка (403 Forbidden):
+    ```json
+    {
+      "error": "You are not authorized to edit another user's emergency contact."
+    }
+    ```
 
-### Get Music Tracks
+- **Пример запроса**:
+  ```bash
+  curl -X PATCH \
+    http://127.0.0.1:8000/api/v1/user/edit/contact/1/ \
+    -H 'Authorization: Token a1b2c3d4e5f6g7h8i9j0' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "name": "Иван Иванов",
+      "phone": "+79001234567",
+      "email": "ivan@example.com",
+      "relationship": "Брат"
+    }'
+  ```
+
+### Получение списка музыкальных треков
+Возвращает список доступных музыкальных треков для терапии.
+
 - **URL**: `/api/v1/user/music/`
-- **Method**: GET
-- **Authentication**: Required
-- **Response**:
-  - Success (200 OK):
+- **Метод**: GET
+- **Аутентификация**: Требуется
+
+- **Ответ**:
+  - Успех (200 OK):
     ```json
     [
       {
-        "id": "integer",
-        "name": "string",
-        "url": "string"
+        "id": 1,
+        "name": "Спокойный океан",
+        "url": "https://example.com/music/ocean.mp3"
+      },
+      {
+        "id": 2,
+        "name": "Лесные звуки",
+        "url": "https://example.com/music/forest.mp3"
       }
     ]
     ```
+    | Поле | Тип | Описание |
+    |------|-----|----------|
+    | id | integer | ID музыкального трека |
+    | name | string | Название трека |
+    | url | string | URL для воспроизведения трека |
 
-### Set Music for User
+- **Пример запроса**:
+  ```bash
+  curl -X GET \
+    http://127.0.0.1:8000/api/v1/user/music/ \
+    -H 'Authorization: Token a1b2c3d4e5f6g7h8i9j0'
+  ```
+
+### Установка музыкального трека для пользователя
+Устанавливает выбранный музыкальный трек для пользователя.
+
 - **URL**: `/api/v1/user/music/edit/{user_id}/`
-- **Method**: POST
-- **Authentication**: Required
-- **Request Body**:
+- **Метод**: POST
+- **Аутентификация**: Требуется
+- **Параметры URL**:
+  | Параметр | Тип | Описание |
+  |----------|-----|----------|
+  | user_id | integer | ID пользователя |
+
+- **Тело запроса**:
   ```json
   {
-    "music": "integer"
+    "music": 2
   }
   ```
-- **Response**:
-  - Success (200 OK):
+  | Поле | Тип | Обязательное | Описание |
+  |------|-----|--------------|----------|
+  | music | integer | Да | ID музыкального трека |
+
+- **Ответ**:
+  - Успех (200 OK):
     ```json
     {
       "message": "Music track updated successfully"
     }
     ```
-  - Error (404 Not Found):
+  - Ошибка (404 Not Found):
     ```json
     {
       "error": "Music track not found"
     }
     ```
-
-## Event API
-
-### Trigger Alarm
-- **URL**: `/api/v1/event/trigger/{user_id}/`
-- **Method**: GET
-- **Authentication**: Required
-- **Response**:
-  - Success (200 OK):
+  - Ошибка (400 Bad Request):
     ```json
     {
-      "scenario": "string",
+      "error": "Music ID is required"
+    }
+    ```
+  - Ошибка (403 Forbidden):
+    ```json
+    {
+      "error": "You are not authorized to edit this user's music preferences."
+    }
+    ```
+
+- **Пример запроса**:
+  ```bash
+  curl -X POST \
+    http://127.0.0.1:8000/api/v1/user/music/edit/1/ \
+    -H 'Authorization: Token a1b2c3d4e5f6g7h8i9j0' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "music": 2
+    }'
+  ```
+
+## API событий
+
+### Активация тревоги
+Активирует сценарий тревоги для пользователя, который может включать воспроизведение музыки, отправку уведомлений контактам и терапевту.
+
+- **URL**: `/api/v1/event/trigger/{user_id}/`
+- **Метод**: GET
+- **Аутентификация**: Требуется
+- **Параметры URL**:
+  | Параметр | Тип | Описание |
+  |----------|-----|----------|
+  | user_id | integer | ID пользователя |
+
+- **Ответ**:
+  - Успех (200 OK):
+    ```json
+    {
+      "scenario": "Стандартный сценарий",
       "messages": [
-        {"music_url": "string"},
-        "string"
+        {"music_url": "https://example.com/music/ocean.mp3"},
+        "Ваш/ваша Брат (Иван Иванов) получил(а) уведомление по email.",
+        "Ваш психотерапевт (Петр Петров) был уведомлён."
       ]
     }
     ```
-  - Error (404 Not Found):
+    | Поле | Тип | Описание |
+    |------|-----|----------|
+    | scenario | string | Название активированного сценария |
+    | messages | array | Список сообщений о выполненных действиях |
+
+  - Ошибка (404 Not Found):
     ```json
     {
       "error": "User or UserInfo not found"
     }
     ```
-
-## Chat API
-
-### Send Message to GPT
-- **URL**: `/api/v1/chat/{user_id}/`
-- **Method**: POST
-- **Authentication**: Required
-- **Request Body**:
-  ```json
-  {
-    "text": "string"
-  }
-  ```
-- **Response**:
-  - Success (200 OK):
+  - Ошибка (404 Not Found):
     ```json
     {
-      "response": "string"
+      "error": "No AlarmScenario associated with this user"
     }
     ```
-  - Error (400 Bad Request):
+
+- **Пример запроса**:
+  ```bash
+  curl -X GET \
+    http://127.0.0.1:8000/api/v1/event/trigger/1/ \
+    -H 'Authorization: Token a1b2c3d4e5f6g7h8i9j0'
+  ```
+
+## API чата
+
+### Отправка сообщения GPT
+Отправляет сообщение GPT-ассистенту и получает ответ.
+
+- **URL**: `/api/v1/chat/{user_id}/`
+- **Метод**: POST
+- **Аутентификация**: Требуется
+- **Параметры URL**:
+  | Параметр | Тип | Описание |
+  |----------|-----|----------|
+  | user_id | integer | ID пользователя |
+
+- **Тело запроса**:
+  ```json
+  {
+    "text": "Как справиться с тревогой?"
+  }
+  ```
+  | Поле | Тип | Обязательное | Описание |
+  |------|-----|--------------|----------|
+  | text | string | Да | Текст сообщения для GPT |
+
+- **Ответ**:
+  - Успех (200 OK):
+    ```json
+    {
+      "response": "Для справления с тревогой можно использовать несколько методов: глубокое дыхание, медитация, физические упражнения. Также важно обратиться к специалисту для профессиональной помощи."
+    }
+    ```
+  - Ошибка (400 Bad Request):
     ```json
     {
       "error": "Message text is required"
     }
     ```
-
-### Get Support Chat WebSocket URL
-- **URL**: `/api/v1/chat/user/support/{user_id}/`
-- **Method**: GET
-- **Authentication**: Required
-- **Response**:
-  - Success (200 OK):
+  - Ошибка (403 Forbidden):
     ```json
     {
-      "user_id": "integer",
-      "is_admin": "boolean",
-      "websocket_url": "string"
+      "error": "You are not authorized to send messages to this user"
     }
     ```
-  - Error (404 Not Found):
+  - Ошибка (404 Not Found):
     ```json
     {
       "error": "User not found"
     }
     ```
 
-## WebSocket Connections
-
-### Support Chat
-- **URL**: `ws://127.0.0.1:8000/ws/chat/{user_id}/`
-- **Authentication**: Token required in connection parameters
-- **Message Format**:
-  ```json
-  {
-    "message": "string"
-  }
+- **Пример запроса**:
+  ```bash
+  curl -X POST \
+    http://127.0.0.1:8000/api/v1/chat/1/ \
+    -H 'Authorization: Token a1b2c3d4e5f6g7h8i9j0' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "text": "Как справиться с тревогой?"
+    }'
   ```
+
+### Получение URL для WebSocket чата поддержки
+Возвращает URL для подключения к WebSocket чату поддержки.
+
+- **URL**: `/api/v1/chat/user/support/{user_id}/`
+- **Метод**: GET
+- **Аутентификация**: Требуется
+- **Параметры URL**:
+  | Параметр | Тип | Описание |
+  |----------|-----|----------|
+  | user_id | integer | ID пользователя |
+
+- **Ответ**:
+  - Успех (200 OK):
+    ```json
+    {
+      "user_id": 1,
+      "is_admin": false,
+      "websocket_url": "ws://127.0.0.1:8000/ws/chat/1/"
+    }
+    ```
+    | Поле | Тип | Описание |
+    |------|-----|----------|
+    | user_id | integer | ID пользователя |
+    | is_admin | boolean | Флаг, указывающий, является ли пользователь администратором |
+    | websocket_url | string | URL для подключения к WebSocket |
+
+  - Ошибка (403 Forbidden):
+    ```json
+    {
+      "error": "You are not authorized to access this chat"
+    }
+    ```
+  - Ошибка (404 Not Found):
+    ```json
+    {
+      "error": "User not found"
+    }
+    ```
+
+- **Пример запроса**:
+  ```bash
+  curl -X GET \
+    http://127.0.0.1:8000/api/v1/chat/user/support/1/ \
+    -H 'Authorization: Token a1b2c3d4e5f6g7h8i9j0'
+  ```
+
+## WebSocket соединения
+
+### Чат поддержки
+WebSocket соединение для чата поддержки между пользователем и администратором.
+
+- **URL**: `ws://127.0.0.1:8000/ws/chat/{user_id}/`
+- **Аутентификация**: Токен требуется в параметрах соединения
+
+#### Формат сообщений от клиента к серверу
+```json
+{
+  "message": "Мне нужна помощь с приложением"
+}
+```
+| Поле | Тип | Обязательное | Описание |
+|------|-----|--------------|----------|
+| message | string | Да | Текст сообщения |
+
+#### Формат сообщений от сервера к клиенту
+```json
+{
+  "event": "chat_message",
+  "message": "Чем я могу вам помочь?",
+  "identifier": "1",
+  "user_id": "1",
+  "from_admin": true
+}
+```
+| Поле | Тип | Описание |
+|------|-----|----------|
+| event | string | Тип события ("chat_message", "user_connected", "user_disconnected") |
+| message | string | Текст сообщения |
+| identifier | string | Идентификатор пользователя или сессии |
+| user_id | string | ID пользователя |
+| from_admin | boolean | Флаг, указывающий, что сообщение от администратора |
+
+#### События WebSocket
+1. **chat_message**: Получение сообщения
+2. **user_connected**: Уведомление о подключении пользователя (только для админов)
+3. **user_disconnected**: Уведомление об отключении пользователя (только для админов)
+
+#### Пример использования WebSocket (JavaScript)
+```javascript
+// Подключение к WebSocket
+const socket = new WebSocket('ws://127.0.0.1:8000/ws/chat/1/');
+
+// Обработка открытия соединения
+socket.onopen = function(e) {
+  console.log('Соединение установлено');
+};
+
+// Обработка входящих сообщений
+socket.onmessage = function(event) {
+  const data = JSON.parse(event.data);
+  console.log('Получено сообщение:', data);
+
+  if (data.event === 'chat_message') {
+    // Отображение сообщения в интерфейсе
+    displayMessage(data.message, data.from_admin);
+  }
+};
+
+// Отправка сообщения
+function sendMessage(message) {
+  socket.send(JSON.stringify({
+    'message': message
+  }));
+}
+
+// Обработка ошибок
+socket.onerror = function(error) {
+  console.log('Ошибка WebSocket:', error);
+};
+
+// Обработка закрытия соединения
+socket.onclose = function(event) {
+  console.log('Соединение закрыто');
+};
+```
+
+### Административный чат
+WebSocket соединение для администраторов, позволяющее отвечать на сообщения пользователей.
+
+- **URL**: `ws://127.0.0.1:8000/ws/chat/admin/`
+- **Аутентификация**: Требуется (только для администраторов)
+
+#### Формат сообщений от админа к серверу
+```json
+{
+  "message": "Чем я могу вам помочь?",
+  "user_id": "1"
+}
+```
+| Поле | Тип | Обязательное | Описание |
+|------|-----|--------------|----------|
+| message | string | Да | Текст сообщения |
+| user_id | string | Да | ID пользователя, которому отправляется сообщение |
+
+#### Формат сообщений от сервера к админу
+```json
+{
+  "event": "chat_message",
+  "message": "Мне нужна помощь с приложением",
+  "identifier": "1",
+  "user_id": "1"
+}
+```
+| Поле | Тип | Описание |
+|------|-----|----------|
+| event | string | Тип события ("chat_message", "user_connected", "user_disconnected") |
+| message | string | Текст сообщения |
+| identifier | string | Идентификатор пользователя или сессии |
+| user_id | string | ID пользователя |
+
+## Модели данных
+
+### Пользователь (User)
+Стандартная модель пользователя Django с полями:
+- username: Имя пользователя
+- email: Email пользователя
+- password: Пароль пользователя (хранится в зашифрованном виде)
+
+### Информация о пользователе (UserInfo)
+- user: Связь с моделью User (один к одному)
+- age: Возраст пользователя
+- location: Местоположение пользователя
+- military_status: Военный статус (true/false)
+- ptsd_level: Уровень ПТСР (1-5)
+- music: Связь с моделью MusicTrack
+- therapist_contact: Связь с моделью Therapist
+- scenario: Связь с моделью AlarmScenario
+
+### Экстренный контакт (EmergencyContact)
+- user: Связь с моделью User (многие к одному)
+- name: Имя контактного лица
+- relationship: Кем приходится пользователю
+- phone: Телефон контактного лица
+- email: Email контактного лица
+
+### Музыкальный трек (MusicTrack)
+- name: Название трека
+- url: URL для воспроизведения трека
+
+### Терапевт (Therapist)
+- user: Связь с моделью User (один к одному)
+- name: Имя терапевта
+- phone: Телефон терапевта
+- email: Email терапевта
+
+### Сценарий тревоги (AlarmScenario)
+- name: Название сценария
+- play_music: Флаг воспроизведения музыки
+- notify_contact: Флаг уведомления контактов
+- notify_therapist: Флаг уведомления терапевта
+
+### Тревога (Alarm)
+- user: Связь с моделью User (многие к одному)
+- scenario: Связь с моделью AlarmScenario (многие к одному)
+- timestamp: Время создания тревоги
+
+### Результат тревоги (AlarmResult)
+- alarm: Связь с моделью Alarm (один к одному)
+- location: Местоположение во время тревоги
+- timestamp: Время создания результата
+- music_played: Флаг воспроизведения музыки
+- message_sent_to_contacts: Флаг отправки сообщения контактам
+- voice_message_played: Флаг воспроизведения голосового сообщения
+- therapist_notified: Флаг уведомления терапевта
+- completed: Флаг завершения тревоги
+
+### Сессия чата (ChatSession)
+- user: Связь с моделью User (многие к одному)
+- session_type: Тип сессии ('gpt' или 'user')
+- receiver: Связь с моделью User (получатель, если чат с пользователем)
+- started_at: Время начала сессии
+- ended_at: Время окончания сессии
+
+### Сообщение чата (ChatMessage)
+- session: Связь с моделью ChatSession (многие к одному)
+- sender: Тип отправителя ('user', 'gpt', 'system')
+- message: Текст сообщения
+- timestamp: Время отправки сообщения

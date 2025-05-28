@@ -160,48 +160,116 @@ def edit_emergency_contact(request, user_id):
         )
 
 
-
-
-@api_view(['POST'])
+@api_view(['PUT'])
 @permission_classes([IsAuthenticated])
-def set_music(request, user_id):
-    try:
-        if request.user.id == user_id:
-            user_info = request.user.info
-
-            music_id = request.data.get("music")
-            if not music_id:
-                return Response({"error": "Music ID is required"}, status=400)
-
-            try:
-                music_track = MusicTrack.objects.get(id=music_id)
-            except MusicTrack.DoesNotExist:
-                return Response({"error": "Music track not found"}, status=404)
-
-            user_info.music = music_track
-            user_info.save()
-
-            return Response({"message": "Music track updated successfully"}, status=200)
-
+def create_therapist_contact(request, user_id):
+    if request.user.id != user_id:
         return Response(
-            {"error": "You are not authorized to edit this user's music preferences."},
+            {"error": "You are not authorized to edit another user's therapist contact."},
+            status=403
+        )
+    name = request.data.get("name")
+    phone = request.data.get("phone")
+    email = request.data.get("email")
+    therapist = Therapist.objects.create(
+        user=request.user,
+        name=name,
+        email=email,
+        phone=phone,
+    )
+    return Response({
+        "message": "A new therapist contact has been created.",
+        "data": {
+            "id": therapist.id,
+            "name": therapist.name,
+            "phone": therapist.phone,
+            "email": therapist.email,
+        }
+    }, status=201)
+
+
+
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+def edit_therapist_contact(request, user_id):
+    if request.user.id != user_id:
+        return Response(
+            {"error": "You are not authorized to edit another user's therapist contact."},
             status=403
         )
 
-    except Exception as e:
+    try:
+        therapist = Therapist.objects.get(user=request.user)
+    except Therapist.DoesNotExist:
         return Response(
-            {"error": f"An error occurred: {str(e)}"},
-            status=400
+            {"error": "Therapist contact not found for this user."},
+            status=404
         )
 
+    name = request.data.get("name")
+    phone = request.data.get("phone")
+    email = request.data.get("email")
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def get_music(request):
-    try:
-        tracks = MusicTrack.objects.all()
-        response = MusicSerializer(tracks, many=True).data
-        return Response(response, status=200)
-    except Exception as e:
-        raise ErrorNoRightForThisUser()
+    if name:
+        therapist.name = name
+    if phone:
+        therapist.phone = phone
+    if email:
+        therapist.email = email
 
+    therapist.save()
+
+    return Response({
+        "message": "Therapist contact has been updated.",
+        "data": {
+            "id": therapist.id,
+            "name": therapist.name,
+            "phone": therapist.phone,
+            "email": therapist.email,
+        }
+    }, status=200)
+
+
+
+# @api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+# def set_music(request, user_id):
+#     try:
+#         if request.user.id == user_id:
+#             user_info = request.user.info
+#
+#             music_id = request.data.get("music")
+#             if not music_id:
+#                 return Response({"error": "Music ID is required"}, status=400)
+#
+#             try:
+#                 music_track = MusicTrack.objects.get(id=music_id)
+#             except MusicTrack.DoesNotExist:
+#                 return Response({"error": "Music track not found"}, status=404)
+#
+#             user_info.music = music_track
+#             user_info.save()
+#
+#             return Response({"message": "Music track updated successfully"}, status=200)
+#
+#         return Response(
+#             {"error": "You are not authorized to edit this user's music preferences."},
+#             status=403
+#         )
+#
+#     except Exception as e:
+#         return Response(
+#             {"error": f"An error occurred: {str(e)}"},
+#             status=400
+#         )
+
+
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+# def get_music(request):
+#     try:
+#         tracks = MusicTrack.objects.all()
+#         response = MusicSerializer(tracks, many=True).data
+#         return Response(response, status=200)
+#     except Exception as e:
+#         raise ErrorNoRightForThisUser()

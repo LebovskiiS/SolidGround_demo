@@ -2,7 +2,7 @@ from django.db.models.signals import post_save, post_migrate
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 from .models import UserInfo, EmergencyContact
-from .utils import load_music_from_file
+# from .utils import load_music_from_file  # Music functionality moved to frontend
 from DjangoProject.settings import ADMIN_PASSWORD, ADMIN_USERNAME, ADMIN_EMAIL
 
 
@@ -12,10 +12,10 @@ def create_user_info(sender, instance, created, **kwargs):
         UserInfo.objects.create(user=instance)
 
 
-
-@receiver(post_migrate,  dispatch_uid="create_music_post_migrate")
-def create_music(sender, **kwargs):
-    load_music_from_file()
+# Music functionality moved to frontend
+# @receiver(post_migrate,  dispatch_uid="create_music_post_migrate")
+# def create_music(sender, **kwargs):
+#     load_music_from_file()
 
 
 
@@ -23,6 +23,3 @@ def create_music(sender, **kwargs):
 def create_default_admin_account(sender, **kwargs):
     if not User.objects.filter(username='admin').exists():
         User.objects.create_superuser(f'{ADMIN_USERNAME}',f'{ADMIN_EMAIL}', f'{ADMIN_PASSWORD}')
-
-
-

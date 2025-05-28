@@ -3650,3 +3650,7 @@ WARNING 2025-05-28 15:04:00,617 log Not Found: /api/v1/event/trigger/2/
 WARNING 2025-05-28 15:04:16,379 log Not Found: /api/v1/usert/2/
 WARNING 2025-05-28 15:05:20,652 log Method Not Allowed: /api/v1/user/edit/2/
 WARNING 2025-05-28 15:05:43,988 log Not Found: /api/v1/event/alarm/2/
+WARNING 2025-05-28 15:08:23,308 log Not Found: /api/v1/event/trigger/2
+WARNING 2025-05-28 15:09:50,801 log Not Found: /api/v1/user/music/edit/2
+WARNING 2025-05-28 15:09:56,573 log Method Not Allowed: /api/v1/user/music/edit/2/
+WARNING 2025-05-28 15:10:27,247 log Not Found: /api/v1/event/trigger/2
