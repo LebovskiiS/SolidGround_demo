@@ -317,6 +317,128 @@ API использует стандартные HTTP-коды состояния
     }'
   ```
 
+### Создание контакта терапевта
+Создает новый контакт терапевта для пользователя.
+
+- **URL**: `/api/v1/user/create/therapist/{user_id}/`
+- **Метод**: PUT
+- **Аутентификация**: Требуется
+- **Параметры URL**:
+  | Параметр | Тип | Описание |
+  |----------|-----|----------|
+  | user_id | integer | ID пользователя |
+
+- **Тело запроса**:
+  ```json
+  {
+    "name": "Петр Петров",
+    "phone": "+79001234567",
+    "email": "petr@example.com"
+  }
+  ```
+  | Поле | Тип | Обязательное | Описание |
+  |------|-----|--------------|----------|
+  | name | string | Да | Имя терапевта |
+  | phone | string | Да | Телефон терапевта |
+  | email | string | Да | Email терапевта |
+
+- **Ответ**:
+  - Успех (201 Created):
+    ```json
+    {
+      "message": "A new therapist contact has been created.",
+      "data": {
+        "id": 1,
+        "name": "Петр Петров",
+        "phone": "+79001234567",
+        "email": "petr@example.com"
+      }
+    }
+    ```
+  - Ошибка (403 Forbidden):
+    ```json
+    {
+      "error": "You are not authorized to edit another user's therapist contact."
+    }
+    ```
+
+- **Пример запроса**:
+  ```bash
+  curl -X PUT \
+    http://127.0.0.1:8000/api/v1/user/create/therapist/1/ \
+    -H 'Authorization: Token a1b2c3d4e5f6g7h8i9j0' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "name": "Петр Петров",
+      "phone": "+79001234567",
+      "email": "petr@example.com"
+    }'
+  ```
+
+### Редактирование контакта терапевта
+Обновляет существующий контакт терапевта для пользователя.
+
+- **URL**: `/api/v1/user/edit/therapist/{user_id}/`
+- **Метод**: PATCH
+- **Аутентификация**: Требуется
+- **Параметры URL**:
+  | Параметр | Тип | Описание |
+  |----------|-----|----------|
+  | user_id | integer | ID пользователя |
+
+- **Тело запроса**:
+  ```json
+  {
+    "name": "Петр Петров",
+    "phone": "+79001234567",
+    "email": "petr@example.com"
+  }
+  ```
+  | Поле | Тип | Обязательное | Описание |
+  |------|-----|--------------|----------|
+  | name | string | Нет | Имя терапевта |
+  | phone | string | Нет | Телефон терапевта |
+  | email | string | Нет | Email терапевта |
+
+- **Ответ**:
+  - Успех (200 OK):
+    ```json
+    {
+      "message": "Therapist contact has been updated.",
+      "data": {
+        "id": 1,
+        "name": "Петр Петров",
+        "phone": "+79001234567",
+        "email": "petr@example.com"
+      }
+    }
+    ```
+  - Ошибка (403 Forbidden):
+    ```json
+    {
+      "error": "You are not authorized to edit another user's therapist contact."
+    }
+    ```
+  - Ошибка (404 Not Found):
+    ```json
+    {
+      "error": "Therapist contact not found for this user."
+    }
+    ```
+
+- **Пример запроса**:
+  ```bash
+  curl -X PATCH \
+    http://127.0.0.1:8000/api/v1/user/edit/therapist/1/ \
+    -H 'Authorization: Token a1b2c3d4e5f6g7h8i9j0' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "name": "Петр Петров",
+      "phone": "+79001234567",
+      "email": "petr@example.com"
+    }'
+  ```
+
 ### Получение списка музыкальных треков
 Возвращает список доступных музыкальных треков для терапии.
 
@@ -429,8 +551,8 @@ API использует стандартные HTTP-коды состояния
     ```json
     {
       "scenario": "Стандартный сценарий",
+      "play_music": true,
       "messages": [
-        {"music_url": "https://example.com/music/ocean.mp3"},
         "Ваш/ваша Брат (Иван Иванов) получил(а) уведомление по email.",
         "Ваш психотерапевт (Петр Петров) был уведомлён."
       ]
@@ -439,6 +561,7 @@ API использует стандартные HTTP-коды состояния
     | Поле | Тип | Описание |
     |------|-----|----------|
     | scenario | string | Название активированного сценария |
+    | play_music | boolean | Флаг, указывающий, нужно ли воспроизводить музыку (функциональность перенесена на фронтенд) |
     | messages | array | Список сообщений о выполненных действиях |
 
   - Ошибка (404 Not Found):

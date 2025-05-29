@@ -9,15 +9,24 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_started
     ports:
       - "8000:8000"
     environment:
-      - DJANGO_SETTINGS_MODULE=DjangoProject.settings
-      - SECRET_KEY=admin
+      DJANGO_SETTINGS_MODULE: DjangoProject.settings
+      SECRET_KEY: admin
+      DB_HOST: db
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     volumes:
       - .:/app
     command: >
       sh -c "wait-for-it.sh db:5432 --timeout=30 --strict &&
+             python manage.py collectstatic --noinput &&
              python manage.py makemigrations &&
              python manage.py migrate &&
              daphne -b 0.0.0.0 -p 8000 DjangoProject.asgi:application"
@@ -33,12 +42,19 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      test: ["CMD", "pg_isready", "-U", "postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
     ports:
-      - "5433:5432"
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
 
 volumes:
   postgres_data:
