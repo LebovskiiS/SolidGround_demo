@@ -34,15 +34,13 @@ def login(request):
 
     if not username or not password:
         return Response({'error': 'Username and password are required.'}, status=status.HTTP_400_BAD_REQUEST)
-
     user = authenticate(username=username, password=password)
 
     if user is not None:
         token, _ = Token.objects.get_or_create(user=user)
         return Response({'token': token.key}, status=status.HTTP_200_OK)
     else:
-        return Response({'error': 'Invalid credentials.'}, status=status.HTTP_401_UNAUTHORIZED)
-
+        return Response({'error': 'Invalid username or password.'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 
@@ -57,7 +55,6 @@ def edit_userinfo(request, user_id):
         except UserInfo.DoesNotExist:
             return Response({"error": "UserInfo not found for this user."}, status=status.HTTP_404_NOT_FOUND)
 
-        # Обновляем данные
         user_info.age = data.get('age', user_info.age)
         user_info.location = data.get('location', user_info.location)
         user_info.military_status = data.get('military_status', user_info.military_status)
