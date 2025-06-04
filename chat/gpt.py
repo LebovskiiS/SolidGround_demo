@@ -25,8 +25,8 @@ class GPT:
         try:
             ai_response = response.choices[0].message.content
         except (IndexError, AttributeError) as e:
-            print(f"Ошибка обработки ответа: {e}")
-            return "Не удалось получить корректный ответ от модели."
+            print(f"Error processing response: {e}")
+            return "Failed to get a valid response from the model."
 
         self.messages.append({"role": "assistant", "content": ai_response})
 

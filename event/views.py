@@ -32,7 +32,7 @@ def trigger(request, user_id):
         response_data["play_music"] = True
     else:
         response_data["play_music"] = False
-        response_data["messages"].append("Музыка не воспроизводилась.")
+        response_data["messages"].append("Music was not played.")
 
     if scenario.notify_contact and user_info.user.emergency_contacts.exists():
         emergency_contacts = user_info.user.emergency_contacts.all()
@@ -47,7 +47,7 @@ def trigger(request, user_id):
             notification = Notification(
                 location=user_info.location,
                 name=name,
-                message="Экстренная ситуация, требуется ваша помощь!",
+                message="Emergency situation, your help is needed!",
                 contact={":phone:": phone, ":email:": email},
                 user_name=user_info.user.username
             )
@@ -60,14 +60,14 @@ def trigger(request, user_id):
 
             if email_result.get("status") == "success":
                 response_data["messages"].append(
-                    f"Ваш/ваша {relationship} ({name}) получил(а) уведомление по email."
+                    f"Your {relationship} ({name}) received a notification by email."
                 )
             else:
                 response_data["messages"].append(
-                    f"Ошибка отправки уведомления для {relationship} ({name}): {email_result.get('message')}"
+                    f"Error sending notification to {relationship} ({name}): {email_result.get('message')}"
                 )
     else:
-        response_data["messages"].append("Экстренные контакты не были уведомлены.")
+        response_data["messages"].append("Emergency contacts were not notified.")
 
 
 
@@ -75,14 +75,14 @@ def trigger(request, user_id):
     if scenario.notify_therapist and user_info.therapist_contact:
         therapist_contact = user_info.therapist_contact
 
-        therapist_name = therapist_contact.name or "не указано"
-        therapist_phone = therapist_contact.phone or "не указан"
-        therapist_email = therapist_contact.email or "не указан"
+        therapist_name = therapist_contact.name or "not specified"
+        therapist_phone = therapist_contact.phone or "not specified"
+        therapist_email = therapist_contact.email or "not specified"
 
         notification = Notification(
             location=user_info.location,
             name=therapist_name,
-            message="Экстренная ситуация, пользователь сообщает о необходимости связи.",
+            message="Emergency situation, user reports the need for communication.",
             contact={
                 ":phone:": therapist_phone,
                 ":email:": therapist_email
@@ -96,8 +96,8 @@ def trigger(request, user_id):
             message_text=None
         )
 
-        response_data["messages"].append(f"Ваш психотерапевт ({therapist_name}) был уведомлён.")
+        response_data["messages"].append(f"Your therapist ({therapist_name}) was notified.")
     else:
-        response_data["messages"].append("Психотерапевт не был уведомлён.")
+        response_data["messages"].append("Therapist was not notified.")
 
     return Response(response_data, status=200)

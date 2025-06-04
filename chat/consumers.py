@@ -218,6 +218,6 @@ class AdminConsumer(AsyncWebsocketConsumer):
                 }
             )
         except (ValueError, json.JSONDecodeError) as e:
-            print(f"[AdminConsumer Error] Некорректные данные: {e}")
+            print(f"[AdminConsumer Error] Invalid data: {e}")
         except Exception as e:
-            print(f"[AdminConsumer Error] Ошибка при отправке сообщения пользователю: {e}")
+            print(f"[AdminConsumer Error] Error sending message to user: {e}")

@@ -1,68 +1,68 @@
 # API Documentation
 
-## Введение
-Данная документация описывает API для мобильного приложения поддержки пользователей с ПТСР. API предоставляет функциональность для регистрации и аутентификации пользователей, управления профилем, экстренной помощи и чата с поддержкой.
+## Introduction
+This documentation describes the API for a mobile application supporting users with PTSD. The API provides functionality for user registration and authentication, profile management, emergency assistance, and support chat.
 
-## Базовый URL
-Все API-эндпоинты имеют префикс `/api/v1/`.
+## Base URL
+All API endpoints have the prefix `/api/v1/`.
 
-## Аутентификация
-Большинство эндпоинтов требуют аутентификации с использованием токена. Включите токен в заголовок запроса:
+## Authentication
+Most endpoints require authentication using a token. Include the token in the request header:
 ```
-Authorization: Token <ваш_токен>
+Authorization: Token <your_token>
 ```
 
-Токен можно получить через эндпоинт `/api/v1/user/login/`.
+The token can be obtained through the `/api/v1/user/login/` endpoint.
 
-## Коды ошибок
-API использует стандартные HTTP-коды состояния:
-- `200 OK`: Запрос выполнен успешно
-- `201 Created`: Ресурс успешно создан
-- `400 Bad Request`: Неверный запрос (проверьте данные запроса)
-- `401 Unauthorized`: Требуется аутентификация
-- `403 Forbidden`: Доступ запрещен (нет прав)
-- `404 Not Found`: Ресурс не найден
-- `500 Internal Server Error`: Внутренняя ошибка сервера
+## Error Codes
+The API uses standard HTTP status codes:
+- `200 OK`: Request completed successfully
+- `201 Created`: Resource created successfully
+- `400 Bad Request`: Invalid request (check request data)
+- `401 Unauthorized`: Authentication required
+- `403 Forbidden`: Access denied (no permissions)
+- `404 Not Found`: Resource not found
+- `500 Internal Server Error`: Internal server error
 
-## API пользователя
+## User API
 
-### Регистрация пользователя
-Создает нового пользователя в системе.
+### User Registration
+Creates a new user in the system.
 
 - **URL**: `/api/v1/user/registration/`
-- **Метод**: POST
-- **Аутентификация**: Не требуется
-- **Тело запроса**:
+- **Method**: POST
+- **Authentication**: Not required
+- **Request Body**:
   ```json
   {
-    "username": "имя_пользователя",
+    "username": "username",
     "email": "email@example.com",
-    "password": "пароль"
+    "password": "password"
   }
   ```
-  | Поле | Тип | Обязательное | Описание |
+  | Field | Type | Required | Description |
   |------|-----|--------------|----------|
-  | username | string | Да | Уникальное имя пользователя |
-  | email | string | Да | Электронная почта пользователя |
-  | password | string | Да | Пароль пользователя |
+  | username | string | Yes | Unique username |
+  | email | string | Yes | User's email address |
+  | password | string | Yes | User's password |
 
-- **Ответ**:
-  - Успех (201 Created):
+- **Response**:
+  - Success (201 Created):
     ```json
     {
       "message": "User Created"
     }
     ```
-  - Ошибка (400 Bad Request):
+  - Error (400 Bad Request):
     ```json
     {
-      "username": ["Пользователь с таким именем уже существует."],
-      "email": ["Введите правильный адрес электронной почты."],
-      "password": ["Это поле обязательно."]
+      "username": ["A user with that username already exists."],
+      "email": ["Enter a valid email address."],
+      "password": ["This field is required."]
     }
     ```
 
-- **Пример запроса**:
+- **Request Example**:
   ```bash
   curl -X POST \
     http://127.0.0.1:8000/api/v1/user/registration/ \
