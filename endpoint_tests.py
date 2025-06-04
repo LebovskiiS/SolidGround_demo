@@ -9,7 +9,7 @@ from django.urls import reverse
 class EndpointTests(TestCase):
     def setUp(self):
         self.username = 'testuser'
-        self.password = 'testpassword'
+        self.password = 'YOUR_TEST_PASSWORD_HERE'
         self.email = 'test@example.com'
         self.user = User.objects.create_user(
             username=self.username,

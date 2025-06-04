@@ -6,7 +6,7 @@ BASE_URL = 'http://localhost:8000/api/v1'
 
 # Test user credentials
 USERNAME = 'testuser'
-PASSWORD = 'testpassword'
+PASSWORD = 'YOUR_TEST_PASSWORD_HERE'
 EMAIL = 'test@example.com'
 
 # Registration
@@ -32,7 +32,7 @@ def test_login():
     response = requests.post(url, json=data)
     print(f'Login status code: {response.status_code}')
     print(f'Login response: {response.text}')
-    
+
     if response.status_code == 200:
         return response.json().get('token')
     return None
@@ -54,18 +54,18 @@ def run_tests():
     if not test_registration():
         print('Registration test failed')
         return
-    
+
     # Test login
     token = test_login()
     if not token:
         print('Login test failed')
         return
-    
+
     # Test trigger
     if not test_trigger(token):
         print('Trigger test failed')
         return
-    
+
     print('All tests passed!')
 
 if __name__ == '__main__':
